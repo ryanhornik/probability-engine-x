@@ -1,0 +1,370 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="DBProbAppModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="DBProbAppModelStoreContainer">
+    <EntitySet Name="Demographic_Data" EntityType="DBProbAppModel.Store.Demographic_Data" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Departments" EntityType="DBProbAppModel.Store.Departments" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Employees" EntityType="DBProbAppModel.Store.Employees" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Job_Title" EntityType="DBProbAppModel.Store.Job_Title" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Salaries" EntityType="DBProbAppModel.Store.Salaries" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Universities" EntityType="DBProbAppModel.Store.Universities" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="FK_Employee_DemographData" Association="DBProbAppModel.Store.FK_Employee_DemographData">
+      <End Role="Demographic_Data" EntitySet="Demographic_Data" />
+      <End Role="Employee" EntitySet="Employees" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Employee_Department" Association="DBProbAppModel.Store.FK_Employee_Department">
+      <End Role="Department" EntitySet="Departments" />
+      <End Role="Employee" EntitySet="Employees" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Employee_JobTitle" Association="DBProbAppModel.Store.FK_Employee_JobTitle">
+      <End Role="Job_Title" EntitySet="Job_Title" />
+      <End Role="Employee" EntitySet="Employees" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Employee_University" Association="DBProbAppModel.Store.FK_Employee_University">
+      <End Role="University" EntitySet="Universities" />
+      <End Role="Employee" EntitySet="Employees" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Salary_Employee" Association="DBProbAppModel.Store.FK_Salary_Employee">
+      <End Role="Employee" EntitySet="Employees" />
+      <End Role="Salary" EntitySet="Salaries" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Demographic_Data">
+    <Key>
+      <PropertyRef Name="ID_DEMOGRAPHIC_DATA" />
+    </Key>
+    <Property Name="ID_DEMOGRAPHIC_DATA" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Departments">
+    <Key>
+      <PropertyRef Name="ID_DEPARTMENT" />
+    </Key>
+    <Property Name="ID_DEPARTMENT" Type="int" Nullable="false" />
+    <Property Name="DEPARTMENT_NAME" Type="varchar(max)" Nullable="true" />
+  </EntityType>
+  <EntityType Name="Employees">
+    <Key>
+      <PropertyRef Name="ID_EMPLOYEE" />
+    </Key>
+    <Property Name="ID_EMPLOYEE" Type="int" Nullable="false" />
+    <Property Name="ID_UNIVERSITY" Type="int" Nullable="true" />
+    <Property Name="ID_JOB_TITLE" Type="int" Nullable="true" />
+    <Property Name="ID_DEPARTMENT" Type="int" Nullable="true" />
+    <Property Name="ID_DEMOGRAPHIC_DATA" Type="int" Nullable="true" />
+    <Property Name="TOTAL_SALARY" Type="decimal" Nullable="true" Precision="19" Scale="4" />
+  </EntityType>
+  <EntityType Name="Job_Title">
+    <Key>
+      <PropertyRef Name="ID_JOB_TITLE" />
+    </Key>
+    <Property Name="ID_JOB_TITLE" Type="int" Nullable="false" />
+    <Property Name="JOB_TITLE_NAME" Type="varchar(max)" Nullable="true" />
+  </EntityType>
+  <EntityType Name="Salaries">
+    <Key>
+      <PropertyRef Name="ID_SALARY" />
+    </Key>
+    <Property Name="ID_SALARY" Type="int" Nullable="false" />
+    <Property Name="ID_EMPLOYEE" Type="int" Nullable="true" />
+    <Property Name="SALARY_AMOUNT" Type="decimal" Nullable="true" Precision="19" Scale="4" />
+  </EntityType>
+  <EntityType Name="Universities">
+    <Key>
+      <PropertyRef Name="ID_UNIVERSITY" />
+    </Key>
+    <Property Name="ID_UNIVERSITY" Type="int" Nullable="false" />
+    <Property Name="UNIVERSITY_NAME" Type="varchar(max)" Nullable="true" />
+  </EntityType>
+  <Association Name="FK_Employee_DemographData">
+    <End Role="Demographic_Data" Type="DBProbAppModel.Store.Demographic_Data" Multiplicity="0..1" />
+    <End Role="Employee" Type="DBProbAppModel.Store.Employees" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Demographic_Data">
+        <PropertyRef Name="ID_DEMOGRAPHIC_DATA" />
+      </Principal>
+      <Dependent Role="Employee">
+        <PropertyRef Name="ID_DEMOGRAPHIC_DATA" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Employee_Department">
+    <End Role="Department" Type="DBProbAppModel.Store.Departments" Multiplicity="0..1" />
+    <End Role="Employee" Type="DBProbAppModel.Store.Employees" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Department">
+        <PropertyRef Name="ID_DEPARTMENT" />
+      </Principal>
+      <Dependent Role="Employee">
+        <PropertyRef Name="ID_DEPARTMENT" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Employee_JobTitle">
+    <End Role="Job_Title" Type="DBProbAppModel.Store.Job_Title" Multiplicity="0..1" />
+    <End Role="Employee" Type="DBProbAppModel.Store.Employees" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Job_Title">
+        <PropertyRef Name="ID_JOB_TITLE" />
+      </Principal>
+      <Dependent Role="Employee">
+        <PropertyRef Name="ID_JOB_TITLE" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Employee_University">
+    <End Role="University" Type="DBProbAppModel.Store.Universities" Multiplicity="0..1" />
+    <End Role="Employee" Type="DBProbAppModel.Store.Employees" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="University">
+        <PropertyRef Name="ID_UNIVERSITY" />
+      </Principal>
+      <Dependent Role="Employee">
+        <PropertyRef Name="ID_UNIVERSITY" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Salary_Employee">
+    <End Role="Employee" Type="DBProbAppModel.Store.Employees" Multiplicity="0..1" />
+    <End Role="Salary" Type="DBProbAppModel.Store.Salaries" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employee">
+        <PropertyRef Name="ID_EMPLOYEE" />
+      </Principal>
+      <Dependent Role="Salary">
+        <PropertyRef Name="ID_EMPLOYEE" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DBProbAppModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Demographic_Data">
+          <Key>
+            <PropertyRef Name="ID_DEMOGRAPHIC_DATA" />
+          </Key>
+          <Property Name="ID_DEMOGRAPHIC_DATA" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Employees" Relationship="Self.FK_Employee_DemographData" FromRole="Demographic_Data" ToRole="Employee" />
+        </EntityType>
+        <EntityType Name="Department">
+          <Key>
+            <PropertyRef Name="ID_DEPARTMENT" />
+          </Key>
+          <Property Name="ID_DEPARTMENT" Type="Int32" Nullable="false" />
+          <Property Name="DEPARTMENT_NAME" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Employees" Relationship="Self.FK_Employee_Department" FromRole="Department" ToRole="Employee" />
+        </EntityType>
+        <EntityType Name="Employee">
+          <Key>
+            <PropertyRef Name="ID_EMPLOYEE" />
+          </Key>
+          <Property Name="ID_EMPLOYEE" Type="Int32" Nullable="false" />
+          <Property Name="ID_UNIVERSITY" Type="Int32" />
+          <Property Name="ID_JOB_TITLE" Type="Int32" />
+          <Property Name="ID_DEPARTMENT" Type="Int32" />
+          <Property Name="ID_DEMOGRAPHIC_DATA" Type="Int32" />
+          <Property Name="TOTAL_SALARY" Type="Decimal" Precision="19" Scale="4" />
+          <NavigationProperty Name="Demographic_Data" Relationship="Self.FK_Employee_DemographData" FromRole="Employee" ToRole="Demographic_Data" />
+          <NavigationProperty Name="Department" Relationship="Self.FK_Employee_Department" FromRole="Employee" ToRole="Department" />
+          <NavigationProperty Name="Job_Title" Relationship="Self.FK_Employee_JobTitle" FromRole="Employee" ToRole="Job_Title" />
+          <NavigationProperty Name="University" Relationship="Self.FK_Employee_University" FromRole="Employee" ToRole="University" />
+          <NavigationProperty Name="Salaries" Relationship="Self.FK_Salary_Employee" FromRole="Employee" ToRole="Salary" />
+        </EntityType>
+        <EntityType Name="Job_Title">
+          <Key>
+            <PropertyRef Name="ID_JOB_TITLE" />
+          </Key>
+          <Property Name="ID_JOB_TITLE" Type="Int32" Nullable="false" />
+          <Property Name="JOB_TITLE_NAME" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Employees" Relationship="Self.FK_Employee_JobTitle" FromRole="Job_Title" ToRole="Employee" />
+        </EntityType>
+        <EntityType Name="Salary">
+          <Key>
+            <PropertyRef Name="ID_SALARY" />
+          </Key>
+          <Property Name="ID_SALARY" Type="Int32" Nullable="false" />
+          <Property Name="ID_EMPLOYEE" Type="Int32" />
+          <Property Name="SALARY_AMOUNT" Type="Decimal" Precision="19" Scale="4" />
+          <NavigationProperty Name="Employee" Relationship="Self.FK_Salary_Employee" FromRole="Salary" ToRole="Employee" />
+        </EntityType>
+        <EntityType Name="University">
+          <Key>
+            <PropertyRef Name="ID_UNIVERSITY" />
+          </Key>
+          <Property Name="ID_UNIVERSITY" Type="Int32" Nullable="false" />
+          <Property Name="UNIVERSITY_NAME" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Employees" Relationship="Self.FK_Employee_University" FromRole="University" ToRole="Employee" />
+        </EntityType>
+        <Association Name="FK_Employee_DemographData">
+          <End Role="Demographic_Data" Type="Self.Demographic_Data" Multiplicity="0..1" />
+          <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Demographic_Data">
+              <PropertyRef Name="ID_DEMOGRAPHIC_DATA" />
+            </Principal>
+            <Dependent Role="Employee">
+              <PropertyRef Name="ID_DEMOGRAPHIC_DATA" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Employee_Department">
+          <End Role="Department" Type="Self.Department" Multiplicity="0..1" />
+          <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Department">
+              <PropertyRef Name="ID_DEPARTMENT" />
+            </Principal>
+            <Dependent Role="Employee">
+              <PropertyRef Name="ID_DEPARTMENT" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Employee_JobTitle">
+          <End Role="Job_Title" Type="Self.Job_Title" Multiplicity="0..1" />
+          <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Job_Title">
+              <PropertyRef Name="ID_JOB_TITLE" />
+            </Principal>
+            <Dependent Role="Employee">
+              <PropertyRef Name="ID_JOB_TITLE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Employee_University">
+          <End Role="University" Type="Self.University" Multiplicity="0..1" />
+          <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="University">
+              <PropertyRef Name="ID_UNIVERSITY" />
+            </Principal>
+            <Dependent Role="Employee">
+              <PropertyRef Name="ID_UNIVERSITY" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Salary_Employee">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
+          <End Role="Salary" Type="Self.Salary" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="ID_EMPLOYEE" />
+            </Principal>
+            <Dependent Role="Salary">
+              <PropertyRef Name="ID_EMPLOYEE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DBProbAppEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Demographic_Data" EntityType="Self.Demographic_Data" />
+          <EntitySet Name="Departments" EntityType="Self.Department" />
+          <EntitySet Name="Employees" EntityType="Self.Employee" />
+          <EntitySet Name="Job_Title" EntityType="Self.Job_Title" />
+          <EntitySet Name="Salaries" EntityType="Self.Salary" />
+          <EntitySet Name="Universities" EntityType="Self.University" />
+          <AssociationSet Name="FK_Employee_DemographData" Association="Self.FK_Employee_DemographData">
+            <End Role="Demographic_Data" EntitySet="Demographic_Data" />
+            <End Role="Employee" EntitySet="Employees" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Employee_Department" Association="Self.FK_Employee_Department">
+            <End Role="Department" EntitySet="Departments" />
+            <End Role="Employee" EntitySet="Employees" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Employee_JobTitle" Association="Self.FK_Employee_JobTitle">
+            <End Role="Job_Title" EntitySet="Job_Title" />
+            <End Role="Employee" EntitySet="Employees" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Employee_University" Association="Self.FK_Employee_University">
+            <End Role="University" EntitySet="Universities" />
+            <End Role="Employee" EntitySet="Employees" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Salary_Employee" Association="Self.FK_Salary_Employee">
+            <End Role="Employee" EntitySet="Employees" />
+            <End Role="Salary" EntitySet="Salaries" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="DBProbAppModelStoreContainer" CdmEntityContainer="DBProbAppEntities">
+    <EntitySetMapping Name="Demographic_Data">
+      <EntityTypeMapping TypeName="IsTypeOf(DBProbAppModel.Demographic_Data)">
+        <MappingFragment StoreEntitySet="Demographic_Data">
+          <ScalarProperty Name="ID_DEMOGRAPHIC_DATA" ColumnName="ID_DEMOGRAPHIC_DATA" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Departments">
+      <EntityTypeMapping TypeName="IsTypeOf(DBProbAppModel.Department)">
+        <MappingFragment StoreEntitySet="Departments">
+          <ScalarProperty Name="ID_DEPARTMENT" ColumnName="ID_DEPARTMENT" />
+          <ScalarProperty Name="DEPARTMENT_NAME" ColumnName="DEPARTMENT_NAME" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Employees">
+      <EntityTypeMapping TypeName="IsTypeOf(DBProbAppModel.Employee)">
+        <MappingFragment StoreEntitySet="Employees">
+          <ScalarProperty Name="ID_EMPLOYEE" ColumnName="ID_EMPLOYEE" />
+          <ScalarProperty Name="ID_UNIVERSITY" ColumnName="ID_UNIVERSITY" />
+          <ScalarProperty Name="ID_JOB_TITLE" ColumnName="ID_JOB_TITLE" />
+          <ScalarProperty Name="ID_DEPARTMENT" ColumnName="ID_DEPARTMENT" />
+          <ScalarProperty Name="ID_DEMOGRAPHIC_DATA" ColumnName="ID_DEMOGRAPHIC_DATA" />
+          <ScalarProperty Name="TOTAL_SALARY" ColumnName="TOTAL_SALARY" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Job_Title">
+      <EntityTypeMapping TypeName="IsTypeOf(DBProbAppModel.Job_Title)">
+        <MappingFragment StoreEntitySet="Job_Title">
+          <ScalarProperty Name="ID_JOB_TITLE" ColumnName="ID_JOB_TITLE" />
+          <ScalarProperty Name="JOB_TITLE_NAME" ColumnName="JOB_TITLE_NAME" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Salaries">
+      <EntityTypeMapping TypeName="IsTypeOf(DBProbAppModel.Salary)">
+        <MappingFragment StoreEntitySet="Salaries">
+          <ScalarProperty Name="ID_SALARY" ColumnName="ID_SALARY" />
+          <ScalarProperty Name="ID_EMPLOYEE" ColumnName="ID_EMPLOYEE" />
+          <ScalarProperty Name="SALARY_AMOUNT" ColumnName="SALARY_AMOUNT" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Universities">
+      <EntityTypeMapping TypeName="IsTypeOf(DBProbAppModel.University)">
+        <MappingFragment StoreEntitySet="Universities">
+          <ScalarProperty Name="ID_UNIVERSITY" ColumnName="ID_UNIVERSITY" />
+          <ScalarProperty Name="UNIVERSITY_NAME" ColumnName="UNIVERSITY_NAME" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="False" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

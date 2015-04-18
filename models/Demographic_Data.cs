@@ -12,12 +12,15 @@ namespace ProbabilityToExcel.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Salary
+    public partial class Demographic_Data
     {
-        public int ID_SALARY { get; set; }
-        public Nullable<int> ID_EMPLOYEE { get; set; }
-        public Nullable<decimal> SALARY_AMOUNT { get; set; }
+        public Demographic_Data()
+        {
+            this.Employees = new HashSet<Employee>();
+        }
     
-        public virtual Employee Employee { get; set; }
+        public int ID_DEMOGRAPHIC_DATA { get; set; }
+    
+        public virtual ICollection<Employee> Employees { get; set; }
     }
 }
