@@ -72,13 +72,90 @@ namespace ProbabilityToExcel
             var deptNameColumn = "Z";
             var dataStartRow = 8;
 
-            while (!worksheet.Range[proposedDistSalaryColumn + dataStartRow].Value2.ToString().Equals("")) // Will be empty when the last row is reached
+
+            Employee currentEmployee = null;
+            while (!worksheet.Range[proposedDistSalaryColumn + dataStartRow].Value2.Equals(null))
             {
-                var currentVal = worksheet.Range[(jobTitleColumn +""+ dataStartRow)].Value2;
-                var jobTitle = currentVal.ToString();
-                var proposedDistSalary = worksheet.Range[proposedDistSalaryColumn + dataStartRow].Value2.ToString();
-                var deptID = worksheet.Range[deptIDColumn + dataStartRow].Value2.ToString();
-                var deptName = worksheet.Range[deptNameColumn + dataStartRow].Value2.ToString();
+
+                var jobTitle = worksheet.Range[(jobTitleColumn + "" + dataStartRow)].Value2;
+                
+                var proposedDistSalary = worksheet.Range[proposedDistSalaryColumn + dataStartRow].Value2;
+
+                var deptID = worksheet.Range[deptIDColumn + dataStartRow].Value2;
+
+                var deptName = worksheet.Range[deptNameColumn + dataStartRow].Value2;
+
+                if (jobTitle == null)
+                {
+                    if (currentEmployee == null)
+                    {
+                        throw new Exception("Invalid Excel document format - Empty job title appears in first row");
+                    }
+
+                    var salary = new Salary()
+                    {
+                        Employee = currentEmployee,
+                        SALARY_AMOUNT = Convert.ToDecimal(proposedDistSalary.ToString())
+                    };
+                }
+                else
+                {
+                    Department dept;
+                    string deptIDString = deptID.ToString();
+                    if (db.Departments.Any(s => s.ID_DEPARTMENT.Equals(deptIDString)))
+                    {
+                        dept = db.Departments.Find(deptID.ToString());
+                    }
+                    else
+                    {
+                        dept = new Department()
+                        {
+                            DEPARTMENT_NAME = deptName.ToString(),
+                            ID_DEPARTMENT = deptID.ToString()
+                        };
+                        db.Departments.Add(dept);
+                        db.SaveChanges();
+                    }
+
+                    
+
+                    Job_Title title;
+                    string jobTitleString = jobTitle.ToString();
+                    if (db.Job_Title.Any(s => s.JOB_TITLE_NAME.Equals(jobTitleString)))
+                    {
+                        title = db.Job_Title.First(s => s.JOB_TITLE_NAME.Equals(jobTitleString));
+                    }
+                    else
+                    {
+                        title = new Job_Title()
+                        {
+                            JOB_TITLE_NAME = jobTitle.ToString()
+                        };
+                        db.Job_Title.Add(title);
+                        db.SaveChanges();
+                    }
+
+                    
+
+                    currentEmployee = new Employee()
+                    {
+                        Department = dept,
+                        Job_Title = title,
+                        University = university
+                    };
+
+                    db.Employees.Add(currentEmployee);
+                    db.SaveChanges();
+
+                    Salary salary = new Salary()
+                    {
+                        Employee = currentEmployee,
+                        SALARY_AMOUNT = Convert.ToDecimal(proposedDistSalary.ToString())
+                    };
+
+                    db.Salaries.Add(salary);
+                    db.SaveChanges();
+                }
 
                 dataStartRow++;
             }

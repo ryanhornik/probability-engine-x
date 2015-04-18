@@ -186,7 +186,6 @@
           <Property Name="ID_DEMOGRAPHIC_DATA" Type="Int32" />
           <Property Name="TOTAL_SALARY" Type="Decimal" Precision="19" Scale="4" />
           <NavigationProperty Name="Demographic_Data" Relationship="Self.FK_Demographic_Data_Employee" FromRole="Employee" ToRole="Demographic_Data" />
-          <NavigationProperty Name="Demographic_Data1" Relationship="Self.FK_Employee_DemographData" FromRole="Employee" ToRole="Demographic_Data" />
           <NavigationProperty Name="Department" Relationship="Self.FK_Employee_Department" FromRole="Employee" ToRole="Department" />
           <NavigationProperty Name="Job_Title" Relationship="Self.FK_Employee_JobTitle" FromRole="Employee" ToRole="Job_Title" />
           <NavigationProperty Name="University" Relationship="Self.FK_Employee_University" FromRole="Employee" ToRole="University" />
