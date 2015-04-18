@@ -21,6 +21,7 @@ namespace ProbabilityToExcel.Models
     
         public int ID_DEMOGRAPHIC_DATA { get; set; }
     
+        public virtual Employee Employee { get; set; }
         public virtual ICollection<Employee> Employees { get; set; }
     }
 }

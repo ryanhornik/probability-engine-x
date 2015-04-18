@@ -98,22 +98,17 @@
     <Compile Include="Models\University.cs">
       <DependentUpon>UniversityModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\UniversityModel.Context.cs" />
-    <Compile Include="Models\UniversityModel.Context1.cs">
+    <Compile Include="Models\UniversityModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>UniversityModel.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\UniversityModel.cs" />
-    <Compile Include="Models\UniversityModel.Designer.cs">
-      <DependentUpon>UniversityModel.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Models\UniversityModel1.cs">
+    <Compile Include="Models\UniversityModel.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>UniversityModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\UniversityModel1.Designer.cs">
+    <Compile Include="Models\UniversityModel.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>UniversityModel.edmx</DependentUpon>
@@ -132,20 +127,22 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <None Include="Models\UniversityModel.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>UniversityModel.Context1.cs</LastGenOutput>
-    </None>
     <EntityDeploy Include="Models\UniversityModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>UniversityModel1.Designer.cs</LastGenOutput>
+      <LastGenOutput>UniversityModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
+    <None Include="Models\UniversityModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>UniversityModel.edmx</DependentUpon>
+      <LastGenOutput>UniversityModel.Context.cs</LastGenOutput>
+    </None>
     <None Include="Models\UniversityModel.edmx.diagram">
       <DependentUpon>UniversityModel.edmx</DependentUpon>
     </None>
     <None Include="Models\UniversityModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>UniversityModel1.cs</LastGenOutput>
+      <DependentUpon>UniversityModel.edmx</DependentUpon>
+      <LastGenOutput>UniversityModel.cs</LastGenOutput>
     </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

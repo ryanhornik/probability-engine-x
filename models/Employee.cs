@@ -22,11 +22,12 @@ namespace ProbabilityToExcel.Models
         public int ID_EMPLOYEE { get; set; }
         public Nullable<int> ID_UNIVERSITY { get; set; }
         public Nullable<int> ID_JOB_TITLE { get; set; }
-        public Nullable<int> ID_DEPARTMENT { get; set; }
+        public string ID_DEPARTMENT { get; set; }
         public Nullable<int> ID_DEMOGRAPHIC_DATA { get; set; }
         public Nullable<decimal> TOTAL_SALARY { get; set; }
     
         public virtual Demographic_Data Demographic_Data { get; set; }
+        public virtual Demographic_Data Demographic_Data1 { get; set; }
         public virtual Department Department { get; set; }
         public virtual Job_Title Job_Title { get; set; }
         public virtual University University { get; set; }

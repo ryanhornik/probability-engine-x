@@ -24,46 +24,11 @@ namespace ProbabilityToExcel
         static void Main()
         {
 
-            using (var db = new UniversityContext())
+            using (var db = new UniversityEntities())
             {
                 db.Universities.Add(new University()
                 {
-                    UniversityName = "University of Houston"
-                });
-                db.SaveChanges();
-
-                db.JobTitles.Add(new JobTitle()
-                {
-                    JobTitleName = "Professor"
-                });
-                db.SaveChanges();
-
-                db.Departments.Add(new Department()
-                {
-                    DepartmentId = "H0081",
-                    DepartmentName = "HRM Faculty"
-                });
-                db.SaveChanges();
-
-                db.Employees.Add(new Employee()
-                {
-                    UniversityId = 1,
-                    DepartmentId = "H0081",
-                    JobTitleId = 1
-                });
-                db.SaveChanges();
-
-
-                db.DemographicData.Add(new DemographicData()
-                {
-                    EmployeeId = 1
-                });
-                db.SaveChanges();
-
-                db.Salaries.Add(new Salary()
-                {
-                    EmployeeId = 1,
-                    SalaryAmmount = 40000
+                    UNIVERSITY_NAME = "University of Houston"
                 });
                 db.SaveChanges();
             }

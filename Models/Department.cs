@@ -19,7 +19,7 @@ namespace ProbabilityToExcel.Models
             this.Employees = new HashSet<Employee>();
         }
     
-        public int ID_DEPARTMENT { get; set; }
+        public string ID_DEPARTMENT { get; set; }
         public string DEPARTMENT_NAME { get; set; }
     
         public virtual ICollection<Employee> Employees { get; set; }

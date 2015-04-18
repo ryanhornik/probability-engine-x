@@ -7,16 +7,16 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ProbApp
+namespace ProbabilityToExcel.Models
 {
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class DBProbAppEntities : DbContext
+    public partial class UniversityEntities : DbContext
     {
-        public DBProbAppEntities()
-            : base("name=DBProbAppEntities")
+        public UniversityEntities()
+            : base("name=UniversityEntities")
         {
         }
     

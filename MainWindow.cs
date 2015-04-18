@@ -19,7 +19,7 @@ namespace ProbabilityToExcel
 {
     public partial class MainWindow : Form
     {
-        UniversityContext db = new UniversityContext();
+        UniversityEntities db = new UniversityEntities();
 
         public MainWindow()
         {
