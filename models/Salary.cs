@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ProbApp
+namespace ProbabilityToExcel.Models
 {
     using System;
     using System.Collections.Generic;
