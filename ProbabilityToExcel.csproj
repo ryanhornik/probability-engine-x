@@ -63,15 +63,13 @@
     <Compile Include="MainWindow.Designer.cs">
       <DependentUpon>MainWindow.cs</DependentUpon>
     </Compile>
-    <Compile Include="ProbAppDataSet.cs">
-      <DependentUpon>ProbAppDataSet.xsd</DependentUpon>
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="ProbAppDataSet.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ProbAppDataSet.xsd</DependentUpon>
-    </Compile>
+    <Compile Include="Models\DemographicData.cs" />
+    <Compile Include="Models\Department.cs" />
+    <Compile Include="Models\Employee.cs" />
+    <Compile Include="Models\JobTitle.cs" />
+    <Compile Include="Models\Salary.cs" />
+    <Compile Include="Models\University.cs" />
+    <Compile Include="Models\UniversityContext.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="MainWindow.resx">
@@ -87,17 +85,6 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <None Include="packages.config" />
-    <None Include="ProbAppDataSet.xsc">
-      <DependentUpon>ProbAppDataSet.xsd</DependentUpon>
-    </None>
-    <None Include="ProbAppDataSet.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>ProbAppDataSet.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="ProbAppDataSet.xss">
-      <DependentUpon>ProbAppDataSet.xsd</DependentUpon>
-    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

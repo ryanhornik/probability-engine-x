@@ -2,21 +2,24 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Net.Mime;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Excel = Microsoft.Office.Interop.Excel;
 using System.Reflection;
 using System.Runtime.CompilerServices;
+using ProbabilityToExcel.Models;
 
 namespace ProbabilityToExcel
 {
     public partial class MainWindow : Form
     {
-        ProbabilityToExcel.ProbAppDataSet db = new ProbAppDataSet();
+        UniversityContext db = new UniversityContext();
 
         public MainWindow()
         {
@@ -43,14 +46,59 @@ namespace ProbabilityToExcel
 
             if (result == DialogResult.OK)
             {
-                loadExcelData(openFileDialog.OpenFile());
+                LoadExcelData(openFileDialog.FileName);
             }
         }
 
-        private void loadExcelData(Stream fileStream)
+        private void LoadExcelData(String filePath)
         {
-            Console.Write("TODO: Add actual processing");
+            var application = new Excel.Application();
+            var workbook = application.Workbooks.Open(filePath);
+            var worksheet = (Excel.Worksheet)workbook.Worksheets.Item[1];
+            object misValue = Missing.Value;
+
+            var jobTitleColumn = "B";
+            var proposedDistSalaryColumn = "Q";
+            var deptIDColumn = "AA";
+            var deptNameColumn = "Z";
+            var dataStartRow = 7;
+
+            while (!worksheet.Range[proposedDistSalaryColumn + dataStartRow].Value2.ToString().Equals("")) // Will be empty when the last row is reached
+            {
+                var jobTitle = worksheet.Range[jobTitleColumn + dataStartRow].Value2.ToString();
+                var proposedDistSalary = worksheet.Range[proposedDistSalaryColumn + dataStartRow].Value2.ToString();
+                var deptID = worksheet.Range[deptIDColumn + dataStartRow].Value2.ToString();
+                var deptName = worksheet.Range[deptNameColumn + dataStartRow].Value2.ToString();
+
+                dataStartRow++;
+            }
+
+
+            workbook.Close(true, misValue, misValue);
+            application.Quit();
+
+            ReleaseObject(worksheet);
+            ReleaseObject(workbook);
+            ReleaseObject(application);
         }
+
+        private static void ReleaseObject(object obj)
+        {
+            try
+            {
+                System.Runtime.InteropServices.Marshal.ReleaseComObject(obj);
+                obj = null;
+            }
+            catch (Exception ex)
+            {
+                obj = null;
+                MessageBox.Show("Unable to release the Object " + ex.ToString());
+            }
+            finally
+            {
+                GC.Collect();
+            }
+        } 
         
     }
 }
