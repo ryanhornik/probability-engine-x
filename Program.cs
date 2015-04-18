@@ -23,19 +23,6 @@ namespace ProbabilityToExcel
         [STAThread]
         static void Main()
         {
-
-            using (var db = new UniversityEntities())
-            {
-                db.Universities.Add(new University()
-                {
-                    UNIVERSITY_NAME = "University of Houston"
-                });
-                db.SaveChanges();
-            }
-
-
-
-
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new MainWindow());

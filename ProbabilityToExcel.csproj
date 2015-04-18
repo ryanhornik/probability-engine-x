@@ -92,6 +92,7 @@
     <Compile Include="Models\Job_Title.cs">
       <DependentUpon>UniversityModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ModelExtensions.cs" />
     <Compile Include="Models\Salary.cs">
       <DependentUpon>UniversityModel.tt</DependentUpon>
     </Compile>
@@ -115,6 +116,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SelectUniversity.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SelectUniversity.Designer.cs">
+      <DependentUpon>SelectUniversity.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="MainWindow.resx">
       <DependentUpon>MainWindow.cs</DependentUpon>
     </EmbeddedResource>
@@ -127,6 +134,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="SelectUniversity.resx">
+      <DependentUpon>SelectUniversity.cs</DependentUpon>
+    </EmbeddedResource>
     <EntityDeploy Include="Models\UniversityModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>UniversityModel.Designer.cs</LastGenOutput>
@@ -156,7 +166,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <COMReference Include="Microsoft.Office.Core">
@@ -215,6 +227,9 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

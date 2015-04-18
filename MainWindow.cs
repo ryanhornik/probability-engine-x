@@ -40,17 +40,26 @@ namespace ProbabilityToExcel
                 Multiselect = false
             };
 
+            University university = null;
 
+            using (var form = new SelectUniversity())
+            {
+                var selectResult = form.ShowDialog();
+                if (selectResult == DialogResult.OK)
+                {
+                    university = form.SelectedUniversity;
+                }
+            }
 
             var result = openFileDialog.ShowDialog();
 
-            if (result == DialogResult.OK)
+            if (result == DialogResult.OK && university != null)
             {
-                LoadExcelData(openFileDialog.FileName);
+                LoadExcelData(openFileDialog.FileName, university);
             }
         }
 
-        private void LoadExcelData(String filePath)
+        private void LoadExcelData(String filePath, University university)
         {
             var application = new Excel.Application();
             var workbook = application.Workbooks.Open(filePath);
@@ -61,11 +70,12 @@ namespace ProbabilityToExcel
             var proposedDistSalaryColumn = "Q";
             var deptIDColumn = "AA";
             var deptNameColumn = "Z";
-            var dataStartRow = 7;
+            var dataStartRow = 8;
 
             while (!worksheet.Range[proposedDistSalaryColumn + dataStartRow].Value2.ToString().Equals("")) // Will be empty when the last row is reached
             {
-                var jobTitle = worksheet.Range[jobTitleColumn + dataStartRow].Value2.ToString();
+                var currentVal = worksheet.Range[(jobTitleColumn +""+ dataStartRow)].Value2;
+                var jobTitle = currentVal.ToString();
                 var proposedDistSalary = worksheet.Range[proposedDistSalaryColumn + dataStartRow].Value2.ToString();
                 var deptID = worksheet.Range[deptIDColumn + dataStartRow].Value2.ToString();
                 var deptName = worksheet.Range[deptNameColumn + dataStartRow].Value2.ToString();
