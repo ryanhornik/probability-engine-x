@@ -184,5 +184,17 @@ namespace ProbabilityToExcel
             oResizeRange = (Excel.Range)oWS.Columns.get_Item(2, Missing.Value);
             oWS.Shapes.Item("Chart 1").Left = (float)(double)oResizeRange.Left;
         }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            // TODO: This line of code loads data into the 'probAppDataSet.Employee' table. You can move, or remove it, as needed.
+            this.employeeTableAdapter.Fill(this.probAppDataSet.Employee);
+
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }
