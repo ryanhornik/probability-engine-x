@@ -13,6 +13,7 @@ using System.Windows.Forms;
 using Excel = Microsoft.Office.Interop.Excel;
 using System.Reflection;
 using System.Runtime.CompilerServices;
+using System.Threading;
 using ProbabilityToExcel.Models;
 
 namespace ProbabilityToExcel
@@ -55,7 +56,20 @@ namespace ProbabilityToExcel
 
             if (result == DialogResult.OK && university != null)
             {
-                LoadExcelData(openFileDialog.FileName, university);
+                var loadForm = new SplashForm();
+                loadForm.Show();
+                Hide();
+
+                var thread = new Thread(() =>
+                {
+                    LoadExcelData(openFileDialog.FileName, university);
+
+                    loadForm.Invoke(new Action(() => { loadForm.Close(); }));
+
+                    this.Invoke(new Action(Show));
+                });
+                thread.Start();
+
             }
         }
 
@@ -72,12 +86,6 @@ namespace ProbabilityToExcel
             var deptNameColumn = "Z";
             var dataStartRow = 8;
 
-
-            
-            var startTime = DateTime.Now;
-            this.Hide();
-            SplashForm loadForm = new SplashForm();
-            loadForm.Show();
             Employee currentEmployee = null;
             while (worksheet.Range[proposedDistSalaryColumn + dataStartRow].Value2 != null)
             {
@@ -167,12 +175,6 @@ namespace ProbabilityToExcel
                 dataStartRow++;
 
             }
-            loadForm.Hide();
-            this.Show();
-            var duration = DateTime.Now.Subtract(startTime).TotalSeconds;
-
-            MessageBox.Show("The import took " + duration + " seconds");
-
 
             workbook.Close(true, misValue, misValue);
             application.Quit();
