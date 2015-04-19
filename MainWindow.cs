@@ -205,6 +205,13 @@ namespace ProbabilityToExcel
         private void timer1_Tick(object sender, EventArgs e)
         {
 
+        }
+
+        private void manualDataToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ManualEntry manualForm = new ManualEntry();
+            this.Hide();
+            manualForm.Show();
         } 
         
     }

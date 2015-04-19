@@ -34,6 +34,7 @@
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.importDataToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.importExcel = new System.Windows.Forms.ToolStripMenuItem();
+            this.manualDataToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitButton = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -58,6 +59,7 @@
             this.fileToolStripMenuItem.AutoToolTip = true;
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.importDataToolStripMenuItem,
+            this.manualDataToolStripMenuItem,
             this.exitButton});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             this.fileToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.F)));
@@ -78,9 +80,16 @@
             // importExcel
             // 
             this.importExcel.Name = "importExcel";
-            this.importExcel.Size = new System.Drawing.Size(100, 22);
+            this.importExcel.Size = new System.Drawing.Size(152, 22);
             this.importExcel.Text = "Excel";
             this.importExcel.Click += new System.EventHandler(this.importExcel_Click);
+            // 
+            // manualDataToolStripMenuItem
+            // 
+            this.manualDataToolStripMenuItem.Name = "manualDataToolStripMenuItem";
+            this.manualDataToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.manualDataToolStripMenuItem.Text = "Manual Data";
+            this.manualDataToolStripMenuItem.Click += new System.EventHandler(this.manualDataToolStripMenuItem_Click);
             // 
             // exitButton
             // 
@@ -114,6 +123,7 @@
         private System.Windows.Forms.ToolStripMenuItem importExcel;
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem exitButton;
+        private System.Windows.Forms.ToolStripMenuItem manualDataToolStripMenuItem;
 
     }
 }
