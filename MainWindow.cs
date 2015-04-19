@@ -75,6 +75,9 @@ namespace ProbabilityToExcel
 
             
             var startTime = DateTime.Now;
+            this.Hide();
+            SplashForm loadForm = new SplashForm();
+            loadForm.Show();
             Employee currentEmployee = null;
             while (worksheet.Range[proposedDistSalaryColumn + dataStartRow].Value2 != null)
             {
@@ -164,6 +167,8 @@ namespace ProbabilityToExcel
                 dataStartRow++;
 
             }
+            loadForm.Hide();
+            this.Show();
             var duration = DateTime.Now.Subtract(startTime).TotalSeconds;
 
             MessageBox.Show("The import took " + duration + " seconds");
@@ -193,6 +198,11 @@ namespace ProbabilityToExcel
             {
                 GC.Collect();
             }
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+
         } 
         
     }

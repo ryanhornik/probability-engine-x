@@ -27,6 +27,4 @@ namespace ProbabilityToExcel
             Application.Run(new MainWindow());
         }
     }
-
-
 }

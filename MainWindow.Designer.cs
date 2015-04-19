@@ -78,7 +78,7 @@
             // importExcel
             // 
             this.importExcel.Name = "importExcel";
-            this.importExcel.Size = new System.Drawing.Size(152, 22);
+            this.importExcel.Size = new System.Drawing.Size(100, 22);
             this.importExcel.Text = "Excel";
             this.importExcel.Click += new System.EventHandler(this.importExcel_Click);
             // 
