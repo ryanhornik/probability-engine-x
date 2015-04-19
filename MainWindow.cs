@@ -73,8 +73,10 @@ namespace ProbabilityToExcel
             var dataStartRow = 8;
 
 
+            
+            var startTime = DateTime.Now;
             Employee currentEmployee = null;
-            while (!worksheet.Range[proposedDistSalaryColumn + dataStartRow].Value2.Equals(null))
+            while (worksheet.Range[proposedDistSalaryColumn + dataStartRow].Value2 != null)
             {
 
                 var jobTitle = worksheet.Range[(jobTitleColumn + "" + dataStartRow)].Value2;
@@ -97,6 +99,8 @@ namespace ProbabilityToExcel
                         Employee = currentEmployee,
                         SALARY_AMOUNT = Convert.ToDecimal(proposedDistSalary.ToString())
                     };
+                    db.Salaries.Add(salary);
+                    db.SaveChanges();
                 }
                 else
                 {
@@ -158,7 +162,11 @@ namespace ProbabilityToExcel
                 }
 
                 dataStartRow++;
+
             }
+            var duration = DateTime.Now.Subtract(startTime).TotalSeconds;
+
+            MessageBox.Show("The import took " + duration + " seconds");
 
 
             workbook.Close(true, misValue, misValue);
