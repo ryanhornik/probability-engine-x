@@ -205,6 +205,11 @@ namespace ProbabilityToExcel
         private void timer1_Tick(object sender, EventArgs e)
         {
 
+        }
+
+        private void averagesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
         } 
         
     }
