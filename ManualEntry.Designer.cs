@@ -40,10 +40,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.OutputTextBox = new System.Windows.Forms.RichTextBox();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.groupBox1.SuspendLayout();
-            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // EnterButton
@@ -80,21 +77,21 @@
             // 
             this.EmployeeIDTextBox.Location = new System.Drawing.Point(143, 31);
             this.EmployeeIDTextBox.Name = "EmployeeIDTextBox";
-            this.EmployeeIDTextBox.Size = new System.Drawing.Size(121, 20);
+            this.EmployeeIDTextBox.Size = new System.Drawing.Size(189, 20);
             this.EmployeeIDTextBox.TabIndex = 3;
             // 
             // TotalSalaryTextBox
             // 
             this.TotalSalaryTextBox.Location = new System.Drawing.Point(144, 83);
             this.TotalSalaryTextBox.Name = "TotalSalaryTextBox";
-            this.TotalSalaryTextBox.Size = new System.Drawing.Size(120, 20);
+            this.TotalSalaryTextBox.Size = new System.Drawing.Size(188, 20);
             this.TotalSalaryTextBox.TabIndex = 5;
             // 
             // DepartmentIDTextBox
             // 
             this.DepartmentIDTextBox.Location = new System.Drawing.Point(144, 109);
             this.DepartmentIDTextBox.Name = "DepartmentIDTextBox";
-            this.DepartmentIDTextBox.Size = new System.Drawing.Size(120, 20);
+            this.DepartmentIDTextBox.Size = new System.Drawing.Size(188, 20);
             this.DepartmentIDTextBox.TabIndex = 6;
             // 
             // label1
@@ -121,7 +118,7 @@
             this.JobTitleComboBox.FormattingEnabled = true;
             this.JobTitleComboBox.Location = new System.Drawing.Point(143, 56);
             this.JobTitleComboBox.Name = "JobTitleComboBox";
-            this.JobTitleComboBox.Size = new System.Drawing.Size(121, 21);
+            this.JobTitleComboBox.Size = new System.Drawing.Size(189, 21);
             this.JobTitleComboBox.TabIndex = 10;
             // 
             // label3
@@ -153,38 +150,18 @@
             this.groupBox1.Controls.Add(this.DepartmentIDTextBox);
             this.groupBox1.Controls.Add(this.TotalSalaryTextBox);
             this.groupBox1.Controls.Add(this.EmployeeIDTextBox);
-            this.groupBox1.Location = new System.Drawing.Point(17, 15);
+            this.groupBox1.Location = new System.Drawing.Point(187, 61);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(361, 244);
+            this.groupBox1.Size = new System.Drawing.Size(361, 200);
             this.groupBox1.TabIndex = 13;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Enter Data";
-            // 
-            // OutputTextBox
-            // 
-            this.OutputTextBox.Location = new System.Drawing.Point(38, 26);
-            this.OutputTextBox.Name = "OutputTextBox";
-            this.OutputTextBox.ReadOnly = true;
-            this.OutputTextBox.Size = new System.Drawing.Size(237, 259);
-            this.OutputTextBox.TabIndex = 14;
-            this.OutputTextBox.Text = "";
-            // 
-            // groupBox2
-            // 
-            this.groupBox2.Controls.Add(this.OutputTextBox);
-            this.groupBox2.Location = new System.Drawing.Point(400, 15);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(313, 314);
-            this.groupBox2.TabIndex = 15;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Output Box";
             // 
             // ManualEntry
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(740, 391);
-            this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.ClearButton);
             this.Controls.Add(this.CancelButton);
@@ -194,7 +171,6 @@
             this.Text = "ManualEntry";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            this.groupBox2.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -213,7 +189,5 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.RichTextBox OutputTextBox;
-        private System.Windows.Forms.GroupBox groupBox2;
     }
 }

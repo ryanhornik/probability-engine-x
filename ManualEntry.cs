@@ -20,7 +20,33 @@ namespace ProbabilityToExcel
 
         private void EnterButton_Click(object sender, EventArgs e)
         {
-            //ManuallyEnterData();
+            double temp;
+            if(EmployeeIDTextBox.Equals(null) || JobTitleComboBox.Equals(null) || TotalSalaryTextBox.Equals(null) || DepartmentIDTextBox.Equals(null))
+            {
+                //using this to catch and make sure in the TotalSalaryTextBox is a double
+                if(double.TryParse(TotalSalaryTextBox.Text, out temp))
+                {
+
+                }
+                else
+                {
+                    //displays an error box if it's not a double
+                    MessageBox.Show("Please Enter a valid amount!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            else
+            {
+                //using this to catch and make sure in the TotalSalaryTextBox is a double
+                if (double.TryParse(TotalSalaryTextBox.Text, out temp))
+                {
+
+                }
+                else
+                {
+                    //displays an error box if it's not a double
+                    MessageBox.Show("Please Enter a valid amount!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
         }
         private void CancelButton_Click(object sender, EventArgs e)
         {
@@ -36,7 +62,6 @@ namespace ProbabilityToExcel
             JobTitleComboBox.Items.Clear();
             TotalSalaryTextBox.Clear();
             DepartmentIDTextBox.Clear();
-            OutputTextBox.Clear();
         }
 
         private void label1_Click(object sender, EventArgs e)
