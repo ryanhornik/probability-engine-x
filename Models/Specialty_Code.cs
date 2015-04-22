@@ -12,12 +12,12 @@ namespace ProbabilityToExcel.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Salary
+    public partial class Specialty_Code
     {
-        public int ID_SALARY { get; set; }
-        public Nullable<int> ID_EMPLOYEE { get; set; }
-        public Nullable<decimal> SALARY_AMOUNT { get; set; }
+        public int ID_CODE { get; set; }
+        public string ID_DEPARTMENT { get; set; }
+        public double WEIGHT { get; set; }
     
-        public virtual Employee Employee { get; set; }
+        public virtual Department Department { get; set; }
     }
 }

@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="UniversityModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="DBProbAppModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Demographic_Data">
           <Key>
             <PropertyRef Name="ID_DEMOGRAPHIC_DATA" />
@@ -16,7 +16,6 @@
             <PropertyRef Name="ID_DEPARTMENT" />
           </Key>
           <Property Name="ID_DEPARTMENT" Type="varchar" MaxLength="10" Nullable="false" />
-          <Property Name="DEPARTMENT_NAME" Type="varchar(max)" />
         </EntityType>
         <EntityType Name="Employee">
           <Key>
@@ -36,13 +35,22 @@
           <Property Name="ID_JOB_TITLE" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="JOB_TITLE_NAME" Type="varchar(max)" />
         </EntityType>
-        <EntityType Name="Salary">
+        <EntityType Name="New_Associate_Professor_Average_Salary">
           <Key>
-            <PropertyRef Name="ID_SALARY" />
+            <PropertyRef Name="ID_DEPARTMENT" />
+            <PropertyRef Name="YEAR" />
           </Key>
-          <Property Name="ID_SALARY" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="ID_EMPLOYEE" Type="int" />
-          <Property Name="SALARY_AMOUNT" Type="money" />
+          <Property Name="ID_DEPARTMENT" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="YEAR" Type="int" Nullable="false" />
+          <Property Name="AVERAGE_SALARY" Type="money" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Specialty_Code">
+          <Key>
+            <PropertyRef Name="ID_CODE" />
+          </Key>
+          <Property Name="ID_CODE" Type="int" Nullable="false" />
+          <Property Name="ID_DEPARTMENT" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="WEIGHT" Type="float" Nullable="false" />
         </EntityType>
         <EntityType Name="University">
           <Key>
@@ -50,6 +58,18 @@
           </Key>
           <Property Name="ID_UNIVERSITY" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="UNIVERSITY_NAME" Type="varchar(max)" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'C:\USERS\RYAN\ONEDRIVE\PROBABILITYTOEXCEL\PROBTOEXCEL\DBPROBAPP.MDF.dbo.EmployeeView' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="EmployeeView">
+          <Key>
+            <PropertyRef Name="ID_EMPLOYEE" />
+          </Key>
+          <Property Name="ID_EMPLOYEE" Type="int" Nullable="false" />
+          <Property Name="TOTAL_SALARY" Type="money" />
+          <Property Name="UNIVERSITY_NAME" Type="varchar(max)" />
+          <Property Name="ID_DEPARTMENT" Type="varchar" MaxLength="10" />
+          <Property Name="JOB_TITLE_NAME" Type="varchar(max)" />
         </EntityType>
         <Association Name="FK_Demographic_Data_Employee">
           <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
@@ -63,7 +83,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Employee_DemographData">
+        <Association Name="FK_Employee_DemographicData">
           <End Role="Demographic_Data" Type="Self.Demographic_Data" Multiplicity="0..1" />
           <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
           <ReferentialConstraint>
@@ -111,30 +131,52 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Salary_Employee">
-          <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
-          <End Role="Salary" Type="Self.Salary" Multiplicity="*" />
+        <Association Name="FK_New_Associate_Professor_Average_Salary_Department">
+          <End Role="Department" Type="Self.Department" Multiplicity="1" />
+          <End Role="New_Associate_Professor_Average_Salary" Type="Self.New_Associate_Professor_Average_Salary" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Employee">
-              <PropertyRef Name="ID_EMPLOYEE" />
+            <Principal Role="Department">
+              <PropertyRef Name="ID_DEPARTMENT" />
             </Principal>
-            <Dependent Role="Salary">
-              <PropertyRef Name="ID_EMPLOYEE" />
+            <Dependent Role="New_Associate_Professor_Average_Salary">
+              <PropertyRef Name="ID_DEPARTMENT" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="UniversityModelStoreContainer">
+        <Association Name="FK_Specialty_Code_Department">
+          <End Role="Department" Type="Self.Department" Multiplicity="1" />
+          <End Role="Specialty_Code" Type="Self.Specialty_Code" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Department">
+              <PropertyRef Name="ID_DEPARTMENT" />
+            </Principal>
+            <Dependent Role="Specialty_Code">
+              <PropertyRef Name="ID_DEPARTMENT" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DBProbAppModelStoreContainer">
           <EntitySet Name="Demographic_Data" EntityType="Self.Demographic_Data" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Department" EntityType="Self.Department" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Employee" EntityType="Self.Employee" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Job_Title" EntityType="Self.Job_Title" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Salary" EntityType="Self.Salary" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="New_Associate_Professor_Average_Salary" EntityType="Self.New_Associate_Professor_Average_Salary" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Specialty_Code" EntityType="Self.Specialty_Code" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="University" EntityType="Self.University" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EmployeeView" EntityType="Self.EmployeeView" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [EmployeeView].[ID_EMPLOYEE] AS [ID_EMPLOYEE], 
+    [EmployeeView].[TOTAL_SALARY] AS [TOTAL_SALARY], 
+    [EmployeeView].[UNIVERSITY_NAME] AS [UNIVERSITY_NAME], 
+    [EmployeeView].[ID_DEPARTMENT] AS [ID_DEPARTMENT], 
+    [EmployeeView].[JOB_TITLE_NAME] AS [JOB_TITLE_NAME]
+    FROM [dbo].[EmployeeView] AS [EmployeeView]</DefiningQuery>
+          </EntitySet>
           <AssociationSet Name="FK_Demographic_Data_Employee" Association="Self.FK_Demographic_Data_Employee">
             <End Role="Employee" EntitySet="Employee" />
             <End Role="Demographic_Data" EntitySet="Demographic_Data" />
           </AssociationSet>
-          <AssociationSet Name="FK_Employee_DemographData" Association="Self.FK_Employee_DemographData">
+          <AssociationSet Name="FK_Employee_DemographicData" Association="Self.FK_Employee_DemographicData">
             <End Role="Demographic_Data" EntitySet="Demographic_Data" />
             <End Role="Employee" EntitySet="Employee" />
           </AssociationSet>
@@ -150,71 +192,97 @@
             <End Role="University" EntitySet="University" />
             <End Role="Employee" EntitySet="Employee" />
           </AssociationSet>
-          <AssociationSet Name="FK_Salary_Employee" Association="Self.FK_Salary_Employee">
-            <End Role="Employee" EntitySet="Employee" />
-            <End Role="Salary" EntitySet="Salary" />
+          <AssociationSet Name="FK_New_Associate_Professor_Average_Salary_Department" Association="Self.FK_New_Associate_Professor_Average_Salary_Department">
+            <End Role="Department" EntitySet="Department" />
+            <End Role="New_Associate_Professor_Average_Salary" EntitySet="New_Associate_Professor_Average_Salary" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Specialty_Code_Department" Association="Self.FK_Specialty_Code_Department">
+            <End Role="Department" EntitySet="Department" />
+            <End Role="Specialty_Code" EntitySet="Specialty_Code" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="UniversityModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="DBProbAppModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="Demographic_Data">
           <Key>
             <PropertyRef Name="ID_DEMOGRAPHIC_DATA" />
           </Key>
-          <Property Name="ID_DEMOGRAPHIC_DATA" Type="Int32" Nullable="false" />
+          <Property Name="ID_DEMOGRAPHIC_DATA" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <NavigationProperty Name="Employee" Relationship="Self.FK_Demographic_Data_Employee" FromRole="Demographic_Data" ToRole="Employee" />
-          <NavigationProperty Name="Employees" Relationship="Self.FK_Employee_DemographData" FromRole="Demographic_Data" ToRole="Employee" />
+          <NavigationProperty Name="Employees" Relationship="Self.FK_Employee_DemographicData" FromRole="Demographic_Data" ToRole="Employee" />
         </EntityType>
         <EntityType Name="Department">
           <Key>
             <PropertyRef Name="ID_DEPARTMENT" />
           </Key>
-          <Property Name="ID_DEPARTMENT" Type="String" Nullable="false" MaxLength="10" Unicode="false" FixedLength="false" />
-          <Property Name="DEPARTMENT_NAME" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="ID_DEPARTMENT" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="Employees" Relationship="Self.FK_Employee_Department" FromRole="Department" ToRole="Employee" />
+          <NavigationProperty Name="New_Associate_Professor_Average_Salary" Relationship="Self.FK_New_Associate_Professor_Average_Salary_Department" FromRole="Department" ToRole="New_Associate_Professor_Average_Salary" />
+          <NavigationProperty Name="Specialty_Code" Relationship="Self.FK_Specialty_Code_Department" FromRole="Department" ToRole="Specialty_Code" />
         </EntityType>
         <EntityType Name="Employee">
           <Key>
             <PropertyRef Name="ID_EMPLOYEE" />
           </Key>
-          <Property Name="ID_EMPLOYEE" Type="Int32" Nullable="false" />
+          <Property Name="ID_EMPLOYEE" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="ID_UNIVERSITY" Type="Int32" />
           <Property Name="ID_JOB_TITLE" Type="Int32" />
-          <Property Name="ID_DEPARTMENT" Type="String" MaxLength="10" Unicode="false" FixedLength="false" />
+          <Property Name="ID_DEPARTMENT" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="ID_DEMOGRAPHIC_DATA" Type="Int32" />
           <Property Name="TOTAL_SALARY" Type="Decimal" Precision="19" Scale="4" />
           <NavigationProperty Name="Demographic_Data" Relationship="Self.FK_Demographic_Data_Employee" FromRole="Employee" ToRole="Demographic_Data" />
+          <NavigationProperty Name="Demographic_Data1" Relationship="Self.FK_Employee_DemographicData" FromRole="Employee" ToRole="Demographic_Data" />
           <NavigationProperty Name="Department" Relationship="Self.FK_Employee_Department" FromRole="Employee" ToRole="Department" />
           <NavigationProperty Name="Job_Title" Relationship="Self.FK_Employee_JobTitle" FromRole="Employee" ToRole="Job_Title" />
           <NavigationProperty Name="University" Relationship="Self.FK_Employee_University" FromRole="Employee" ToRole="University" />
-          <NavigationProperty Name="Salaries" Relationship="Self.FK_Salary_Employee" FromRole="Employee" ToRole="Salary" />
         </EntityType>
         <EntityType Name="Job_Title">
           <Key>
             <PropertyRef Name="ID_JOB_TITLE" />
           </Key>
-          <Property Name="ID_JOB_TITLE" Type="Int32" Nullable="false" />
+          <Property Name="ID_JOB_TITLE" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="JOB_TITLE_NAME" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Employees" Relationship="Self.FK_Employee_JobTitle" FromRole="Job_Title" ToRole="Employee" />
         </EntityType>
-        <EntityType Name="Salary">
+        <EntityType Name="New_Associate_Professor_Average_Salary">
           <Key>
-            <PropertyRef Name="ID_SALARY" />
+            <PropertyRef Name="ID_DEPARTMENT" />
+            <PropertyRef Name="YEAR" />
           </Key>
-          <Property Name="ID_SALARY" Type="Int32" Nullable="false" />
-          <Property Name="ID_EMPLOYEE" Type="Int32" />
-          <Property Name="SALARY_AMOUNT" Type="Decimal" Precision="19" Scale="4" />
-          <NavigationProperty Name="Employee" Relationship="Self.FK_Salary_Employee" FromRole="Salary" ToRole="Employee" />
+          <Property Name="ID_DEPARTMENT" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="YEAR" Type="Int32" Nullable="false" />
+          <Property Name="AVERAGE_SALARY" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <NavigationProperty Name="Department" Relationship="Self.FK_New_Associate_Professor_Average_Salary_Department" FromRole="New_Associate_Professor_Average_Salary" ToRole="Department" />
+        </EntityType>
+        <EntityType Name="Specialty_Code">
+          <Key>
+            <PropertyRef Name="ID_CODE" />
+          </Key>
+          <Property Name="ID_CODE" Type="Int32" Nullable="false" />
+          <Property Name="ID_DEPARTMENT" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="WEIGHT" Type="Double" Nullable="false" />
+          <NavigationProperty Name="Department" Relationship="Self.FK_Specialty_Code_Department" FromRole="Specialty_Code" ToRole="Department" />
         </EntityType>
         <EntityType Name="University">
           <Key>
             <PropertyRef Name="ID_UNIVERSITY" />
           </Key>
-          <Property Name="ID_UNIVERSITY" Type="Int32" Nullable="false" />
+          <Property Name="ID_UNIVERSITY" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="UNIVERSITY_NAME" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Employees" Relationship="Self.FK_Employee_University" FromRole="University" ToRole="Employee" />
+        </EntityType>
+        <EntityType Name="EmployeeView">
+          <Key>
+            <PropertyRef Name="ID_EMPLOYEE" />
+          </Key>
+          <Property Name="ID_EMPLOYEE" Type="Int32" Nullable="false" />
+          <Property Name="TOTAL_SALARY" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="UNIVERSITY_NAME" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="ID_DEPARTMENT" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="JOB_TITLE_NAME" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
         </EntityType>
         <Association Name="FK_Demographic_Data_Employee">
           <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
@@ -228,7 +296,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Employee_DemographData">
+        <Association Name="FK_Employee_DemographicData">
           <End Role="Demographic_Data" Type="Self.Demographic_Data" Multiplicity="0..1" />
           <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
           <ReferentialConstraint>
@@ -248,6 +316,30 @@
               <PropertyRef Name="ID_DEPARTMENT" />
             </Principal>
             <Dependent Role="Employee">
+              <PropertyRef Name="ID_DEPARTMENT" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_New_Associate_Professor_Average_Salary_Department">
+          <End Role="Department" Type="Self.Department" Multiplicity="1" />
+          <End Role="New_Associate_Professor_Average_Salary" Type="Self.New_Associate_Professor_Average_Salary" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Department">
+              <PropertyRef Name="ID_DEPARTMENT" />
+            </Principal>
+            <Dependent Role="New_Associate_Professor_Average_Salary">
+              <PropertyRef Name="ID_DEPARTMENT" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Specialty_Code_Department">
+          <End Role="Department" Type="Self.Department" Multiplicity="1" />
+          <End Role="Specialty_Code" Type="Self.Specialty_Code" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Department">
+              <PropertyRef Name="ID_DEPARTMENT" />
+            </Principal>
+            <Dependent Role="Specialty_Code">
               <PropertyRef Name="ID_DEPARTMENT" />
             </Dependent>
           </ReferentialConstraint>
@@ -276,36 +368,34 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Salary_Employee">
-          <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
-          <End Role="Salary" Type="Self.Salary" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Employee">
-              <PropertyRef Name="ID_EMPLOYEE" />
-            </Principal>
-            <Dependent Role="Salary">
-              <PropertyRef Name="ID_EMPLOYEE" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityContainer Name="UniversityEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="DBProbAppEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Demographic_Data" EntityType="Self.Demographic_Data" />
           <EntitySet Name="Departments" EntityType="Self.Department" />
           <EntitySet Name="Employees" EntityType="Self.Employee" />
           <EntitySet Name="Job_Title" EntityType="Self.Job_Title" />
-          <EntitySet Name="Salaries" EntityType="Self.Salary" />
+          <EntitySet Name="New_Associate_Professor_Average_Salary" EntityType="Self.New_Associate_Professor_Average_Salary" />
+          <EntitySet Name="Specialty_Code" EntityType="Self.Specialty_Code" />
           <EntitySet Name="Universities" EntityType="Self.University" />
+          <EntitySet Name="EmployeeViews" EntityType="Self.EmployeeView" />
           <AssociationSet Name="FK_Demographic_Data_Employee" Association="Self.FK_Demographic_Data_Employee">
             <End Role="Employee" EntitySet="Employees" />
             <End Role="Demographic_Data" EntitySet="Demographic_Data" />
           </AssociationSet>
-          <AssociationSet Name="FK_Employee_DemographData" Association="Self.FK_Employee_DemographData">
+          <AssociationSet Name="FK_Employee_DemographicData" Association="Self.FK_Employee_DemographicData">
             <End Role="Demographic_Data" EntitySet="Demographic_Data" />
             <End Role="Employee" EntitySet="Employees" />
           </AssociationSet>
           <AssociationSet Name="FK_Employee_Department" Association="Self.FK_Employee_Department">
             <End Role="Department" EntitySet="Departments" />
             <End Role="Employee" EntitySet="Employees" />
+          </AssociationSet>
+          <AssociationSet Name="FK_New_Associate_Professor_Average_Salary_Department" Association="Self.FK_New_Associate_Professor_Average_Salary_Department">
+            <End Role="Department" EntitySet="Departments" />
+            <End Role="New_Associate_Professor_Average_Salary" EntitySet="New_Associate_Professor_Average_Salary" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Specialty_Code_Department" Association="Self.FK_Specialty_Code_Department">
+            <End Role="Department" EntitySet="Departments" />
+            <End Role="Specialty_Code" EntitySet="Specialty_Code" />
           </AssociationSet>
           <AssociationSet Name="FK_Employee_JobTitle" Association="Self.FK_Employee_JobTitle">
             <End Role="Job_Title" EntitySet="Job_Title" />
@@ -315,34 +405,29 @@
             <End Role="University" EntitySet="Universities" />
             <End Role="Employee" EntitySet="Employees" />
           </AssociationSet>
-          <AssociationSet Name="FK_Salary_Employee" Association="Self.FK_Salary_Employee">
-            <End Role="Employee" EntitySet="Employees" />
-            <End Role="Salary" EntitySet="Salaries" />
-          </AssociationSet>
         </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="UniversityModelStoreContainer" CdmEntityContainer="UniversityEntities">
+        <EntityContainerMapping StorageEntityContainer="DBProbAppModelStoreContainer" CdmEntityContainer="DBProbAppEntities">
           <EntitySetMapping Name="Demographic_Data">
-            <EntityTypeMapping TypeName="UniversityModel.Demographic_Data">
+            <EntityTypeMapping TypeName="DBProbAppModel.Demographic_Data">
               <MappingFragment StoreEntitySet="Demographic_Data">
                 <ScalarProperty Name="ID_DEMOGRAPHIC_DATA" ColumnName="ID_DEMOGRAPHIC_DATA" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Departments">
-            <EntityTypeMapping TypeName="UniversityModel.Department">
+            <EntityTypeMapping TypeName="DBProbAppModel.Department">
               <MappingFragment StoreEntitySet="Department">
                 <ScalarProperty Name="ID_DEPARTMENT" ColumnName="ID_DEPARTMENT" />
-                <ScalarProperty Name="DEPARTMENT_NAME" ColumnName="DEPARTMENT_NAME" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Employees">
-            <EntityTypeMapping TypeName="UniversityModel.Employee">
+            <EntityTypeMapping TypeName="DBProbAppModel.Employee">
               <MappingFragment StoreEntitySet="Employee">
                 <ScalarProperty Name="ID_EMPLOYEE" ColumnName="ID_EMPLOYEE" />
                 <ScalarProperty Name="ID_UNIVERSITY" ColumnName="ID_UNIVERSITY" />
@@ -354,27 +439,47 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Job_Title">
-            <EntityTypeMapping TypeName="UniversityModel.Job_Title">
+            <EntityTypeMapping TypeName="DBProbAppModel.Job_Title">
               <MappingFragment StoreEntitySet="Job_Title">
                 <ScalarProperty Name="ID_JOB_TITLE" ColumnName="ID_JOB_TITLE" />
                 <ScalarProperty Name="JOB_TITLE_NAME" ColumnName="JOB_TITLE_NAME" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Salaries">
-            <EntityTypeMapping TypeName="UniversityModel.Salary">
-              <MappingFragment StoreEntitySet="Salary">
-                <ScalarProperty Name="ID_SALARY" ColumnName="ID_SALARY" />
-                <ScalarProperty Name="ID_EMPLOYEE" ColumnName="ID_EMPLOYEE" />
-                <ScalarProperty Name="SALARY_AMOUNT" ColumnName="SALARY_AMOUNT" />
+          <EntitySetMapping Name="New_Associate_Professor_Average_Salary">
+            <EntityTypeMapping TypeName="DBProbAppModel.New_Associate_Professor_Average_Salary">
+              <MappingFragment StoreEntitySet="New_Associate_Professor_Average_Salary">
+                <ScalarProperty Name="ID_DEPARTMENT" ColumnName="ID_DEPARTMENT" />
+                <ScalarProperty Name="YEAR" ColumnName="YEAR" />
+                <ScalarProperty Name="AVERAGE_SALARY" ColumnName="AVERAGE_SALARY" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Specialty_Code">
+            <EntityTypeMapping TypeName="DBProbAppModel.Specialty_Code">
+              <MappingFragment StoreEntitySet="Specialty_Code">
+                <ScalarProperty Name="ID_CODE" ColumnName="ID_CODE" />
+                <ScalarProperty Name="ID_DEPARTMENT" ColumnName="ID_DEPARTMENT" />
+                <ScalarProperty Name="WEIGHT" ColumnName="WEIGHT" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Universities">
-            <EntityTypeMapping TypeName="UniversityModel.University">
+            <EntityTypeMapping TypeName="DBProbAppModel.University">
               <MappingFragment StoreEntitySet="University">
                 <ScalarProperty Name="ID_UNIVERSITY" ColumnName="ID_UNIVERSITY" />
                 <ScalarProperty Name="UNIVERSITY_NAME" ColumnName="UNIVERSITY_NAME" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EmployeeViews">
+            <EntityTypeMapping TypeName="DBProbAppModel.EmployeeView">
+              <MappingFragment StoreEntitySet="EmployeeView">
+                <ScalarProperty Name="ID_EMPLOYEE" ColumnName="ID_EMPLOYEE" />
+                <ScalarProperty Name="TOTAL_SALARY" ColumnName="TOTAL_SALARY" />
+                <ScalarProperty Name="UNIVERSITY_NAME" ColumnName="UNIVERSITY_NAME" />
+                <ScalarProperty Name="ID_DEPARTMENT" ColumnName="ID_DEPARTMENT" />
+                <ScalarProperty Name="JOB_TITLE_NAME" ColumnName="JOB_TITLE_NAME" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

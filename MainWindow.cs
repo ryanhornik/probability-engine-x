@@ -20,7 +20,7 @@ namespace ProbabilityToExcel
 {
     public partial class MainWindow : Form
     {
-        UniversityEntities db = new UniversityEntities();
+        DBProbAppEntities db = new DBProbAppEntities();
 
         public MainWindow()
         {
@@ -66,9 +66,15 @@ namespace ProbabilityToExcel
 
                     loadForm.Invoke(new Action(() => { loadForm.Close(); }));
 
-                    this.Invoke(new Action(Show));
+                    
+
+                    this.Invoke(new Action(() =>
+                    {
+                        Show();
+                    }));
                 });
                 thread.Start();
+                
 
             }
         }
@@ -104,14 +110,6 @@ namespace ProbabilityToExcel
                     {
                         throw new Exception("Invalid Excel document format - Empty job title appears in first row");
                     }
-
-                    var salary = new Salary()
-                    {
-                        Employee = currentEmployee,
-                        SALARY_AMOUNT = Convert.ToDecimal(proposedDistSalary.ToString())
-                    };
-                    db.Salaries.Add(salary);
-                    db.SaveChanges();
                 }
                 else
                 {
@@ -125,7 +123,6 @@ namespace ProbabilityToExcel
                     {
                         dept = new Department()
                         {
-                            DEPARTMENT_NAME = deptName.ToString(),
                             ID_DEPARTMENT = deptID.ToString()
                         };
                         db.Departments.Add(dept);
@@ -161,19 +158,13 @@ namespace ProbabilityToExcel
 
                     db.Employees.Add(currentEmployee);
                     db.SaveChanges();
-
-                    Salary salary = new Salary()
-                    {
-                        Employee = currentEmployee,
-                        SALARY_AMOUNT = Convert.ToDecimal(proposedDistSalary.ToString())
-                    };
-
-                    db.Salaries.Add(salary);
-                    db.SaveChanges();
                 }
 
                 dataStartRow++;
-
+                if (dataStartRow > 100)
+                {
+                    break;
+                }
             }
 
             workbook.Close(true, misValue, misValue);
@@ -202,14 +193,17 @@ namespace ProbabilityToExcel
             }
         }
 
-        private void timer1_Tick(object sender, EventArgs e)
+        private void averagesToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
         }
 
-        private void averagesToolStripMenuItem_Click(object sender, EventArgs e)
+        private void MainWindow_Load(object sender, EventArgs e)
         {
+        }
 
+        private void MainWindow_Load_1(object sender, EventArgs e)
+        {
         } 
         
     }

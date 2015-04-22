@@ -17,11 +17,14 @@ namespace ProbabilityToExcel.Models
         public Department()
         {
             this.Employees = new HashSet<Employee>();
+            this.New_Associate_Professor_Average_Salary = new HashSet<New_Associate_Professor_Average_Salary>();
+            this.Specialty_Code = new HashSet<Specialty_Code>();
         }
     
         public string ID_DEPARTMENT { get; set; }
-        public string DEPARTMENT_NAME { get; set; }
     
         public virtual ICollection<Employee> Employees { get; set; }
+        public virtual ICollection<New_Associate_Professor_Average_Salary> New_Associate_Professor_Average_Salary { get; set; }
+        public virtual ICollection<Specialty_Code> Specialty_Code { get; set; }
     }
 }
