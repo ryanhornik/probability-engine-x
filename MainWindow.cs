@@ -201,18 +201,25 @@ namespace ProbabilityToExcel
                 GC.Collect();
             }
         }
-
+        //Not used?
         private void timer1_Tick(object sender, EventArgs e)
         {
 
         }
 
-        private void manualDataToolStripMenuItem_Click(object sender, EventArgs e)
+        private void enterUHDataToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ManualEntry manualForm = new ManualEntry();
             this.Hide();
             manualForm.Show();
-        } 
+        }
+
+        private void enterTier1DataToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Tier1ManualEntry manualForm = new Tier1ManualEntry();
+            this.Hide();
+            manualForm.Show();
+        }
         
     }
 }

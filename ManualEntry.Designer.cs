@@ -31,16 +31,22 @@
             this.EnterButton = new System.Windows.Forms.Button();
             this.CancelButton = new System.Windows.Forms.Button();
             this.ClearButton = new System.Windows.Forms.Button();
-            this.EmployeeIDTextBox = new System.Windows.Forms.TextBox();
-            this.TotalSalaryTextBox = new System.Windows.Forms.TextBox();
             this.DepartmentIDTextBox = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.JobTitleComboBox = new System.Windows.Forms.ComboBox();
-            this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.Salaries = new System.Windows.Forms.GroupBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.SalaryBox = new System.Windows.Forms.RichTextBox();
+            this.DBProbAppDataSetJobDropMenu = new ProbabilityToExcel.DBProbAppDataSet();
+            this.DBProbAppDataSetDepartmentID = new ProbabilityToExcel.DBProbAppDataSet();
+            this.DBProbAppDataSetSalariesBox = new ProbabilityToExcel.DBProbAppDataSet();
             this.groupBox1.SuspendLayout();
+            this.Salaries.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.DBProbAppDataSetJobDropMenu)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DBProbAppDataSetDepartmentID)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DBProbAppDataSetSalariesBox)).BeginInit();
             this.SuspendLayout();
             // 
             // EnterButton
@@ -73,41 +79,17 @@
             this.ClearButton.UseVisualStyleBackColor = true;
             this.ClearButton.Click += new System.EventHandler(this.ClearButton_Click);
             // 
-            // EmployeeIDTextBox
-            // 
-            this.EmployeeIDTextBox.Location = new System.Drawing.Point(143, 31);
-            this.EmployeeIDTextBox.Name = "EmployeeIDTextBox";
-            this.EmployeeIDTextBox.Size = new System.Drawing.Size(189, 20);
-            this.EmployeeIDTextBox.TabIndex = 3;
-            // 
-            // TotalSalaryTextBox
-            // 
-            this.TotalSalaryTextBox.Location = new System.Drawing.Point(144, 83);
-            this.TotalSalaryTextBox.Name = "TotalSalaryTextBox";
-            this.TotalSalaryTextBox.Size = new System.Drawing.Size(188, 20);
-            this.TotalSalaryTextBox.TabIndex = 5;
-            // 
             // DepartmentIDTextBox
             // 
-            this.DepartmentIDTextBox.Location = new System.Drawing.Point(144, 109);
+            this.DepartmentIDTextBox.Location = new System.Drawing.Point(144, 57);
             this.DepartmentIDTextBox.Name = "DepartmentIDTextBox";
             this.DepartmentIDTextBox.Size = new System.Drawing.Size(188, 20);
             this.DepartmentIDTextBox.TabIndex = 6;
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(15, 31);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(67, 13);
-            this.label1.TabIndex = 8;
-            this.label1.Text = "Employee ID";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
-            // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(15, 57);
+            this.label2.Location = new System.Drawing.Point(15, 28);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(47, 13);
             this.label2.TabIndex = 9;
@@ -116,25 +98,15 @@
             // JobTitleComboBox
             // 
             this.JobTitleComboBox.FormattingEnabled = true;
-            this.JobTitleComboBox.Location = new System.Drawing.Point(143, 56);
+            this.JobTitleComboBox.Location = new System.Drawing.Point(144, 28);
             this.JobTitleComboBox.Name = "JobTitleComboBox";
             this.JobTitleComboBox.Size = new System.Drawing.Size(189, 21);
             this.JobTitleComboBox.TabIndex = 10;
             // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(15, 83);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(63, 13);
-            this.label3.TabIndex = 11;
-            this.label3.Text = "Total Salary";
-            this.label3.Click += new System.EventHandler(this.label3_Click);
-            // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(15, 109);
+            this.label4.Location = new System.Drawing.Point(15, 57);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(76, 13);
             this.label4.TabIndex = 12;
@@ -143,34 +115,82 @@
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.label4);
-            this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.JobTitleComboBox);
             this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.DepartmentIDTextBox);
-            this.groupBox1.Controls.Add(this.TotalSalaryTextBox);
-            this.groupBox1.Controls.Add(this.EmployeeIDTextBox);
-            this.groupBox1.Location = new System.Drawing.Point(187, 61);
+            this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(361, 200);
+            this.groupBox1.Size = new System.Drawing.Size(361, 115);
             this.groupBox1.TabIndex = 13;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Enter Data";
+            this.groupBox1.Text = "Enter UH Data";
+            this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
+            // 
+            // Salaries
+            // 
+            this.Salaries.Controls.Add(this.label5);
+            this.Salaries.Controls.Add(this.SalaryBox);
+            this.Salaries.Location = new System.Drawing.Point(399, 12);
+            this.Salaries.Name = "Salaries";
+            this.Salaries.Size = new System.Drawing.Size(277, 247);
+            this.Salaries.TabIndex = 15;
+            this.Salaries.TabStop = false;
+            this.Salaries.Text = "UH Salaries";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.label5.Location = new System.Drawing.Point(15, 216);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(108, 13);
+            this.label5.TabIndex = 16;
+            this.label5.Text = "*One Salary per Line*";
+            this.label5.Click += new System.EventHandler(this.label5_Click);
+            // 
+            // SalaryBox
+            // 
+            this.SalaryBox.Location = new System.Drawing.Point(18, 28);
+            this.SalaryBox.Name = "SalaryBox";
+            this.SalaryBox.Size = new System.Drawing.Size(237, 173);
+            this.SalaryBox.TabIndex = 0;
+            this.SalaryBox.Text = "";
+            // 
+            // DBProbAppDataSetJobDropMenu
+            // 
+            this.DBProbAppDataSetJobDropMenu.DataSetName = "DBProbAppDataSet";
+            this.DBProbAppDataSetJobDropMenu.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // DBProbAppDataSetDepartmentID
+            // 
+            this.DBProbAppDataSetDepartmentID.DataSetName = "DBProbAppDataSet";
+            this.DBProbAppDataSetDepartmentID.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // DBProbAppDataSetSalariesBox
+            // 
+            this.DBProbAppDataSetSalariesBox.DataSetName = "DBProbAppDataSet";
+            this.DBProbAppDataSetSalariesBox.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // ManualEntry
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(740, 391);
+            this.Controls.Add(this.Salaries);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.ClearButton);
             this.Controls.Add(this.CancelButton);
             this.Controls.Add(this.EnterButton);
             this.Name = "ManualEntry";
             this.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.Text = "ManualEntry";
+            this.Text = "Manual UH Entry";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.Salaries.ResumeLayout(false);
+            this.Salaries.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.DBProbAppDataSetJobDropMenu)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DBProbAppDataSetDepartmentID)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DBProbAppDataSetSalariesBox)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -180,14 +200,16 @@
         private System.Windows.Forms.Button EnterButton;
         private System.Windows.Forms.Button CancelButton;
         private System.Windows.Forms.Button ClearButton;
-        private System.Windows.Forms.TextBox EmployeeIDTextBox;
-        private System.Windows.Forms.TextBox TotalSalaryTextBox;
         private System.Windows.Forms.TextBox DepartmentIDTextBox;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ComboBox JobTitleComboBox;
-        private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox Salaries;
+        private System.Windows.Forms.RichTextBox SalaryBox;
+        private System.Windows.Forms.Label label5;
+        private DBProbAppDataSet DBProbAppDataSetJobDropMenu;
+        private DBProbAppDataSet DBProbAppDataSetDepartmentID;
+        private DBProbAppDataSet DBProbAppDataSetSalariesBox;
     }
 }
