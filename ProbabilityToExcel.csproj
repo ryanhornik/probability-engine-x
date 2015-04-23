@@ -89,11 +89,17 @@
     <Compile Include="Models\Employee.cs">
       <DependentUpon>UniversityModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\EmployeeView.cs">
+      <DependentUpon>UniversityModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Job_Title.cs">
       <DependentUpon>UniversityModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ModelExtensions.cs" />
-    <Compile Include="Models\Salary.cs">
+    <Compile Include="Models\New_Associate_Professor_Average_Salary.cs">
+      <DependentUpon>UniversityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Specialty_Code.cs">
       <DependentUpon>UniversityModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\University.cs">

@@ -19,8 +19,8 @@ namespace ProbabilityToExcel
 {
     public partial class MainWindow : Form
     {
-        UniversityEntities db = new UniversityEntities();
-
+        DBProbAppEntities db = new DBProbAppEntities();
+        
         public MainWindow()
         {
             InitializeComponent();
@@ -67,42 +67,20 @@ namespace ProbabilityToExcel
             object misValue = Missing.Value;
 
             var jobTitleColumn = "B";
-            var proposedDistSalaryColumn = "Q";
+            var proposedTotalSalaryColumn = "O";
             var deptIDColumn = "AA";
-            var deptNameColumn = "Z";
             var dataStartRow = 8;
-
-
             
-            var startTime = DateTime.Now;
-            Employee currentEmployee = null;
-            while (worksheet.Range[proposedDistSalaryColumn + dataStartRow].Value2 != null)
+            while (worksheet.Range[deptIDColumn + dataStartRow].Value2 != null)
             {
 
-                var jobTitle = worksheet.Range[(jobTitleColumn + "" + dataStartRow)].Value2;
+                var jobTitle = worksheet.Range[(jobTitleColumn + dataStartRow)].Value2;
                 
-                var proposedDistSalary = worksheet.Range[proposedDistSalaryColumn + dataStartRow].Value2;
+                var proposedTotalSalary = worksheet.Range[proposedTotalSalaryColumn + dataStartRow].Value2;
 
                 var deptID = worksheet.Range[deptIDColumn + dataStartRow].Value2;
 
-                var deptName = worksheet.Range[deptNameColumn + dataStartRow].Value2;
-
-                if (jobTitle == null)
-                {
-                    if (currentEmployee == null)
-                    {
-                        throw new Exception("Invalid Excel document format - Empty job title appears in first row");
-                    }
-
-                    var salary = new Salary()
-                    {
-                        Employee = currentEmployee,
-                        SALARY_AMOUNT = Convert.ToDecimal(proposedDistSalary.ToString())
-                    };
-                    db.Salaries.Add(salary);
-                    db.SaveChanges();
-                }
-                else
+                if (jobTitle != null)
                 {
                     Department dept;
                     string deptIDString = deptID.ToString();
@@ -114,14 +92,11 @@ namespace ProbabilityToExcel
                     {
                         dept = new Department()
                         {
-                            DEPARTMENT_NAME = deptName.ToString(),
                             ID_DEPARTMENT = deptID.ToString()
                         };
                         db.Departments.Add(dept);
                         db.SaveChanges();
                     }
-
-                    
 
                     Job_Title title;
                     string jobTitleString = jobTitle.ToString();
@@ -141,33 +116,20 @@ namespace ProbabilityToExcel
 
                     
 
-                    currentEmployee = new Employee()
+                    var employee = new Employee()
                     {
                         Department = dept,
                         Job_Title = title,
                         University = university
                     };
 
-                    db.Employees.Add(currentEmployee);
-                    db.SaveChanges();
-
-                    Salary salary = new Salary()
-                    {
-                        Employee = currentEmployee,
-                        SALARY_AMOUNT = Convert.ToDecimal(proposedDistSalary.ToString())
-                    };
-
-                    db.Salaries.Add(salary);
+                    db.Employees.Add(employee);
                     db.SaveChanges();
                 }
 
                 dataStartRow++;
 
             }
-            var duration = DateTime.Now.Subtract(startTime).TotalSeconds;
-
-            MessageBox.Show("The import took " + duration + " seconds");
-
 
             workbook.Close(true, misValue, misValue);
             application.Quit();

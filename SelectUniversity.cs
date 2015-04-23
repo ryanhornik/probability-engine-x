@@ -7,7 +7,7 @@ namespace ProbabilityToExcel
 {
     public partial class SelectUniversity : Form
     {
-        private UniversityEntities db = new UniversityEntities();
+        private DBProbAppEntities db = new DBProbAppEntities();
 
         public University SelectedUniversity { get; set; }
 
