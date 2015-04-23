@@ -13,14 +13,13 @@ using System.Windows.Forms;
 using Excel = Microsoft.Office.Interop.Excel;
 using System.Reflection;
 using System.Runtime.CompilerServices;
-using System.Threading;
 using ProbabilityToExcel.Models;
 
 namespace ProbabilityToExcel
 {
     public partial class MainWindow : Form
     {
-        DBProbAppEntities db = new DBProbAppEntities();
+        UniversityEntities db = new UniversityEntities();
 
         public MainWindow()
         {
@@ -56,26 +55,7 @@ namespace ProbabilityToExcel
 
             if (result == DialogResult.OK && university != null)
             {
-                var loadForm = new SplashForm();
-                loadForm.Show();
-                Hide();
-
-                var thread = new Thread(() =>
-                {
-                    LoadExcelData(openFileDialog.FileName, university);
-
-                    loadForm.Invoke(new Action(() => { loadForm.Close(); }));
-
-                    
-
-                    this.Invoke(new Action(() =>
-                    {
-                        Show();
-                    }));
-                });
-                thread.Start();
-                
-
+                LoadExcelData(openFileDialog.FileName, university);
             }
         }
 
@@ -92,6 +72,9 @@ namespace ProbabilityToExcel
             var deptNameColumn = "Z";
             var dataStartRow = 8;
 
+
+            
+            var startTime = DateTime.Now;
             Employee currentEmployee = null;
             while (worksheet.Range[proposedDistSalaryColumn + dataStartRow].Value2 != null)
             {
@@ -110,6 +93,14 @@ namespace ProbabilityToExcel
                     {
                         throw new Exception("Invalid Excel document format - Empty job title appears in first row");
                     }
+
+                    var salary = new Salary()
+                    {
+                        Employee = currentEmployee,
+                        SALARY_AMOUNT = Convert.ToDecimal(proposedDistSalary.ToString())
+                    };
+                    db.Salaries.Add(salary);
+                    db.SaveChanges();
                 }
                 else
                 {
@@ -123,6 +114,7 @@ namespace ProbabilityToExcel
                     {
                         dept = new Department()
                         {
+                            DEPARTMENT_NAME = deptName.ToString(),
                             ID_DEPARTMENT = deptID.ToString()
                         };
                         db.Departments.Add(dept);
@@ -158,14 +150,24 @@ namespace ProbabilityToExcel
 
                     db.Employees.Add(currentEmployee);
                     db.SaveChanges();
+
+                    Salary salary = new Salary()
+                    {
+                        Employee = currentEmployee,
+                        SALARY_AMOUNT = Convert.ToDecimal(proposedDistSalary.ToString())
+                    };
+
+                    db.Salaries.Add(salary);
+                    db.SaveChanges();
                 }
 
                 dataStartRow++;
-                if (dataStartRow > 100)
-                {
-                    break;
-                }
+
             }
+            var duration = DateTime.Now.Subtract(startTime).TotalSeconds;
+
+            MessageBox.Show("The import took " + duration + " seconds");
+
 
             workbook.Close(true, misValue, misValue);
             application.Quit();
@@ -191,19 +193,6 @@ namespace ProbabilityToExcel
             {
                 GC.Collect();
             }
-        }
-
-        private void averagesToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void MainWindow_Load(object sender, EventArgs e)
-        {
-        }
-
-        private void MainWindow_Load_1(object sender, EventArgs e)
-        {
         } 
         
     }

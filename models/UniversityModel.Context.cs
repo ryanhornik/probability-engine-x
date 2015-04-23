@@ -13,10 +13,10 @@ namespace ProbabilityToExcel.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class DBProbAppEntities : DbContext
+    public partial class UniversityEntities : DbContext
     {
-        public DBProbAppEntities()
-            : base("name=DBProbAppEntities")
+        public UniversityEntities()
+            : base("name=UniversityEntities")
         {
         }
     
@@ -29,9 +29,7 @@ namespace ProbabilityToExcel.Models
         public virtual DbSet<Department> Departments { get; set; }
         public virtual DbSet<Employee> Employees { get; set; }
         public virtual DbSet<Job_Title> Job_Title { get; set; }
-        public virtual DbSet<New_Associate_Professor_Average_Salary> New_Associate_Professor_Average_Salary { get; set; }
-        public virtual DbSet<Specialty_Code> Specialty_Code { get; set; }
+        public virtual DbSet<Salary> Salaries { get; set; }
         public virtual DbSet<University> Universities { get; set; }
-        public virtual DbSet<EmployeeView> EmployeeViews { get; set; }
     }
 }

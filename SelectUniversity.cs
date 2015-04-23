@@ -7,7 +7,7 @@ namespace ProbabilityToExcel
 {
     public partial class SelectUniversity : Form
     {
-        private DBProbAppEntities db = new DBProbAppEntities();
+        private UniversityEntities db = new UniversityEntities();
 
         public University SelectedUniversity { get; set; }
 
@@ -18,6 +18,9 @@ namespace ProbabilityToExcel
 
         private void SelectUniversity_Load(object sender, EventArgs e)
         {
+            db.Universities.Add(new University() {UNIVERSITY_NAME = "University of Houston"});
+            db.SaveChanges();
+
             UniversityDropDown.DropDownStyle = ComboBoxStyle.DropDown;
             UniversityDropDown.Items.AddRange(db.Universities.ToArray());
         }
