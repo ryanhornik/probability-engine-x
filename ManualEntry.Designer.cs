@@ -31,7 +31,6 @@
             this.EnterButton = new System.Windows.Forms.Button();
             this.CancelButton = new System.Windows.Forms.Button();
             this.ClearButton = new System.Windows.Forms.Button();
-            this.DepartmentIDTextBox = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.JobTitleComboBox = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
@@ -39,14 +38,9 @@
             this.Salaries = new System.Windows.Forms.GroupBox();
             this.label5 = new System.Windows.Forms.Label();
             this.SalaryBox = new System.Windows.Forms.RichTextBox();
-            this.DBProbAppDataSetJobDropMenu = new ProbabilityToExcel.DBProbAppDataSet();
-            this.DBProbAppDataSetDepartmentID = new ProbabilityToExcel.DBProbAppDataSet();
-            this.DBProbAppDataSetSalariesBox = new ProbabilityToExcel.DBProbAppDataSet();
+            this.DepartmentIDComboBox = new System.Windows.Forms.ComboBox();
             this.groupBox1.SuspendLayout();
             this.Salaries.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.DBProbAppDataSetJobDropMenu)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.DBProbAppDataSetDepartmentID)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.DBProbAppDataSetSalariesBox)).BeginInit();
             this.SuspendLayout();
             // 
             // EnterButton
@@ -79,13 +73,6 @@
             this.ClearButton.UseVisualStyleBackColor = true;
             this.ClearButton.Click += new System.EventHandler(this.ClearButton_Click);
             // 
-            // DepartmentIDTextBox
-            // 
-            this.DepartmentIDTextBox.Location = new System.Drawing.Point(144, 57);
-            this.DepartmentIDTextBox.Name = "DepartmentIDTextBox";
-            this.DepartmentIDTextBox.Size = new System.Drawing.Size(188, 20);
-            this.DepartmentIDTextBox.TabIndex = 6;
-            // 
             // label2
             // 
             this.label2.AutoSize = true;
@@ -102,6 +89,9 @@
             this.JobTitleComboBox.Name = "JobTitleComboBox";
             this.JobTitleComboBox.Size = new System.Drawing.Size(189, 21);
             this.JobTitleComboBox.TabIndex = 10;
+            this.JobTitleComboBox.SelectedIndexChanged += new System.EventHandler(this.JobTitleComboBox_SelectedIndexChanged);
+
+            //this.JobTitleComboBox_SelectedIndexChanged
             // 
             // label4
             // 
@@ -114,10 +104,10 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.DepartmentIDComboBox);
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.JobTitleComboBox);
             this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.DepartmentIDTextBox);
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(361, 115);
@@ -156,20 +146,14 @@
             this.SalaryBox.TabIndex = 0;
             this.SalaryBox.Text = "";
             // 
-            // DBProbAppDataSetJobDropMenu
+            // DepartmentIDComboBox
             // 
-            this.DBProbAppDataSetJobDropMenu.DataSetName = "DBProbAppDataSet";
-            this.DBProbAppDataSetJobDropMenu.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // DBProbAppDataSetDepartmentID
-            // 
-            this.DBProbAppDataSetDepartmentID.DataSetName = "DBProbAppDataSet";
-            this.DBProbAppDataSetDepartmentID.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // DBProbAppDataSetSalariesBox
-            // 
-            this.DBProbAppDataSetSalariesBox.DataSetName = "DBProbAppDataSet";
-            this.DBProbAppDataSetSalariesBox.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            this.DepartmentIDComboBox.FormattingEnabled = true;
+            this.DepartmentIDComboBox.Location = new System.Drawing.Point(144, 57);
+            this.DepartmentIDComboBox.Name = "DepartmentIDComboBox";
+            this.DepartmentIDComboBox.Size = new System.Drawing.Size(189, 21);
+            this.DepartmentIDComboBox.TabIndex = 13;
+            this.DepartmentIDComboBox.SelectedIndexChanged += new System.EventHandler(this.DepartmentIDComboBox_SelectedIndexChanged);
             // 
             // ManualEntry
             // 
@@ -188,9 +172,6 @@
             this.groupBox1.PerformLayout();
             this.Salaries.ResumeLayout(false);
             this.Salaries.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.DBProbAppDataSetJobDropMenu)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.DBProbAppDataSetDepartmentID)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.DBProbAppDataSetSalariesBox)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -200,7 +181,6 @@
         private System.Windows.Forms.Button EnterButton;
         private System.Windows.Forms.Button CancelButton;
         private System.Windows.Forms.Button ClearButton;
-        private System.Windows.Forms.TextBox DepartmentIDTextBox;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ComboBox JobTitleComboBox;
         private System.Windows.Forms.Label label4;
@@ -208,8 +188,6 @@
         private System.Windows.Forms.GroupBox Salaries;
         private System.Windows.Forms.RichTextBox SalaryBox;
         private System.Windows.Forms.Label label5;
-        private DBProbAppDataSet DBProbAppDataSetJobDropMenu;
-        private DBProbAppDataSet DBProbAppDataSetDepartmentID;
-        private DBProbAppDataSet DBProbAppDataSetSalariesBox;
+        private System.Windows.Forms.ComboBox DepartmentIDComboBox;
     }
 }
