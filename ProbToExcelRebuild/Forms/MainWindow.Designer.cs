@@ -36,6 +36,8 @@
             this.enterUHDataToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.enterTier1DataToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.averageNewHireSalariesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.averagesPerSalaryPerDepartmentToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -62,16 +64,18 @@
             // importDataToolStripMenuItem
             // 
             this.importDataToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.excelToolStripMenuItem});
+            this.excelToolStripMenuItem,
+            this.averageNewHireSalariesToolStripMenuItem,
+            this.averagesPerSalaryPerDepartmentToolStripMenuItem});
             this.importDataToolStripMenuItem.Name = "importDataToolStripMenuItem";
-            this.importDataToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.importDataToolStripMenuItem.Text = "Import Data";
+            this.importDataToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
+            this.importDataToolStripMenuItem.Text = "Import Excel Data";
             // 
             // excelToolStripMenuItem
             // 
             this.excelToolStripMenuItem.Name = "excelToolStripMenuItem";
-            this.excelToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.excelToolStripMenuItem.Text = "Excel";
+            this.excelToolStripMenuItem.Size = new System.Drawing.Size(262, 22);
+            this.excelToolStripMenuItem.Text = "Employees";
             this.excelToolStripMenuItem.Click += new System.EventHandler(this.excelToolStripMenuItem_Click);
             // 
             // manualInputToolStripMenuItem
@@ -80,7 +84,7 @@
             this.enterUHDataToolStripMenuItem,
             this.enterTier1DataToolStripMenuItem});
             this.manualInputToolStripMenuItem.Name = "manualInputToolStripMenuItem";
-            this.manualInputToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.manualInputToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
             this.manualInputToolStripMenuItem.Text = "Manual Input";
             // 
             // enterUHDataToolStripMenuItem
@@ -100,9 +104,23 @@
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
+            // 
+            // averageNewHireSalariesToolStripMenuItem
+            // 
+            this.averageNewHireSalariesToolStripMenuItem.Name = "averageNewHireSalariesToolStripMenuItem";
+            this.averageNewHireSalariesToolStripMenuItem.Size = new System.Drawing.Size(262, 22);
+            this.averageNewHireSalariesToolStripMenuItem.Text = "Average New Hire Salaries";
+            this.averageNewHireSalariesToolStripMenuItem.Click += new System.EventHandler(this.averageNewHireSalariesToolStripMenuItem_Click);
+            // 
+            // averagesPerSalaryPerDepartmentToolStripMenuItem
+            // 
+            this.averagesPerSalaryPerDepartmentToolStripMenuItem.Name = "averagesPerSalaryPerDepartmentToolStripMenuItem";
+            this.averagesPerSalaryPerDepartmentToolStripMenuItem.Size = new System.Drawing.Size(262, 22);
+            this.averagesPerSalaryPerDepartmentToolStripMenuItem.Text = "Averages Per Salary Per Department";
+            this.averagesPerSalaryPerDepartmentToolStripMenuItem.Click += new System.EventHandler(this.averagesPerSalaryPerDepartmentToolStripMenuItem_Click);
             // 
             // MainWindow
             // 
@@ -130,5 +148,7 @@
         private System.Windows.Forms.ToolStripMenuItem enterUHDataToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem enterTier1DataToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem averageNewHireSalariesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem averagesPerSalaryPerDepartmentToolStripMenuItem;
     }
 }

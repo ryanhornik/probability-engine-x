@@ -1,6 +1,6 @@
 ﻿namespace ProbToExcelRebuild.Forms
 {
-    partial class SelectColumns
+    partial class SelectColumnsEmployee
     {
         /// <summary>
         /// Required designer variable.

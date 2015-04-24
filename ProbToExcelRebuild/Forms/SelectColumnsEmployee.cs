@@ -10,14 +10,14 @@ using System.Windows.Forms;
 
 namespace ProbToExcelRebuild.Forms
 {
-    public partial class SelectColumns : Form
+    public partial class SelectColumnsEmployee : Form
     {
         public string jobTitleColumn;
         public string proposedTotalSalaryColumn;
         public string deptIDColumn;
         public int dataStartRow;
 
-        public SelectColumns()
+        public SelectColumnsEmployee()
         {
             InitializeComponent();
         }
