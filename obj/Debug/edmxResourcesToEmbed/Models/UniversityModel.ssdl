@@ -1,0 +1,153 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="UniversityModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Demographic_Data">
+    <Key>
+      <PropertyRef Name="ID_DEMOGRAPHIC_DATA" />
+    </Key>
+    <Property Name="ID_DEMOGRAPHIC_DATA" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Department">
+    <Key>
+      <PropertyRef Name="ID_DEPARTMENT" />
+    </Key>
+    <Property Name="ID_DEPARTMENT" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="DEPARTMENT_NAME" Type="varchar(max)" />
+  </EntityType>
+  <EntityType Name="Employee">
+    <Key>
+      <PropertyRef Name="ID_EMPLOYEE" />
+    </Key>
+    <Property Name="ID_EMPLOYEE" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ID_UNIVERSITY" Type="int" />
+    <Property Name="ID_JOB_TITLE" Type="int" />
+    <Property Name="ID_DEPARTMENT" Type="varchar" MaxLength="10" />
+    <Property Name="ID_DEMOGRAPHIC_DATA" Type="int" />
+    <Property Name="TOTAL_SALARY" Type="money" />
+  </EntityType>
+  <EntityType Name="Job_Title">
+    <Key>
+      <PropertyRef Name="ID_JOB_TITLE" />
+    </Key>
+    <Property Name="ID_JOB_TITLE" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="JOB_TITLE_NAME" Type="varchar(max)" />
+  </EntityType>
+  <EntityType Name="Salary">
+    <Key>
+      <PropertyRef Name="ID_SALARY" />
+    </Key>
+    <Property Name="ID_SALARY" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ID_EMPLOYEE" Type="int" />
+    <Property Name="SALARY_AMOUNT" Type="money" />
+  </EntityType>
+  <EntityType Name="University">
+    <Key>
+      <PropertyRef Name="ID_UNIVERSITY" />
+    </Key>
+    <Property Name="ID_UNIVERSITY" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UNIVERSITY_NAME" Type="varchar(max)" />
+  </EntityType>
+  <Association Name="FK_Demographic_Data_Employee">
+    <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+    <End Role="Demographic_Data" Type="Self.Demographic_Data" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Employee">
+        <PropertyRef Name="ID_EMPLOYEE" />
+      </Principal>
+      <Dependent Role="Demographic_Data">
+        <PropertyRef Name="ID_DEMOGRAPHIC_DATA" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Employee_DemographData">
+    <End Role="Demographic_Data" Type="Self.Demographic_Data" Multiplicity="0..1" />
+    <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Demographic_Data">
+        <PropertyRef Name="ID_DEMOGRAPHIC_DATA" />
+      </Principal>
+      <Dependent Role="Employee">
+        <PropertyRef Name="ID_DEMOGRAPHIC_DATA" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Employee_Department">
+    <End Role="Department" Type="Self.Department" Multiplicity="0..1" />
+    <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Department">
+        <PropertyRef Name="ID_DEPARTMENT" />
+      </Principal>
+      <Dependent Role="Employee">
+        <PropertyRef Name="ID_DEPARTMENT" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Employee_JobTitle">
+    <End Role="Job_Title" Type="Self.Job_Title" Multiplicity="0..1" />
+    <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Job_Title">
+        <PropertyRef Name="ID_JOB_TITLE" />
+      </Principal>
+      <Dependent Role="Employee">
+        <PropertyRef Name="ID_JOB_TITLE" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Employee_University">
+    <End Role="University" Type="Self.University" Multiplicity="0..1" />
+    <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="University">
+        <PropertyRef Name="ID_UNIVERSITY" />
+      </Principal>
+      <Dependent Role="Employee">
+        <PropertyRef Name="ID_UNIVERSITY" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Salary_Employee">
+    <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
+    <End Role="Salary" Type="Self.Salary" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employee">
+        <PropertyRef Name="ID_EMPLOYEE" />
+      </Principal>
+      <Dependent Role="Salary">
+        <PropertyRef Name="ID_EMPLOYEE" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="UniversityModelStoreContainer">
+    <EntitySet Name="Demographic_Data" EntityType="Self.Demographic_Data" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Department" EntityType="Self.Department" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Employee" EntityType="Self.Employee" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Job_Title" EntityType="Self.Job_Title" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Salary" EntityType="Self.Salary" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="University" EntityType="Self.University" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Demographic_Data_Employee" Association="Self.FK_Demographic_Data_Employee">
+      <End Role="Employee" EntitySet="Employee" />
+      <End Role="Demographic_Data" EntitySet="Demographic_Data" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Employee_DemographData" Association="Self.FK_Employee_DemographData">
+      <End Role="Demographic_Data" EntitySet="Demographic_Data" />
+      <End Role="Employee" EntitySet="Employee" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Employee_Department" Association="Self.FK_Employee_Department">
+      <End Role="Department" EntitySet="Department" />
+      <End Role="Employee" EntitySet="Employee" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Employee_JobTitle" Association="Self.FK_Employee_JobTitle">
+      <End Role="Job_Title" EntitySet="Job_Title" />
+      <End Role="Employee" EntitySet="Employee" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Employee_University" Association="Self.FK_Employee_University">
+      <End Role="University" EntitySet="University" />
+      <End Role="Employee" EntitySet="Employee" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Salary_Employee" Association="Self.FK_Salary_Employee">
+      <End Role="Employee" EntitySet="Employee" />
+      <End Role="Salary" EntitySet="Salary" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

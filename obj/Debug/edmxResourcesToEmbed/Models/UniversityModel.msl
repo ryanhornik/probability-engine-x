@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="UniversityModelStoreContainer" CdmEntityContainer="UniversityEntities">
+    <EntitySetMapping Name="Demographic_Data">
+      <EntityTypeMapping TypeName="UniversityModel.Demographic_Data">
+        <MappingFragment StoreEntitySet="Demographic_Data">
+          <ScalarProperty Name="ID_DEMOGRAPHIC_DATA" ColumnName="ID_DEMOGRAPHIC_DATA" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Departments">
+      <EntityTypeMapping TypeName="UniversityModel.Department">
+        <MappingFragment StoreEntitySet="Department">
+          <ScalarProperty Name="ID_DEPARTMENT" ColumnName="ID_DEPARTMENT" />
+          <ScalarProperty Name="DEPARTMENT_NAME" ColumnName="DEPARTMENT_NAME" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Employees">
+      <EntityTypeMapping TypeName="UniversityModel.Employee">
+        <MappingFragment StoreEntitySet="Employee">
+          <ScalarProperty Name="ID_EMPLOYEE" ColumnName="ID_EMPLOYEE" />
+          <ScalarProperty Name="ID_UNIVERSITY" ColumnName="ID_UNIVERSITY" />
+          <ScalarProperty Name="ID_JOB_TITLE" ColumnName="ID_JOB_TITLE" />
+          <ScalarProperty Name="ID_DEPARTMENT" ColumnName="ID_DEPARTMENT" />
+          <ScalarProperty Name="ID_DEMOGRAPHIC_DATA" ColumnName="ID_DEMOGRAPHIC_DATA" />
+          <ScalarProperty Name="TOTAL_SALARY" ColumnName="TOTAL_SALARY" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Job_Title">
+      <EntityTypeMapping TypeName="UniversityModel.Job_Title">
+        <MappingFragment StoreEntitySet="Job_Title">
+          <ScalarProperty Name="ID_JOB_TITLE" ColumnName="ID_JOB_TITLE" />
+          <ScalarProperty Name="JOB_TITLE_NAME" ColumnName="JOB_TITLE_NAME" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Salaries">
+      <EntityTypeMapping TypeName="UniversityModel.Salary">
+        <MappingFragment StoreEntitySet="Salary">
+          <ScalarProperty Name="ID_SALARY" ColumnName="ID_SALARY" />
+          <ScalarProperty Name="ID_EMPLOYEE" ColumnName="ID_EMPLOYEE" />
+          <ScalarProperty Name="SALARY_AMOUNT" ColumnName="SALARY_AMOUNT" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Universities">
+      <EntityTypeMapping TypeName="UniversityModel.University">
+        <MappingFragment StoreEntitySet="University">
+          <ScalarProperty Name="ID_UNIVERSITY" ColumnName="ID_UNIVERSITY" />
+          <ScalarProperty Name="UNIVERSITY_NAME" ColumnName="UNIVERSITY_NAME" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

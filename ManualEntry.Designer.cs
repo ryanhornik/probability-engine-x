@@ -35,12 +35,10 @@
             this.JobTitleComboBox = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.Salaries = new System.Windows.Forms.GroupBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.SalaryBox = new System.Windows.Forms.RichTextBox();
             this.DepartmentIDComboBox = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.SalaryBox = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
-            this.Salaries.SuspendLayout();
             this.SuspendLayout();
             // 
             // EnterButton
@@ -90,8 +88,6 @@
             this.JobTitleComboBox.Size = new System.Drawing.Size(189, 21);
             this.JobTitleComboBox.TabIndex = 10;
             this.JobTitleComboBox.SelectedIndexChanged += new System.EventHandler(this.JobTitleComboBox_SelectedIndexChanged);
-
-            //this.JobTitleComboBox_SelectedIndexChanged
             // 
             // label4
             // 
@@ -104,47 +100,19 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.SalaryBox);
+            this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.DepartmentIDComboBox);
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.JobTitleComboBox);
             this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Location = new System.Drawing.Point(12, 12);
+            this.groupBox1.Location = new System.Drawing.Point(12, 73);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(361, 115);
+            this.groupBox1.Size = new System.Drawing.Size(361, 164);
             this.groupBox1.TabIndex = 13;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Enter UH Data";
             this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
-            // 
-            // Salaries
-            // 
-            this.Salaries.Controls.Add(this.label5);
-            this.Salaries.Controls.Add(this.SalaryBox);
-            this.Salaries.Location = new System.Drawing.Point(399, 12);
-            this.Salaries.Name = "Salaries";
-            this.Salaries.Size = new System.Drawing.Size(277, 247);
-            this.Salaries.TabIndex = 15;
-            this.Salaries.TabStop = false;
-            this.Salaries.Text = "UH Salaries";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label5.Location = new System.Drawing.Point(15, 216);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(108, 13);
-            this.label5.TabIndex = 16;
-            this.label5.Text = "*One Salary per Line*";
-            this.label5.Click += new System.EventHandler(this.label5_Click);
-            // 
-            // SalaryBox
-            // 
-            this.SalaryBox.Location = new System.Drawing.Point(18, 28);
-            this.SalaryBox.Name = "SalaryBox";
-            this.SalaryBox.Size = new System.Drawing.Size(237, 173);
-            this.SalaryBox.TabIndex = 0;
-            this.SalaryBox.Text = "";
             // 
             // DepartmentIDComboBox
             // 
@@ -155,12 +123,28 @@
             this.DepartmentIDComboBox.TabIndex = 13;
             this.DepartmentIDComboBox.SelectedIndexChanged += new System.EventHandler(this.DepartmentIDComboBox_SelectedIndexChanged);
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(15, 89);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(36, 13);
+            this.label1.TabIndex = 14;
+            this.label1.Text = "Salary";
+            // 
+            // SalaryBox
+            // 
+            this.SalaryBox.Location = new System.Drawing.Point(146, 89);
+            this.SalaryBox.Name = "SalaryBox";
+            this.SalaryBox.Size = new System.Drawing.Size(186, 20);
+            this.SalaryBox.TabIndex = 15;
+            this.SalaryBox.TextChanged += new System.EventHandler(this.SalaryBox_TextChanged);
+            // 
             // ManualEntry
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(740, 391);
-            this.Controls.Add(this.Salaries);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.ClearButton);
             this.Controls.Add(this.CancelButton);
@@ -170,8 +154,6 @@
             this.Text = "Manual UH Entry";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            this.Salaries.ResumeLayout(false);
-            this.Salaries.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -185,9 +167,8 @@
         private System.Windows.Forms.ComboBox JobTitleComboBox;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.GroupBox Salaries;
-        private System.Windows.Forms.RichTextBox SalaryBox;
-        private System.Windows.Forms.Label label5;
         private System.Windows.Forms.ComboBox DepartmentIDComboBox;
+        private System.Windows.Forms.TextBox SalaryBox;
+        private System.Windows.Forms.Label label1;
     }
 }
