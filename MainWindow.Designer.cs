@@ -34,7 +34,10 @@
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.importDataToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.importExcel = new System.Windows.Forms.ToolStripMenuItem();
+            this.manualDataToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitButton = new System.Windows.Forms.ToolStripMenuItem();
+            this.enterUHDataToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.enterTier1DataToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -58,6 +61,7 @@
             this.fileToolStripMenuItem.AutoToolTip = true;
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.importDataToolStripMenuItem,
+            this.manualDataToolStripMenuItem,
             this.exitButton});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             this.fileToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.F)));
@@ -82,6 +86,16 @@
             this.importExcel.Text = "Excel";
             this.importExcel.Click += new System.EventHandler(this.importExcel_Click);
             // 
+            // manualDataToolStripMenuItem
+            // 
+            this.manualDataToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.enterUHDataToolStripMenuItem,
+            this.enterTier1DataToolStripMenuItem});
+            this.manualDataToolStripMenuItem.Name = "manualDataToolStripMenuItem";
+            this.manualDataToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.manualDataToolStripMenuItem.Text = "Manual Data";
+            //this.manualDataToolStripMenuItem.Click += new System.EventHandler(this.manualDataToolStripMenuItem_Click);
+            // 
             // exitButton
             // 
             this.exitButton.Name = "exitButton";
@@ -89,6 +103,20 @@
             this.exitButton.Size = new System.Drawing.Size(152, 22);
             this.exitButton.Text = "Exit";
             this.exitButton.Click += new System.EventHandler(this.exitButton_Click);
+            // 
+            // enterUHDataToolStripMenuItem
+            // 
+            this.enterUHDataToolStripMenuItem.Name = "enterUHDataToolStripMenuItem";
+            this.enterUHDataToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
+            this.enterUHDataToolStripMenuItem.Text = "Enter UH Data";
+            this.enterUHDataToolStripMenuItem.Click += new System.EventHandler(this.enterUHDataToolStripMenuItem_Click);
+            // 
+            // enterTier1DataToolStripMenuItem
+            // 
+            this.enterTier1DataToolStripMenuItem.Name = "enterTier1DataToolStripMenuItem";
+            this.enterTier1DataToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
+            this.enterTier1DataToolStripMenuItem.Text = "Enter Tier 1 Data";
+            this.enterTier1DataToolStripMenuItem.Click += new System.EventHandler(this.enterTier1DataToolStripMenuItem_Click);
             // 
             // MainWindow
             // 
@@ -114,6 +142,9 @@
         private System.Windows.Forms.ToolStripMenuItem importExcel;
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem exitButton;
+        private System.Windows.Forms.ToolStripMenuItem manualDataToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem enterUHDataToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem enterTier1DataToolStripMenuItem;
 
     }
 }

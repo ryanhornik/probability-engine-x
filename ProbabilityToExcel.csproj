@@ -74,11 +74,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DBProbAppDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DBProbAppDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="MainWindow.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="MainWindow.Designer.cs">
       <DependentUpon>MainWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ManualEntry.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ManualEntry.Designer.cs">
+      <DependentUpon>ManualEntry.cs</DependentUpon>
     </Compile>
     <Compile Include="Models\Demographic_Data.cs">
       <DependentUpon>UniversityModel.tt</DependentUpon>
@@ -128,8 +139,17 @@
     <Compile Include="SelectUniversity.Designer.cs">
       <DependentUpon>SelectUniversity.cs</DependentUpon>
     </Compile>
+    <Compile Include="Tier1ManualEntry.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Tier1ManualEntry.Designer.cs">
+      <DependentUpon>Tier1ManualEntry.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="MainWindow.resx">
       <DependentUpon>MainWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ManualEntry.resx">
+      <DependentUpon>ManualEntry.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -143,10 +163,24 @@
     <EmbeddedResource Include="SelectUniversity.resx">
       <DependentUpon>SelectUniversity.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Tier1ManualEntry.resx">
+      <DependentUpon>Tier1ManualEntry.cs</DependentUpon>
+    </EmbeddedResource>
     <EntityDeploy Include="Models\UniversityModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>UniversityModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
+    <None Include="DBProbAppDataSet.xsc">
+      <DependentUpon>DBProbAppDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="DBProbAppDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DBProbAppDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="DBProbAppDataSet.xss">
+      <DependentUpon>DBProbAppDataSet.xsd</DependentUpon>
+    </None>
     <None Include="Models\UniversityModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>UniversityModel.edmx</DependentUpon>
