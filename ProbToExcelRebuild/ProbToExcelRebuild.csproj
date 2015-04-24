@@ -80,6 +80,12 @@
     <Compile Include="Forms\MainWindow.Designer.cs">
       <DependentUpon>MainWindow.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\SelectColumns.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\SelectColumns.Designer.cs">
+      <DependentUpon>SelectColumns.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\SelectUniversity.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -103,6 +109,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\MainWindow.resx">
       <DependentUpon>MainWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\SelectColumns.resx">
+      <DependentUpon>SelectColumns.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\SelectUniversity.resx">
       <DependentUpon>SelectUniversity.cs</DependentUpon>

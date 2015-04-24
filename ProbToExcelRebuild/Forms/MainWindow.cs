@@ -26,13 +26,6 @@ namespace ProbToExcelRebuild.Forms
 
         private void excelToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            OpenFileDialog openFileDialog = new OpenFileDialog
-            {
-                Filter = "Excel Files (.xls, .xlsx)|*.xlsx;*.xls",
-                FilterIndex = 1,
-                Multiselect = false
-            };
-
             University university = null;
 
             using (var form = new SelectUniversity())
@@ -48,6 +41,37 @@ namespace ProbToExcelRebuild.Forms
                 }
             }
 
+            
+
+            string jobTitleColumn;
+            string proposedTotalSalaryColumn;
+            string deptIDColumn;
+            int dataStartRow;
+            
+
+            using (var form = new SelectColumns())
+            {
+                var selectResult = form.ShowDialog();
+                if (selectResult == DialogResult.OK)
+                {
+                    jobTitleColumn = form.jobTitleColumn;
+                    proposedTotalSalaryColumn = form.proposedTotalSalaryColumn;
+                    deptIDColumn = form.deptIDColumn;
+                    dataStartRow = form.dataStartRow;
+                }
+                else
+                {
+                    return;
+                }
+            }
+            
+            OpenFileDialog openFileDialog = new OpenFileDialog
+            {
+                Filter = "Excel Files (.xls, .xlsx)|*.xlsx;*.xls",
+                FilterIndex = 1,
+                Multiselect = false
+            };
+
             var result = openFileDialog.ShowDialog();
 
             if (result == DialogResult.OK && university != null)
@@ -58,18 +82,11 @@ namespace ProbToExcelRebuild.Forms
 
                 var thread = new Thread(() =>
                 {
-
-
-                    //TODO Ask which column each datum is on and pass to LoadExcelData and add loading screen
                     var application = new Excel.Application();
                     var workbook = application.Workbooks.Open(openFileDialog.FileName);
                     var worksheet = (Excel.Worksheet)workbook.Worksheets.Item[1];
                     object misValue = Missing.Value;
-
-                    var jobTitleColumn = "B";
-                    var proposedTotalSalaryColumn = "O";
-                    var deptIDColumn = "AA";
-                    var dataStartRow = 8;
+                    
                     var dataCurrentRow = dataStartRow;
 
                     try
@@ -80,7 +97,7 @@ namespace ProbToExcelRebuild.Forms
 
                         while (worksheet.Range[deptIDColumn + dataCurrentRow].Value2 != null)
                         {
-                            loadForm.Invoke((new Action(() => loadForm.updateLabel("First pass of two - "+(dataCurrentRow - dataStartRow)+ "/? rows processed"))));
+                            loadForm.Invoke((new Action(() => loadForm.updateLabel("First pass of two - " + (dataCurrentRow - dataStartRow) + "/? rows processed"))));
 
                             var jobTitle = worksheet.Range[(jobTitleColumn + dataCurrentRow)].Value2;
 
@@ -120,7 +137,7 @@ namespace ProbToExcelRebuild.Forms
                         dataCurrentRow = dataStartRow;
                         while (worksheet.Range[deptIDColumn + dataCurrentRow].Value2 != null)
                         {
-                            
+
                             var jobTitle = worksheet.Range[(jobTitleColumn + dataCurrentRow)].Value2;
 
                             var proposedTotalSalary = worksheet.Range[proposedTotalSalaryColumn + dataCurrentRow].Value2;
