@@ -368,7 +368,7 @@ warning 6002: The table/view 'C:\USERS\RYAN\SKYDRIVE\PROBABILITYTOEXCEL\PROBTOEX
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="DBProbAppEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Demographic_Data" EntityType="Self.Demographic_Data" />
           <EntitySet Name="Departments" EntityType="Self.Department" />
           <EntitySet Name="Employees" EntityType="Self.Employee" />
@@ -411,7 +411,7 @@ warning 6002: The table/view 'C:\USERS\RYAN\SKYDRIVE\PROBABILITYTOEXCEL\PROBTOEX
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="DBProbAppModelStoreContainer" CdmEntityContainer="DBProbAppEntities">
+        <EntityContainerMapping StorageEntityContainer="DBProbAppModelStoreContainer" CdmEntityContainer="Entities">
           <EntitySetMapping Name="Demographic_Data">
             <EntityTypeMapping TypeName="DBProbAppModel.Demographic_Data">
               <MappingFragment StoreEntitySet="Demographic_Data">

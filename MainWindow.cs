@@ -19,8 +19,8 @@ namespace ProbabilityToExcel
 {
     public partial class MainWindow : Form
     {
-        DBProbAppEntities db = new DBProbAppEntities();
-        
+        Entities db = new Entities();
+
         public MainWindow()
         {
             InitializeComponent();
@@ -70,12 +70,12 @@ namespace ProbabilityToExcel
             var proposedTotalSalaryColumn = "O";
             var deptIDColumn = "AA";
             var dataStartRow = 8;
-            
+
             while (worksheet.Range[deptIDColumn + dataStartRow].Value2 != null)
             {
 
                 var jobTitle = worksheet.Range[(jobTitleColumn + dataStartRow)].Value2;
-                
+
                 var proposedTotalSalary = worksheet.Range[proposedTotalSalaryColumn + dataStartRow].Value2;
 
                 var deptID = worksheet.Range[deptIDColumn + dataStartRow].Value2;
@@ -114,16 +114,15 @@ namespace ProbabilityToExcel
                         db.SaveChanges();
                     }
 
-                    
-
-                    var employee = new Employee()
+                    db.Employees.Add(
+                        new Employee()
                     {
                         Department = dept,
                         Job_Title = title,
-                        University = university
-                    };
-
-                    db.Employees.Add(employee);
+                        University = university,
+                        TOTAL_SALARY = (decimal)proposedTotalSalary,
+                        Demographic_Data = null
+                    });
                     db.SaveChanges();
                 }
 
@@ -155,7 +154,7 @@ namespace ProbabilityToExcel
             {
                 GC.Collect();
             }
-        } 
-        
+        }
+
     }
 }

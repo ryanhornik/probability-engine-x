@@ -13,10 +13,10 @@ namespace ProbabilityToExcel.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class DBProbAppEntities : DbContext
+    public partial class Entities : DbContext
     {
-        public DBProbAppEntities()
-            : base("name=DBProbAppEntities")
+        public Entities()
+            : base("name=Entities")
         {
         }
     
