@@ -520,5 +520,17 @@ namespace ProbToExcelRebuild.Forms
                 thread.Start();
             }
         }
+
+        private void meanToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            EmployeeMeanForm x = new EmployeeMeanForm();
+            this.Hide();
+            x.Show();
+        }
+
+        private void employeeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
