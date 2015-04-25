@@ -216,6 +216,9 @@ namespace ProbToExcelRebuild.Forms
         private void enterTier1DataToolStripMenuItem_Click(object sender, EventArgs e)
         {
             //TODO add manual entry form for other tier 1s
+            SpecialCodeManualEntry form = new SpecialCodeManualEntry();
+            this.Hide();
+            form.Show();
         }
 
         private void averageNewHireSalariesToolStripMenuItem_Click(object sender, EventArgs e)
@@ -596,6 +599,11 @@ namespace ProbToExcelRebuild.Forms
         }
 
         private void externalCToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void employeeGrid_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
         }

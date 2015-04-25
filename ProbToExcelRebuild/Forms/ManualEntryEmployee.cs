@@ -112,15 +112,7 @@ namespace ProbToExcelRebuild.Forms
 
             db.Employees.Add(sal);
             db.SaveChanges();
-
-
-            //db.Job_Title.Add(job_title);
-            //db.Departments.Add(deprtmt);
-            //db.Universities.Add(uni);
-            //db.Employees.Add(sal);
-            //db.SaveChanges();
-            
-            
+    
         }
 
         private void groupBox1_Enter(object sender, EventArgs e)

@@ -42,6 +42,7 @@
             this.calculateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.employeeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.otherTier1ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.externalCToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.employeeGrid = new System.Windows.Forms.DataGridView();
             this.ID_Employee = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TOTAL_SALARY = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -63,7 +64,6 @@
             this.ID_JOB_TITLE = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ID_UNIVERSITY = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.externalCToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.employeeGrid)).BeginInit();
             this.tabControl1.SuspendLayout();
@@ -176,15 +176,22 @@
             // employeeToolStripMenuItem
             // 
             this.employeeToolStripMenuItem.Name = "employeeToolStripMenuItem";
-            this.employeeToolStripMenuItem.Size = new System.Drawing.Size(235, 22);
+            this.employeeToolStripMenuItem.Size = new System.Drawing.Size(236, 22);
             this.employeeToolStripMenuItem.Text = "Averages";
             this.employeeToolStripMenuItem.Click += new System.EventHandler(this.employeeToolStripMenuItem_Click);
             // 
             // otherTier1ToolStripMenuItem
             // 
             this.otherTier1ToolStripMenuItem.Name = "otherTier1ToolStripMenuItem";
-            this.otherTier1ToolStripMenuItem.Size = new System.Drawing.Size(235, 22);
+            this.otherTier1ToolStripMenuItem.Size = new System.Drawing.Size(236, 22);
             this.otherTier1ToolStripMenuItem.Text = "Internal Compression Measure";
+            // 
+            // externalCToolStripMenuItem
+            // 
+            this.externalCToolStripMenuItem.Name = "externalCToolStripMenuItem";
+            this.externalCToolStripMenuItem.Size = new System.Drawing.Size(236, 22);
+            this.externalCToolStripMenuItem.Text = "External Compression Measure";
+            this.externalCToolStripMenuItem.Click += new System.EventHandler(this.externalCToolStripMenuItem_Click);
             // 
             // employeeGrid
             // 
@@ -203,6 +210,7 @@
             this.employeeGrid.ReadOnly = true;
             this.employeeGrid.Size = new System.Drawing.Size(565, 291);
             this.employeeGrid.TabIndex = 1;
+            this.employeeGrid.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.employeeGrid_CellContentClick);
             // 
             // ID_Employee
             // 
@@ -376,13 +384,6 @@
             this.dataGridViewTextBoxColumn6.HeaderText = "Average Salary";
             this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
             this.dataGridViewTextBoxColumn6.ReadOnly = true;
-            // 
-            // externalCToolStripMenuItem
-            // 
-            this.externalCToolStripMenuItem.Name = "externalCToolStripMenuItem";
-            this.externalCToolStripMenuItem.Size = new System.Drawing.Size(236, 22);
-            this.externalCToolStripMenuItem.Text = "External Compression Measure";
-            this.externalCToolStripMenuItem.Click += new System.EventHandler(this.externalCToolStripMenuItem_Click);
             // 
             // MainWindow
             // 
