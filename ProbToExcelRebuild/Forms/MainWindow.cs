@@ -213,9 +213,6 @@ namespace ProbToExcelRebuild.Forms
             manualForm.Show();
         }
 
-            SpecialCodeManualEntry form = new SpecialCodeManualEntry();
-            this.Hide();
-            form.Show();
         private void averageNewHireSalariesToolStripMenuItem_Click(object sender, EventArgs e)
         {
             string averageSalaryColumn;
@@ -610,12 +607,22 @@ namespace ProbToExcelRebuild.Forms
         
         private void enterSpecialCodeToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            
+            SpecialCodeManualEntry form = new SpecialCodeManualEntry();
+            Hide();
+            form.Show();
         }
 
         private void internalCompressionToolStripMenuItem_Click(object sender, EventArgs e)
         {
             InternalCompressionMain form = new InternalCompressionMain();
+            Hide();
+            form.ShowDialog();
+            Show();
+        }
+
+        private void secondInternalEquityToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SecondInternalEquity form = new SecondInternalEquity();
             Hide();
             form.ShowDialog();
             Show();

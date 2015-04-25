@@ -20,7 +20,7 @@ namespace ProbToExcelRebuild.Models
         [StringLength(10)]
         public string ID_DEPARTMENT { get; set; }
 
-        public double? WEIGHT { get; set; }
+        public double WEIGHT { get; set; }
 
         public virtual Department Department { get; set; }
 

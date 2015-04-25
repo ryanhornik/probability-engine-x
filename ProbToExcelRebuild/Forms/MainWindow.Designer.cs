@@ -64,6 +64,7 @@
             this.ID_JOB_TITLE = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ID_UNIVERSITY = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.secondInternalEquityToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.employeeGrid)).BeginInit();
             this.tabControl1.SuspendLayout();
@@ -169,7 +170,8 @@
             this.calculateToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.employeeToolStripMenuItem,
             this.otherTier1ToolStripMenuItem,
-            this.externalCToolStripMenuItem});
+            this.externalCToolStripMenuItem,
+            this.secondInternalEquityToolStripMenuItem});
             this.calculateToolStripMenuItem.Name = "calculateToolStripMenuItem";
             this.calculateToolStripMenuItem.Size = new System.Drawing.Size(68, 20);
             this.calculateToolStripMenuItem.Text = "Calculate";
@@ -187,13 +189,6 @@
             this.otherTier1ToolStripMenuItem.Size = new System.Drawing.Size(236, 22);
             this.otherTier1ToolStripMenuItem.Text = "Internal Compression Measure";
             this.otherTier1ToolStripMenuItem.Click += new System.EventHandler(this.internalCompressionToolStripMenuItem_Click);
-            // 
-            // externalCToolStripMenuItem
-            // 
-            this.externalCToolStripMenuItem.Name = "externalCToolStripMenuItem";
-            this.externalCToolStripMenuItem.Size = new System.Drawing.Size(236, 22);
-            this.externalCToolStripMenuItem.Text = "External Compression Measure";
-            this.externalCToolStripMenuItem.Click += new System.EventHandler(this.externalCToolStripMenuItem_Click);
             // 
             // externalCToolStripMenuItem
             // 
@@ -394,6 +389,13 @@
             this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
             this.dataGridViewTextBoxColumn6.ReadOnly = true;
             // 
+            // secondInternalEquityToolStripMenuItem
+            // 
+            this.secondInternalEquityToolStripMenuItem.Name = "secondInternalEquityToolStripMenuItem";
+            this.secondInternalEquityToolStripMenuItem.Size = new System.Drawing.Size(236, 22);
+            this.secondInternalEquityToolStripMenuItem.Text = "Second Internal Equity";
+            this.secondInternalEquityToolStripMenuItem.Click += new System.EventHandler(this.secondInternalEquityToolStripMenuItem_Click);
+            // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -461,5 +463,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
         private System.Windows.Forms.ToolStripMenuItem averageNewHireDataToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem externalCToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem secondInternalEquityToolStripMenuItem;
     }
 }
