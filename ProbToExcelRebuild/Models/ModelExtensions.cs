@@ -12,5 +12,27 @@ namespace ProbToExcelRebuild.Models
         {
             return UNIVERSITY_NAME;
         }
+
+        public Averages CalculateAverages()
+        {
+            var sal = Employees.Sum(imp => imp.TOTAL_SALARY);
+            var obj = Employees.Count;
+        }
+
+    }
+    public class Averages
+    {
+        public double mean { get; set; }
+        public double median { get; set; }
+        public double IQR1 { get; set; }
+        public double IQR3 { get; set; }
+
+        private Averages()
+        {
+            mean = 0;
+            median = 0;
+            IQR1 = 0;
+            IQR3 = 0;
+        }
     }
 }
