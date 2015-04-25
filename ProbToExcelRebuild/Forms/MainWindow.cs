@@ -281,7 +281,7 @@ namespace ProbToExcelRebuild.Forms
 
                             dataCurrentRow++;
                         }
-                        
+
                         loadForm.Invoke((new Action(() => loadForm.updateLabel("Saving changes to database"))));
 
                         db.Departments.AddRange(newDepartments);
@@ -303,14 +303,19 @@ namespace ProbToExcelRebuild.Forms
 
                             newAverageSalaries.Add(new New_Associate_Professor_Average_Salary()
                             {
-                                AVERAGE_SALARY = (decimal) averageSalary,
+                                AVERAGE_SALARY = (decimal)averageSalary,
                                 ID_DEPARTMENT = dept.ID_DEPARTMENT,
-                                YEAR = (int) yearHired
+                                YEAR = (int)yearHired
                             }
                                 );
                             dataCurrentRow++;
                             loadForm.Invoke((new Action(() => loadForm.updateLabel("Second pass of two - " + (dataCurrentRow - dataStartRow) + "/" + totalRows + " rows processed"))));
                         }
+
+                        loadForm.Invoke((new Action(() => loadForm.updateLabel("Saving changes to database"))));
+
+                        db.New_Associate_Professor_Average_Salary.AddRange(newAverageSalaries);
+                        db.SaveChanges();
                     }
                     catch (Exception ex)
                     {
@@ -340,13 +345,15 @@ namespace ProbToExcelRebuild.Forms
             string deptIDColumn;
             int dataStartRow;
 
-            using (var form = new SelectColumnsAverageNewHireSalaries())
+            using (var form = new SelectColumnsPerDepartmentPerSpecialCode())
             {
                 var selectResult = form.ShowDialog();
                 if (selectResult == DialogResult.OK)
                 {
                     averageSalaryColumn = form.averageSalaryColumn;
-                    specialtyCodeColumn = form.yearHiredColumn;
+                    specialtyCodeColumn = form.specialtyCodeColumn;
+                    jobTitleColumn = form.jobTitleColumn;
+                    weightColumn = form.weightColumn;
                     deptIDColumn = form.deptIDColumn;
                     dataStartRow = form.dataStartRow;
                 }
@@ -383,54 +390,114 @@ namespace ProbToExcelRebuild.Forms
                     try
                     {
                         var newDepartments = new List<Department>();
+                        var newJobTitles = new List<Job_Title>();
+                        var newSpecialtyCodes = new List<Specialty_Code>();
 
-                        while (worksheet.Range[deptIDColumn + dataCurrentRow].Value2 != null)
+                        while (worksheet.Range[specialtyCodeColumn + dataCurrentRow].Value2 != null)
                         {
                             loadForm.Invoke((new Action(() => loadForm.updateLabel("First pass of two - " + (dataCurrentRow - dataStartRow) + "/? rows processed"))));
 
+                            var jobTitle = worksheet.Range[(jobTitleColumn + dataCurrentRow)].Value2;
+
                             var deptID = worksheet.Range[deptIDColumn + dataCurrentRow].Value2;
 
-                            string deptIDString = deptID.ToString();
-                            if (!db.Departments.Any(s => s.ID_DEPARTMENT.Equals(deptIDString)) && !newDepartments.Any(s => s.ID_DEPARTMENT.Equals(deptIDString)))
+                            var specialtyCode = worksheet.Range[specialtyCodeColumn + dataCurrentRow].Value2;
+
+                            var weight = worksheet.Range[weightColumn + dataCurrentRow].Value2;
+
+                            string deptIDString = null;
+
+                            if (deptID != null)
                             {
-                                newDepartments.Add(new Department()
+                                deptIDString = deptID.ToString();
+                                if (!db.Departments.Any(s => s.ID_DEPARTMENT.Equals(deptIDString)) &&
+                                    !newDepartments.Any(s => s.ID_DEPARTMENT.Equals(deptIDString)))
                                 {
-                                    ID_DEPARTMENT = deptID.ToString()
+                                    newDepartments.Add(new Department()
+                                    {
+                                        ID_DEPARTMENT = deptID.ToString()
+                                    });
+                                }
+                            }
+
+
+                            string jobTitleString = jobTitle.ToString();
+                            if (!db.Job_Title.Any(s => s.JOB_TITLE_NAME.Equals(jobTitleString)) &&
+                                !newJobTitles.Any(s => s.JOB_TITLE_NAME.Equals(jobTitleString)))
+                            {
+                                newJobTitles.Add(new Job_Title()
+                                {
+                                    JOB_TITLE_NAME = jobTitle.ToString()
+                                });
+                            }
+
+                            string specialtyCodeString = specialtyCode.ToString();
+                            if (!db.Specialty_Code.Any(s => s.ID_CODE.Equals(specialtyCodeString)) &&
+                                !newSpecialtyCodes.Any(s => s.ID_CODE.Equals(specialtyCodeString)))
+                            {
+                                newSpecialtyCodes.Add(new Specialty_Code()
+                                {
+                                    ID_CODE = specialtyCodeString,
+                                    ID_DEPARTMENT = deptIDString,
+                                    WEIGHT = weight
                                 });
                             }
 
                             dataCurrentRow++;
                         }
 
+
                         loadForm.Invoke((new Action(() => loadForm.updateLabel("Saving changes to database"))));
 
                         db.Departments.AddRange(newDepartments);
                         db.SaveChanges();
 
+                        db.Job_Title.AddRange(newJobTitles);
+                        db.SaveChanges();
+
+                        db.Specialty_Code.AddRange(newSpecialtyCodes);
+                        db.SaveChanges();
+
                         var totalRows = dataCurrentRow - dataStartRow;
                         dataCurrentRow = dataStartRow;
-                        var newAverageSalaries = new List<New_Associate_Professor_Average_Salary>();
-                        while (worksheet.Range[deptIDColumn + dataCurrentRow].Value2 != null)
+                        var newPerJobPerDepartment = new List<Per_Job_Per_Department>();
+
+                        int UHID = db.Universities.First(s => s.UNIVERSITY_NAME.Equals("University of Houston")).ID_UNIVERSITY;
+                        int OTHERID = db.Universities.First(s => s.UNIVERSITY_NAME.Equals("Unknown Tier 1")).ID_UNIVERSITY;
+
+                        while (worksheet.Range[specialtyCodeColumn + dataCurrentRow].Value2 != null)
                         {
-                            var averageSalary = worksheet.Range[(averageSalaryColumn + dataCurrentRow)].Value2;
+                            var jobTitle = worksheet.Range[(jobTitleColumn + dataCurrentRow)].Value2;
 
                             var deptID = worksheet.Range[deptIDColumn + dataCurrentRow].Value2;
 
-                            var yearHired = worksheet.Range[yearHiredColumn + dataCurrentRow].Value2;
+                            var specialtyCode = worksheet.Range[specialtyCodeColumn + dataCurrentRow].Value2.ToString();
 
-                            string deptIDString = deptID.ToString();
-                            var dept = db.Departments.First(s => s.ID_DEPARTMENT.Equals(deptIDString));
+                            var averageSalary = worksheet.Range[averageSalaryColumn + dataCurrentRow].Value2;
 
-                            newAverageSalaries.Add(new New_Associate_Professor_Average_Salary()
+                            string jobTitleString = jobTitle.ToString();
+
+                            var jobTitleFromDB =
+                                db.Job_Title.First(s => s.JOB_TITLE_NAME.Equals(jobTitleString));
+                            var jobTitleID = jobTitleFromDB.ID_JOB_TITLE;
+
+
+                            newPerJobPerDepartment.Add(new Per_Job_Per_Department()
                             {
                                 AVERAGE_SALARY = (decimal)averageSalary,
-                                ID_DEPARTMENT = dept.ID_DEPARTMENT,
-                                YEAR = (int)yearHired
-                            }
-                                );
+                                ID_CODE = specialtyCode,
+                                ID_JOB_TITLE = jobTitleID,
+                                ID_UNIVERSITY = (deptID != null) ? UHID : OTHERID
+                            });
+
                             dataCurrentRow++;
                             loadForm.Invoke((new Action(() => loadForm.updateLabel("Second pass of two - " + (dataCurrentRow - dataStartRow) + "/" + totalRows + " rows processed"))));
                         }
+
+                        loadForm.Invoke((new Action(() => loadForm.updateLabel("Saving changes to database"))));
+
+                        db.Per_Job_Per_Department.AddRange(newPerJobPerDepartment);
+                        db.SaveChanges();
                     }
                     catch (Exception ex)
                     {
