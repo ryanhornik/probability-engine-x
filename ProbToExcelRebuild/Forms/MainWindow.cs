@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlTypes;
 using System.Linq;
 using System.Reflection;
 using System.Threading;
@@ -518,6 +519,7 @@ namespace ProbToExcelRebuild.Forms
                     ReleaseObject(workbook);
                     ReleaseObject(application);
 
+                    Invoke(new Action(UpdateAverageByJobGridView));
                     loadForm.Invoke(new Action(() => { loadForm.Close(); }));
                     Invoke(new Action(Show));
                 });
@@ -529,6 +531,7 @@ namespace ProbToExcelRebuild.Forms
         {
             UpdateEmployeeGridView();
             UpdateNewHireAveragesGridView();
+            UpdateAverageByJobGridView();
         }
 
         private void UpdateEmployeeGridView()
@@ -559,11 +562,31 @@ namespace ProbToExcelRebuild.Forms
             }
             foreach (var sal in db.New_Associate_Professor_Average_Salary)
             {
-                var row = new object[5];
+                var row = new object[3];
                 row[0] = sal.AVERAGE_SALARY.ToString("$000,000.00");
                 row[1] = sal.ID_DEPARTMENT;
                 row[2] = sal.YEAR;
                 newHireAveragesGrid.Rows.Add(row);
+            }
+        }
+        
+        private void UpdateAverageByJobGridView()
+        {
+            var rowCount = averageByJobGrid.Rows.Count;
+            for (var i = rowCount - 1; i >= 0; i--)
+            {
+                averageByJobGrid.Rows.RemoveAt(i);
+            }
+            foreach (var sal in db.Per_Job_Per_Department)
+            {
+                var row = new object[6];
+                row[0] = sal.Specialty_Code.ID_CODE;
+                row[1] = sal.Specialty_Code.ID_DEPARTMENT;
+                row[2] = sal.Specialty_Code.WEIGHT;
+                row[3] = sal.Job_Title.JOB_TITLE_NAME;
+                row[4] = sal.University.UNIVERSITY_NAME;
+                row[5] = sal.AVERAGE_SALARY.ToString("$000,000.00");
+                averageByJobGrid.Rows.Add(row);
             }
         }
     }
