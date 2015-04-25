@@ -594,7 +594,10 @@ namespace ProbToExcelRebuild.Forms
 
         private void externalCToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            ExternalEquity form = new ExternalEquity();
+            Hide();
+            form.ShowDialog();
+            Show();
         }
 
         private void employeeGrid_CellContentClick(object sender, DataGridViewCellEventArgs e)
