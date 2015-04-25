@@ -213,6 +213,9 @@ namespace ProbToExcelRebuild.Forms
             manualForm.Show();
         }
 
+            SpecialCodeManualEntry form = new SpecialCodeManualEntry();
+            this.Hide();
+            form.Show();
         private void averageNewHireSalariesToolStripMenuItem_Click(object sender, EventArgs e)
         {
             string averageSalaryColumn;
@@ -591,6 +594,11 @@ namespace ProbToExcelRebuild.Forms
         }
 
         private void externalCToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void employeeGrid_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
         }

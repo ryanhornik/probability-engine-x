@@ -60,6 +60,7 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.DirectoryServices" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.Xml.Linq" />
@@ -126,6 +127,12 @@
     <Compile Include="Forms\SelectUniversity.Designer.cs">
       <DependentUpon>SelectUniversity.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\SpecialCodeManualEntry.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\SpecialCodeManualEntry.Designer.cs">
+      <DependentUpon>SpecialCodeManualEntry.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\Department.cs" />
     <Compile Include="Models\Employee.cs" />
     <Compile Include="Models\EmployeeView.cs" />
@@ -164,6 +171,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\SelectUniversity.resx">
       <DependentUpon>SelectUniversity.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\SpecialCodeManualEntry.resx">
+      <DependentUpon>SpecialCodeManualEntry.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
