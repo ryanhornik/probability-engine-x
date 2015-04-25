@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlTypes;
 using System.Linq;
 using System.Reflection;
 using System.Threading;
@@ -18,6 +19,8 @@ namespace ProbToExcelRebuild.Forms
             InitializeComponent();
         }
 
+
+        
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Application.Exit();
@@ -178,6 +181,7 @@ namespace ProbToExcelRebuild.Forms
                     ReleaseObject(workbook);
                     ReleaseObject(application);
 
+                    Invoke(new Action(UpdateEmployeeGridView));
                     loadForm.Invoke(new Action(() => { loadForm.Close(); }));
                     Invoke(new Action(Show));
                 });
@@ -206,6 +210,9 @@ namespace ProbToExcelRebuild.Forms
         private void enterUHDataToolStripMenuItem_Click(object sender, EventArgs e)
         {
             //TODO add manual entry form for UH data
+            ManualEntryEmployee manualForm = new ManualEntryEmployee();
+            this.Hide();
+            manualForm.Show();
         }
 
         private void enterTier1DataToolStripMenuItem_Click(object sender, EventArgs e)
@@ -329,6 +336,7 @@ namespace ProbToExcelRebuild.Forms
                     ReleaseObject(workbook);
                     ReleaseObject(application);
 
+                    Invoke(new Action(UpdateNewHireAveragesGridView));
                     loadForm.Invoke(new Action(() => { loadForm.Close(); }));
                     Invoke(new Action(Show));
                 });
@@ -511,11 +519,87 @@ namespace ProbToExcelRebuild.Forms
                     ReleaseObject(workbook);
                     ReleaseObject(application);
 
+                    Invoke(new Action(UpdateAverageByJobGridView));
                     loadForm.Invoke(new Action(() => { loadForm.Close(); }));
                     Invoke(new Action(Show));
                 });
                 thread.Start();
             }
+        }
+
+        private void MainWindow_Load(object sender, EventArgs e)
+        {
+            UpdateEmployeeGridView();
+            UpdateNewHireAveragesGridView();
+            UpdateAverageByJobGridView();
+        }
+
+        private void UpdateEmployeeGridView()
+        {
+            var rowCount = employeeGrid.Rows.Count;
+            for (var i = rowCount-1; i >= 0; i--)
+            {
+                employeeGrid.Rows.RemoveAt(i);
+            }
+            foreach (var emp in db.EmployeeViews)
+            {
+                var row = new object[5];
+                row[0] = emp.ID_EMPLOYEE;
+                row[1] = emp.TOTAL_SALARY.ToString("$000,000.00");
+                row[2] = emp.UNIVERSITY_NAME;
+                row[3] = emp.ID_DEPARTMENT;
+                row[4] = emp.JOB_TITLE_NAME;
+                employeeGrid.Rows.Add(row);
+            }
+        }
+
+        private void UpdateNewHireAveragesGridView()
+        {
+            var rowCount = newHireAveragesGrid.Rows.Count;
+            for (var i = rowCount - 1; i >= 0; i--)
+            {
+                newHireAveragesGrid.Rows.RemoveAt(i);
+            }
+            foreach (var sal in db.New_Associate_Professor_Average_Salary)
+            {
+                var row = new object[3];
+                row[0] = sal.AVERAGE_SALARY.ToString("$000,000.00");
+                row[1] = sal.ID_DEPARTMENT;
+                row[2] = sal.YEAR;
+                newHireAveragesGrid.Rows.Add(row);
+            }
+        }
+        
+        private void UpdateAverageByJobGridView()
+        {
+            var rowCount = averageByJobGrid.Rows.Count;
+            for (var i = rowCount - 1; i >= 0; i--)
+            {
+                averageByJobGrid.Rows.RemoveAt(i);
+            }
+            foreach (var sal in db.Per_Job_Per_Department)
+            {
+                var row = new object[6];
+                row[0] = sal.Specialty_Code.ID_CODE;
+                row[1] = sal.Specialty_Code.ID_DEPARTMENT;
+                row[2] = sal.Specialty_Code.WEIGHT;
+                row[3] = sal.Job_Title.JOB_TITLE_NAME;
+                row[4] = sal.University.UNIVERSITY_NAME;
+                row[5] = sal.AVERAGE_SALARY.ToString("$000,000.00");
+                averageByJobGrid.Rows.Add(row);
+            }
+        }
+
+        private void meanToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            EmployeeMeanForm x = new EmployeeMeanForm();
+            this.Hide();
+            x.Show();
+        }
+
+        private void employeeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
         }
 
         private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
