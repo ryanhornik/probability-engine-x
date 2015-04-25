@@ -29,13 +29,13 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.AvgTierSalTextBox = new System.Windows.Forms.TextBox();
             this.SpecialtyCodeTextBox = new System.Windows.Forms.TextBox();
             this.JobTitleComboBox = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
             this.JobTitleLabel = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.directoryEntry1 = new System.DirectoryServices.DirectoryEntry();
-            this.AvgTierSalTextBox = new System.Windows.Forms.TextBox();
             this.EnterButton = new System.Windows.Forms.Button();
             this.CancleButton = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
@@ -43,6 +43,12 @@
             this.SpecialtyCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.JobTitle = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.AvgSalary = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.label2 = new System.Windows.Forms.Label();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.UniversityComboBox = new System.Windows.Forms.ComboBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.SpecialtyGridView)).BeginInit();
@@ -50,6 +56,12 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.UniversityComboBox);
+            this.groupBox1.Controls.Add(this.label4);
+            this.groupBox1.Controls.Add(this.textBox1);
+            this.groupBox1.Controls.Add(this.label3);
+            this.groupBox1.Controls.Add(this.comboBox1);
+            this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.AvgTierSalTextBox);
             this.groupBox1.Controls.Add(this.SpecialtyCodeTextBox);
             this.groupBox1.Controls.Add(this.JobTitleComboBox);
@@ -58,10 +70,18 @@
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Location = new System.Drawing.Point(25, 55);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(303, 164);
+            this.groupBox1.Size = new System.Drawing.Size(303, 352);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Specialty Data Entry";
+            // 
+            // AvgTierSalTextBox
+            // 
+            this.AvgTierSalTextBox.Location = new System.Drawing.Point(106, 143);
+            this.AvgTierSalTextBox.Name = "AvgTierSalTextBox";
+            this.AvgTierSalTextBox.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.AvgTierSalTextBox.Size = new System.Drawing.Size(164, 20);
+            this.AvgTierSalTextBox.TabIndex = 10;
             // 
             // SpecialtyCodeTextBox
             // 
@@ -82,7 +102,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(7, 113);
+            this.label5.Location = new System.Drawing.Point(6, 143);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(88, 13);
             this.label5.TabIndex = 4;
@@ -107,13 +127,6 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Specialty Code";
             this.label1.Click += new System.EventHandler(this.label1_Click);
-            // 
-            // AvgTierSalTextBox
-            // 
-            this.AvgTierSalTextBox.Location = new System.Drawing.Point(106, 113);
-            this.AvgTierSalTextBox.Name = "AvgTierSalTextBox";
-            this.AvgTierSalTextBox.Size = new System.Drawing.Size(164, 20);
-            this.AvgTierSalTextBox.TabIndex = 10;
             // 
             // EnterButton
             // 
@@ -180,6 +193,58 @@
             this.AvgSalary.Name = "AvgSalary";
             this.AvgSalary.ReadOnly = true;
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(9, 110);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(62, 13);
+            this.label2.TabIndex = 11;
+            this.label2.Text = "Department";
+            this.label2.Click += new System.EventHandler(this.label2_Click);
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(106, 107);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(164, 21);
+            this.comboBox1.TabIndex = 12;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(10, 186);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(41, 13);
+            this.label3.TabIndex = 13;
+            this.label3.Text = "Weight";
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(106, 186);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(164, 20);
+            this.textBox1.TabIndex = 14;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(10, 229);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(53, 13);
+            this.label4.TabIndex = 15;
+            this.label4.Text = "University";
+            // 
+            // UniversityComboBox
+            // 
+            this.UniversityComboBox.FormattingEnabled = true;
+            this.UniversityComboBox.Location = new System.Drawing.Point(106, 229);
+            this.UniversityComboBox.Name = "UniversityComboBox";
+            this.UniversityComboBox.Size = new System.Drawing.Size(164, 21);
+            this.UniversityComboBox.TabIndex = 16;
+            this.UniversityComboBox.SelectedIndexChanged += new System.EventHandler(this.UniversityComboBox_SelectedIndexChanged);
+            // 
             // SpecialCodeManualEntry
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -217,5 +282,11 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn SpecialtyCode;
         private System.Windows.Forms.DataGridViewTextBoxColumn JobTitle;
         private System.Windows.Forms.DataGridViewTextBoxColumn AvgSalary;
+        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.ComboBox UniversityComboBox;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Label label3;
     }
 }

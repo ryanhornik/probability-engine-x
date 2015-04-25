@@ -45,28 +45,77 @@ namespace ProbToExcelRebuild.Forms
 
         private void EnterButton_Click(object sender, EventArgs e)
         {
-            string idcode;
+            string scode = SpecialtyCodeTextBox.Text;
+            string jobtitle = JobTitleComboBox.Text;
+            string department = comboBox1.Text;
+            double weight = double.Parse(textBox1.Text);
+            decimal avgSal = decimal.Parse(AvgTierSalTextBox.Text);
+            string university = UniversityComboBox.Text;
 
-            
+            Department d;
+            if (db.Departments.Any(s => s.ID_DEPARTMENT.Equals(department)))
+            {
+                d = db.Departments.First(s => s.ID_DEPARTMENT.Equals(department));
+            }
+            else
+            {
+                d = new Department()
+                {
+                    ID_DEPARTMENT = department
+                };
+                db.Departments.Add(d);
+                db.SaveChanges();
+            }
 
-            //need to get average Salary for Tier 1
-
-            idcode = SpecialtyCodeTextBox.Text.ToString();
 
             Specialty_Code id;
-            if (db.Specialty_Code.Any(s => s.ID_CODE.Equals(idcode)))
+            if (db.Specialty_Code.Any(s => s.ID_CODE.Equals(scode)))
             {
-                id = db.Specialty_Code.First(s => s.ID_CODE.Equals(idcode));
+                id = db.Specialty_Code.First(s => s.ID_CODE.Equals(scode));
             }
             else
             {
                 id = new Specialty_Code()
                 {
-                    ID_CODE = idcode
+                    ID_CODE = scode,
+                    WEIGHT = weight,
+                    ID_DEPARTMENT = department
                 };
+                db.Specialty_Code.Add(id);
+                db.SaveChanges();
             }
-            db.Specialty_Code.Add(id);
+
+
+            Job_Title k;
+            if (db.Job_Title.Any(s => s.JOB_TITLE_NAME.Equals(jobtitle)))
+            {
+                k = db.Job_Title.First(s => s.JOB_TITLE_NAME.Equals(jobtitle));
+            }
+            else
+            {
+                k = new Job_Title()
+                {
+                    JOB_TITLE_NAME = jobtitle
+                };
+                db.Job_Title.Add(k);
+                db.SaveChanges();
+            }
+
+            Per_Job_Per_Department f = new Per_Job_Per_Department()
+            {
+                AVERAGE_SALARY = avgSal,
+                ID_UNIVERSITY = db.Universities.First(s => s.UNIVERSITY_NAME.Equals(university)).ID_UNIVERSITY,
+                ID_CODE = scode,
+                ID_JOB_TITLE = db.Job_Title.First(s => s.JOB_TITLE_NAME.Equals(jobtitle)).ID_JOB_TITLE
+            };
+
+            db.Per_Job_Per_Department.Add(f);
             db.SaveChanges();
+
+
+
+
+
 
 
         }
@@ -93,7 +142,23 @@ namespace ProbToExcelRebuild.Forms
 
         private void SpecialCodeManualEntry_Load(object sender, EventArgs e)
         {
-            UpdateIdByIdGridView();
+            UniversityComboBox.DropDownStyle = ComboBoxStyle.DropDown;
+            UniversityComboBox.Items.AddRange(db.Universities.ToArray());
+        }
+
+        private void SelectUniversities_Load(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void UniversityComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
