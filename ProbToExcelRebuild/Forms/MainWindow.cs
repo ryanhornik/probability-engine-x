@@ -17,6 +17,8 @@ namespace ProbToExcelRebuild.Forms
         {
             InitializeComponent();
         }
+
+
         
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -178,6 +180,7 @@ namespace ProbToExcelRebuild.Forms
                     ReleaseObject(workbook);
                     ReleaseObject(application);
 
+                    Invoke(new Action(UpdateEmployeeGridView));
                     loadForm.Invoke(new Action(() => { loadForm.Close(); }));
                     Invoke(new Action(Show));
                 });
@@ -518,6 +521,30 @@ namespace ProbToExcelRebuild.Forms
                     Invoke(new Action(Show));
                 });
                 thread.Start();
+            }
+        }
+
+        private void MainWindow_Load(object sender, EventArgs e)
+        {
+            UpdateEmployeeGridView();
+        }
+
+        private void UpdateEmployeeGridView()
+        {
+            var rowCount = employeeGrid.Rows.Count;
+            for (var i = rowCount-1; i >= 0; i--)
+            {
+                employeeGrid.Rows.RemoveAt(i);
+            }
+            foreach (var emp in db.EmployeeViews)
+            {
+                var row = new object[5];
+                row[0] = emp.ID_EMPLOYEE;
+                row[1] = emp.TOTAL_SALARY.ToString("$000,000.00");
+                row[2] = emp.UNIVERSITY_NAME;
+                row[3] = emp.ID_DEPARTMENT;
+                row[4] = emp.JOB_TITLE_NAME;
+                employeeGrid.Rows.Add(row);
             }
         }
     }
