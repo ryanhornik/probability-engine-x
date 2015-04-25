@@ -32,27 +32,32 @@
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.importDataToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.excelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.averageNewHireSalariesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.averagesPerSalaryPerDepartmentToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.manualInputToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.enterUHDataToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.enterTier1DataToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.averageNewHireSalariesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.averagesPerSalaryPerDepartmentToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.compressionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.firstInternalToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.fileToolStripMenuItem});
+            this.fileToolStripMenuItem,
+            this.compressionToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(607, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
+            this.menuStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.menuStrip1_ItemClicked);
             // 
             // fileToolStripMenuItem
             // 
+            this.fileToolStripMenuItem.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.importDataToolStripMenuItem,
             this.manualInputToolStripMenuItem,
@@ -77,6 +82,20 @@
             this.excelToolStripMenuItem.Size = new System.Drawing.Size(262, 22);
             this.excelToolStripMenuItem.Text = "Employees";
             this.excelToolStripMenuItem.Click += new System.EventHandler(this.excelToolStripMenuItem_Click);
+            // 
+            // averageNewHireSalariesToolStripMenuItem
+            // 
+            this.averageNewHireSalariesToolStripMenuItem.Name = "averageNewHireSalariesToolStripMenuItem";
+            this.averageNewHireSalariesToolStripMenuItem.Size = new System.Drawing.Size(262, 22);
+            this.averageNewHireSalariesToolStripMenuItem.Text = "Average New Hire Salaries";
+            this.averageNewHireSalariesToolStripMenuItem.Click += new System.EventHandler(this.averageNewHireSalariesToolStripMenuItem_Click);
+            // 
+            // averagesPerSalaryPerDepartmentToolStripMenuItem
+            // 
+            this.averagesPerSalaryPerDepartmentToolStripMenuItem.Name = "averagesPerSalaryPerDepartmentToolStripMenuItem";
+            this.averagesPerSalaryPerDepartmentToolStripMenuItem.Size = new System.Drawing.Size(262, 22);
+            this.averagesPerSalaryPerDepartmentToolStripMenuItem.Text = "Averages Per Salary Per Department";
+            this.averagesPerSalaryPerDepartmentToolStripMenuItem.Click += new System.EventHandler(this.averagesPerSalaryPerDepartmentToolStripMenuItem_Click);
             // 
             // manualInputToolStripMenuItem
             // 
@@ -108,19 +127,20 @@
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
-            // averageNewHireSalariesToolStripMenuItem
+            // compressionToolStripMenuItem
             // 
-            this.averageNewHireSalariesToolStripMenuItem.Name = "averageNewHireSalariesToolStripMenuItem";
-            this.averageNewHireSalariesToolStripMenuItem.Size = new System.Drawing.Size(262, 22);
-            this.averageNewHireSalariesToolStripMenuItem.Text = "Average New Hire Salaries";
-            this.averageNewHireSalariesToolStripMenuItem.Click += new System.EventHandler(this.averageNewHireSalariesToolStripMenuItem_Click);
+            this.compressionToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.firstInternalToolStripMenuItem});
+            this.compressionToolStripMenuItem.Name = "compressionToolStripMenuItem";
+            this.compressionToolStripMenuItem.Size = new System.Drawing.Size(89, 20);
+            this.compressionToolStripMenuItem.Text = "Compression";
             // 
-            // averagesPerSalaryPerDepartmentToolStripMenuItem
+            // firstInternalToolStripMenuItem
             // 
-            this.averagesPerSalaryPerDepartmentToolStripMenuItem.Name = "averagesPerSalaryPerDepartmentToolStripMenuItem";
-            this.averagesPerSalaryPerDepartmentToolStripMenuItem.Size = new System.Drawing.Size(262, 22);
-            this.averagesPerSalaryPerDepartmentToolStripMenuItem.Text = "Averages Per Salary Per Department";
-            this.averagesPerSalaryPerDepartmentToolStripMenuItem.Click += new System.EventHandler(this.averagesPerSalaryPerDepartmentToolStripMenuItem_Click);
+            this.firstInternalToolStripMenuItem.Name = "firstInternalToolStripMenuItem";
+            this.firstInternalToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.firstInternalToolStripMenuItem.Text = "First Internal";
+            this.firstInternalToolStripMenuItem.Click += new System.EventHandler(this.firstInternalToolStripMenuItem_Click);
             // 
             // MainWindow
             // 
@@ -130,6 +150,7 @@
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "MainWindow";
+            this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.Text = "MainWindow";
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
@@ -150,5 +171,7 @@
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem averageNewHireSalariesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem averagesPerSalaryPerDepartmentToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem compressionToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem firstInternalToolStripMenuItem;
     }
 }

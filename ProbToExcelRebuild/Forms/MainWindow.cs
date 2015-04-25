@@ -517,5 +517,15 @@ namespace ProbToExcelRebuild.Forms
                 thread.Start();
             }
         }
+
+        private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+
+        }
+
+        private void firstInternalToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            
+        }
     }
 }
