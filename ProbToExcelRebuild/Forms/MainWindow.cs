@@ -594,5 +594,10 @@ namespace ProbToExcelRebuild.Forms
             Hide();
             x.Show();
         }
+
+        private void externalCToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

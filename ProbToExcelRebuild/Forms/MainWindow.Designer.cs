@@ -37,6 +37,7 @@
             this.manualInputToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.enterUHDataToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.enterTier1DataToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.averageNewHireDataToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.calculateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.employeeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -62,7 +63,7 @@
             this.ID_JOB_TITLE = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ID_UNIVERSITY = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.averageNewHireDataToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.externalCToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.employeeGrid)).BeginInit();
             this.tabControl1.SuspendLayout();
@@ -149,6 +150,12 @@
             this.enterTier1DataToolStripMenuItem.Text = "Special Code Data";
             this.enterTier1DataToolStripMenuItem.Click += new System.EventHandler(this.enterTier1DataToolStripMenuItem_Click);
             // 
+            // averageNewHireDataToolStripMenuItem
+            // 
+            this.averageNewHireDataToolStripMenuItem.Name = "averageNewHireDataToolStripMenuItem";
+            this.averageNewHireDataToolStripMenuItem.Size = new System.Drawing.Size(196, 22);
+            this.averageNewHireDataToolStripMenuItem.Text = "Average New Hire Data";
+            // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
@@ -160,7 +167,8 @@
             // 
             this.calculateToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.employeeToolStripMenuItem,
-            this.otherTier1ToolStripMenuItem});
+            this.otherTier1ToolStripMenuItem,
+            this.externalCToolStripMenuItem});
             this.calculateToolStripMenuItem.Name = "calculateToolStripMenuItem";
             this.calculateToolStripMenuItem.Size = new System.Drawing.Size(68, 20);
             this.calculateToolStripMenuItem.Text = "Calculate";
@@ -168,7 +176,7 @@
             // employeeToolStripMenuItem
             // 
             this.employeeToolStripMenuItem.Name = "employeeToolStripMenuItem";
-            this.employeeToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.employeeToolStripMenuItem.Size = new System.Drawing.Size(235, 22);
             this.employeeToolStripMenuItem.Text = "Averages";
             this.employeeToolStripMenuItem.Click += new System.EventHandler(this.employeeToolStripMenuItem_Click);
             // 
@@ -369,11 +377,12 @@
             this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
             this.dataGridViewTextBoxColumn6.ReadOnly = true;
             // 
-            // averageNewHireDataToolStripMenuItem
+            // externalCToolStripMenuItem
             // 
-            this.averageNewHireDataToolStripMenuItem.Name = "averageNewHireDataToolStripMenuItem";
-            this.averageNewHireDataToolStripMenuItem.Size = new System.Drawing.Size(196, 22);
-            this.averageNewHireDataToolStripMenuItem.Text = "Average New Hire Data";
+            this.externalCToolStripMenuItem.Name = "externalCToolStripMenuItem";
+            this.externalCToolStripMenuItem.Size = new System.Drawing.Size(236, 22);
+            this.externalCToolStripMenuItem.Text = "External Compression Measure";
+            this.externalCToolStripMenuItem.Click += new System.EventHandler(this.externalCToolStripMenuItem_Click);
             // 
             // MainWindow
             // 
@@ -441,5 +450,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn ID_UNIVERSITY;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
         private System.Windows.Forms.ToolStripMenuItem averageNewHireDataToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem externalCToolStripMenuItem;
     }
 }

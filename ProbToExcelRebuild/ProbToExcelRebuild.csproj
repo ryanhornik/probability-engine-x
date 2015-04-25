@@ -53,8 +53,7 @@
     <Reference Include="EntityFramework.SqlServer">
       <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Office.Interop.Excel1">
-      <HintPath>..\..\..\..\..\..\Program Files (x86)\Microsoft Visual Studio 12.0\Visual Studio Tools for Office\PIA\Office15\Microsoft.Office.Interop.Excel.dll</HintPath>
+    <Reference Include="Microsoft.Office.Interop.Excel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
     <Reference Include="System" />
@@ -81,7 +80,7 @@
     </Compile>
     <Compile Include="Forms\InternalCompressionMain.Designer.cs">
       <DependentUpon>InternalCompressionMain.cs</DependentUpon>
-      </Compile>
+    </Compile>
     <Compile Include="Forms\EmployeeMeanForm.Designer.cs">
       <DependentUpon>EmployeeMeanForm.cs</DependentUpon>
     </Compile>
@@ -141,7 +140,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Forms\InternalCompressionMain.resx">
       <DependentUpon>InternalCompressionMain.cs</DependentUpon>
-      </EmbeddedResource>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\EmployeeMeanForm.resx">
       <DependentUpon>EmployeeMeanForm.cs</DependentUpon>
     </EmbeddedResource>
