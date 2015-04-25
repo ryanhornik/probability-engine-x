@@ -81,13 +81,14 @@
       <DependentUpon>MainWindow.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\SelectColumnsAverageNewHireSalaries.cs">
-	</Compile>
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Forms\ManualEntryEmployee.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\SelectColumnsAverageNewHireSalaries.Designer.cs">
       <DependentUpon>SelectColumnsAverageNewHireSalaries.cs</DependentUpon>
-	</Compile>
+    </Compile>
     <Compile Include="Forms\ManualEntryEmployee.Designer.cs">
       <DependentUpon>ManualEntryEmployee.cs</DependentUpon>
     </Compile>
@@ -129,7 +130,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\SelectColumnsAverageNewHireSalaries.resx">
       <DependentUpon>SelectColumnsAverageNewHireSalaries.cs</DependentUpon>
-	</EmbeddedResource>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\ManualEntryEmployee.resx">
       <DependentUpon>ManualEntryEmployee.cs</DependentUpon>
     </EmbeddedResource>
