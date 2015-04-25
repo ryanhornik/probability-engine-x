@@ -45,8 +45,9 @@ namespace ProbToExcelRebuild.Forms
 
         private void EnterButton_Click(object sender, EventArgs e)
         {
-            string idcode;            
-            //need to add jobTitle
+            string idcode;
+            var jobtitle = new Job_Title();
+
             //need to get average Salary for Tier 1
 
             idcode = SpecialtyCodeTextBox.Text.ToString();

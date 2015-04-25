@@ -213,8 +213,8 @@ namespace ProbToExcelRebuild.Forms
             manualForm.Show();
         }
 
-            this.Hide();
-            form.Show();
+            //this.Hide();
+            //form.Show();
         private void averageNewHireSalariesToolStripMenuItem_Click(object sender, EventArgs e)
         {
             string averageSalaryColumn;
