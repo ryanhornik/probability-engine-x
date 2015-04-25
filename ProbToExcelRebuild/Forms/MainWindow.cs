@@ -213,6 +213,8 @@ namespace ProbToExcelRebuild.Forms
             manualForm.Show();
         }
 
+            this.Hide();
+            form.Show();
         private void averageNewHireSalariesToolStripMenuItem_Click(object sender, EventArgs e)
         {
             string averageSalaryColumn;
@@ -619,7 +621,6 @@ namespace ProbToExcelRebuild.Forms
             form.ShowDialog();
             Show();
         }
-
         private void secondInternalEquityToolStripMenuItem_Click(object sender, EventArgs e)
         {
             SecondInternalEquity form = new SecondInternalEquity();

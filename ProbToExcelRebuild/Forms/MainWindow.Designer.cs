@@ -197,6 +197,13 @@
             this.externalCToolStripMenuItem.Text = "External Compression Measure";
             this.externalCToolStripMenuItem.Click += new System.EventHandler(this.externalCToolStripMenuItem_Click);
             // 
+            // externalCToolStripMenuItem
+            // 
+            this.externalCToolStripMenuItem.Name = "externalCToolStripMenuItem";
+            this.externalCToolStripMenuItem.Size = new System.Drawing.Size(236, 22);
+            this.externalCToolStripMenuItem.Text = "External Compression Measure";
+            this.externalCToolStripMenuItem.Click += new System.EventHandler(this.externalCToolStripMenuItem_Click);
+            // 
             // employeeGrid
             // 
             this.employeeGrid.AllowUserToAddRows = false;
