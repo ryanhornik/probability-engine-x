@@ -13,38 +13,62 @@ namespace ProbToExcelRebuild.Forms
 {
     public partial class InternalCompressionMain : Form
     {
+        private UniversityModel db = new UniversityModel();
+
         public InternalCompressionMain()
         {
             InitializeComponent();
         }
-
-        private UniversityModel db = new UniversityModel();
        
-        /*private void Calculate(int RecentYears,double Kvalue,double avg_Merit_raises, double avg_num_merit_raise, double avg_num_merit_raises_prof)
+        private void Calculate(int recentYears, double k,double dAssociate, double lAssociate, double dFull, double lFull)
         {
+            k = Math.Pow(k, recentYears);
 
-           
-            var Recently_Hired_assis_Prof = db.New_Associate_Professor_Average_Salary.Where(s => s.YEAR>=DateTime.Today.Year-RecentYears);
-            double AverageProfSalarySum;
-            foreach (var prof in Recently_Hired_assis_Prof)
-                //  double AverageProfSalarySum=  Recently_Hired_assis_Prof.Select(s=>(double) s.AVERAGE_SALARY).Aggregate((a,b)->a + b);
+            var recentlyHiredAssisProf =
+                db.New_Associate_Professor_Average_Salary
+                .Where(s => s.YEAR>=DateTime.Today.Year-recentYears);
+            var averageProfSalarySum =
+                recentlyHiredAssisProf
+                .Sum(s => (double) s.AVERAGE_SALARY);
 
-                AverageProfSalarySum += (double) prof.AVERAGE_SALARY;
+            var avgRecentHires = averageProfSalarySum / recentlyHiredAssisProf.Count();
 
-            double avgTotal = AverageProfSalarySum / Recently_Hired_assis_Prof.Count();
+            var adjustedMedianAssociate = (avgRecentHires*k + 7000)*Math.Pow(dAssociate, lAssociate);
+            adjMedAss.Text = adjustedMedianAssociate.ToString();
 
-            double n=  DateTime.Today.Year-RecentYears;
-            double K = Math.Pow(Kvalue,n);
-            double adjusted_assoc_prof_median = ((AverageProfSalarySum * K) + 7000) * (avg_Merit_raises / avg_num_merit_raise);
+            var adjustedMedianFull = (adjustedMedianAssociate + 100000)*Math.Pow(dFull, lFull);
+            adjMedFull.Text = adjustedMedianFull.ToString();
 
+            var ASSOCIATE_PROFESSOR = db.Job_Title.First(s => s.JOB_TITLE_NAME.Equals("ASSOCIATE PROFESSOR"));
+            var FULL_PROFESSOR = db.Job_Title.First(s => s.JOB_TITLE_NAME.Equals("PROFESSOR"));
 
-            double adjusted_median_prof = ((adjusted_assoc_prof_median + 10000) * (avg_Merit_raises / avg_num_merit_raises_prof));
+            var actualMedianAssociate = ASSOCIATE_PROFESSOR.CalculateAverages().median;
+            var compressionRatioAssociate = adjustedMedianAssociate/actualMedianAssociate;
+            actMedAss.Text = actualMedianAssociate.ToString();
+            crAss.Text = compressionRatioAssociate.ToString();
 
+            var actualMedianFull = FULL_PROFESSOR.CalculateAverages().median;
+            var compressionRatioFull = adjustedMedianFull/actualMedianFull;
+            actMedFull.Text = actualMedianFull.ToString();
+            crFull.Text = compressionRatioFull.ToString();
+        }
 
-            double compression1 = 
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Calculate(
+                Convert.ToInt32(yearsTextBox.Text),
+                Convert.ToDouble(kTextBox.Text),
+                Convert.ToDouble(dAssociateTextBox.Text),
+                Convert.ToDouble(lAssociateTextBox.Text),
+                Convert.ToDouble(dFullTextBox.Text),
+                Convert.ToDouble(lFullTextBox.Text)
+                );
+        }
 
-
-
-        }*/
+        private void button2_Click(object sender, EventArgs e)
+        {
+            DialogResult = DialogResult.OK;
+            Close();
+        }
     }
 }

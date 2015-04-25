@@ -213,11 +213,6 @@ namespace ProbToExcelRebuild.Forms
             manualForm.Show();
         }
 
-        private void enterTier1DataToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            //TODO add manual entry form for other tier 1s
-        }
-
         private void averageNewHireSalariesToolStripMenuItem_Click(object sender, EventArgs e)
         {
             string averageSalaryColumn;
@@ -598,6 +593,24 @@ namespace ProbToExcelRebuild.Forms
         private void externalCToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void averageNewHireDataToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+        
+        private void enterSpecialCodeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void internalCompressionToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            InternalCompressionMain form = new InternalCompressionMain();
+            Hide();
+            form.ShowDialog();
+            Show();
         }
     }
 }
