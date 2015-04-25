@@ -101,6 +101,7 @@
             this.JobTitleComboBox.Name = "JobTitleComboBox";
             this.JobTitleComboBox.Size = new System.Drawing.Size(148, 21);
             this.JobTitleComboBox.TabIndex = 3;
+            this.JobTitleComboBox.SelectedIndexChanged += new System.EventHandler(this.JobTitleComboBox_SelectedIndexChanged);
             // 
             // SalaryLabel
             // 

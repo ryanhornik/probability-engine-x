@@ -135,5 +135,10 @@ namespace ProbToExcelRebuild.Forms
             DepartmentComboBox.DropDownStyle = ComboBoxStyle.DropDown;
             DepartmentComboBox.Items.AddRange(db.Departments.ToArray());
         }
+
+        private void JobTitleComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

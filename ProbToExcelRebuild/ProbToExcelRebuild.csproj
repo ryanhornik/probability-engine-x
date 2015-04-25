@@ -73,6 +73,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Forms\ExternalEquity.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ExternalEquity.Designer.cs">
+      <DependentUpon>ExternalEquity.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\InternalCompressionMain.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -151,6 +157,9 @@
     <Compile Include="Models\UniversityModel.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Forms\ExternalEquity.resx">
+      <DependentUpon>ExternalEquity.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\InternalCompressionMain.resx">
       <DependentUpon>InternalCompressionMain.cs</DependentUpon>
     </EmbeddedResource>

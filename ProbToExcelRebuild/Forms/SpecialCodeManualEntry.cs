@@ -13,7 +13,7 @@ namespace ProbToExcelRebuild.Forms
 {
     public partial class SpecialCodeManualEntry : Form
     {
-        private UniversityModel db = new UniversityModel();
+        UniversityModel db = new UniversityModel();
 
         public SpecialCodeManualEntry()
         {
@@ -46,7 +46,8 @@ namespace ProbToExcelRebuild.Forms
         private void EnterButton_Click(object sender, EventArgs e)
         {
             string idcode;
-            var jobtitle = new Job_Title();
+
+            
 
             //need to get average Salary for Tier 1
 
