@@ -47,10 +47,16 @@
             this.UNIVERSITY_NAME = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ID_DEPARTMENT = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.JOB_TITLE_NAME = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.newHireAveragesGrid = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.YEAR_HIRED = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.employeeGrid)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
+            this.tabPage2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.newHireAveragesGrid)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -176,10 +182,11 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.newHireAveragesGrid);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(597, 297);
+            this.tabPage2.Size = new System.Drawing.Size(571, 297);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "New Hire Averages";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -219,6 +226,42 @@
             this.JOB_TITLE_NAME.Name = "JOB_TITLE_NAME";
             this.JOB_TITLE_NAME.ReadOnly = true;
             // 
+            // newHireAveragesGrid
+            // 
+            this.newHireAveragesGrid.AllowUserToAddRows = false;
+            this.newHireAveragesGrid.AllowUserToDeleteRows = false;
+            this.newHireAveragesGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.newHireAveragesGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTextBoxColumn2,
+            this.dataGridViewTextBoxColumn4,
+            this.YEAR_HIRED});
+            this.newHireAveragesGrid.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.newHireAveragesGrid.Location = new System.Drawing.Point(3, 3);
+            this.newHireAveragesGrid.Name = "newHireAveragesGrid";
+            this.newHireAveragesGrid.ReadOnly = true;
+            this.newHireAveragesGrid.Size = new System.Drawing.Size(565, 291);
+            this.newHireAveragesGrid.TabIndex = 2;
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.dataGridViewTextBoxColumn2.HeaderText = "Average Salary";
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn4
+            // 
+            this.dataGridViewTextBoxColumn4.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.dataGridViewTextBoxColumn4.HeaderText = "Department ID";
+            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
+            this.dataGridViewTextBoxColumn4.ReadOnly = true;
+            // 
+            // YEAR_HIRED
+            // 
+            this.YEAR_HIRED.HeaderText = "Year Hired";
+            this.YEAR_HIRED.Name = "YEAR_HIRED";
+            this.YEAR_HIRED.ReadOnly = true;
+            // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -236,6 +279,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.employeeGrid)).EndInit();
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
+            this.tabPage2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.newHireAveragesGrid)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -262,5 +307,12 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn UNIVERSITY_NAME;
         private System.Windows.Forms.DataGridViewTextBoxColumn ID_DEPARTMENT;
         private System.Windows.Forms.DataGridViewTextBoxColumn JOB_TITLE_NAME;
+        private System.Windows.Forms.DataGridView newHireAveragesGrid;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
+        private System.Windows.Forms.DataGridViewTextBoxColumn YEAR_HIRED;
     }
 }

@@ -335,6 +335,7 @@ namespace ProbToExcelRebuild.Forms
                     ReleaseObject(workbook);
                     ReleaseObject(application);
 
+                    Invoke(new Action(UpdateNewHireAveragesGridView));
                     loadForm.Invoke(new Action(() => { loadForm.Close(); }));
                     Invoke(new Action(Show));
                 });
@@ -527,6 +528,7 @@ namespace ProbToExcelRebuild.Forms
         private void MainWindow_Load(object sender, EventArgs e)
         {
             UpdateEmployeeGridView();
+            UpdateNewHireAveragesGridView();
         }
 
         private void UpdateEmployeeGridView()
@@ -545,6 +547,23 @@ namespace ProbToExcelRebuild.Forms
                 row[3] = emp.ID_DEPARTMENT;
                 row[4] = emp.JOB_TITLE_NAME;
                 employeeGrid.Rows.Add(row);
+            }
+        }
+
+        private void UpdateNewHireAveragesGridView()
+        {
+            var rowCount = newHireAveragesGrid.Rows.Count;
+            for (var i = rowCount - 1; i >= 0; i--)
+            {
+                newHireAveragesGrid.Rows.RemoveAt(i);
+            }
+            foreach (var sal in db.New_Associate_Professor_Average_Salary)
+            {
+                var row = new object[5];
+                row[0] = sal.AVERAGE_SALARY.ToString("$000,000.00");
+                row[1] = sal.ID_DEPARTMENT;
+                row[2] = sal.YEAR;
+                newHireAveragesGrid.Rows.Add(row);
             }
         }
     }
