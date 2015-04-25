@@ -19,9 +19,8 @@ namespace ProbToExcelRebuild.Forms
         }
 
         private UniversityModel db = new UniversityModel();
-        private New_Associate_Professor_Average_Salary db = new New_Associate_Professor_Average_Salary();
        
-        private void Calculate(int RecentYears,double Kvalue,double avg_Merit_raises, double avg_num_merit_raise, double avg_num_merit_raises_prof)
+        /*private void Calculate(int RecentYears,double Kvalue,double avg_Merit_raises, double avg_num_merit_raise, double avg_num_merit_raises_prof)
         {
 
            
@@ -46,6 +45,6 @@ namespace ProbToExcelRebuild.Forms
 
 
 
-        }
+        }*/
     }
 }

@@ -23,8 +23,6 @@ namespace ProbToExcelRebuild.Models
 
         public bool IS_TIER_1 { get; set; }
 
-        public virtual ICollection<Employee> Employees { get; set; }
-
         public virtual ICollection<Per_Job_Per_Department> Per_Job_Per_Department { get; set; }
     }
 }

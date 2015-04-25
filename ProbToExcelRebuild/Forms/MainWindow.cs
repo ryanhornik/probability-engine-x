@@ -18,8 +18,6 @@ namespace ProbToExcelRebuild.Forms
         {
             InitializeComponent();
         }
-
-
         
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -590,26 +588,11 @@ namespace ProbToExcelRebuild.Forms
             }
         }
 
-        private void meanToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            EmployeeMeanForm x = new EmployeeMeanForm();
-            this.Hide();
-            x.Show();
-        }
-
         private void employeeToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
-        }
-
-        private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
-        {
-
-        }
-
-        private void firstInternalToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            
+            EmployeeMeanForm x = new EmployeeMeanForm();
+            Hide();
+            x.Show();
         }
     }
 }

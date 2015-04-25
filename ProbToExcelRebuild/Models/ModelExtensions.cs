@@ -52,12 +52,18 @@ namespace ProbToExcelRebuild.Models
 
     public partial class Job_Title : Averageable
     {
-         
+        public override string ToString()
+        {
+            return JOB_TITLE_NAME;
+        }
     }
 
     public partial class Department : Averageable
     {
-        
+        public override string ToString()
+        {
+            return ID_DEPARTMENT;
+        }
     }
 
     public abstract class Averageable
@@ -70,6 +76,11 @@ namespace ProbToExcelRebuild.Models
             var sal = Employees.Sum(imp => imp.TOTAL_SALARY);
             var count = Employees.Count;
             var arr = Employees.ToArray();
+
+            if (count == 0)
+            {
+                return avg;
+            }
 
             avg.mean = (double)(sal / count);
 
