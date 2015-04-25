@@ -17,7 +17,7 @@ namespace ProbToExcelRebuild.Forms
         {
             InitializeComponent();
         }
-
+        
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Application.Exit();
@@ -206,6 +206,9 @@ namespace ProbToExcelRebuild.Forms
         private void enterUHDataToolStripMenuItem_Click(object sender, EventArgs e)
         {
             //TODO add manual entry form for UH data
+            ManualEntryEmployee manualForm = new ManualEntryEmployee();
+            this.Hide();
+            manualForm.Show();
         }
 
         private void enterTier1DataToolStripMenuItem_Click(object sender, EventArgs e)
