@@ -55,6 +55,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
@@ -87,6 +88,7 @@
       <DependentUpon>MainWindow.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\SelectColumnsAverageNewHireSalaries.cs">
+      <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\ManualEntryEmployee.cs">
       <SubType>Form</SubType>
