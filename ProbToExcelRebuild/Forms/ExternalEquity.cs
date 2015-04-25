@@ -40,7 +40,7 @@ namespace ProbToExcelRebuild.Forms
                 row[0] = title.JOB_TITLE_NAME;
                 row[1] = avgUH;
                 row[2] = avgOther;
-                row[3] = avgUH/avgOther;
+                row[3] = (avgOther != 0)?avgUH/avgOther:0;
                 equityGrid.Rows.Add(row);
             }
         }
