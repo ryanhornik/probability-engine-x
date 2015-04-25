@@ -28,7 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SpecialCodeManualEntry));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.UniversityComboBox = new System.Windows.Forms.ComboBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.AvgTierSalTextBox = new System.Windows.Forms.TextBox();
             this.SpecialtyCodeTextBox = new System.Windows.Forms.TextBox();
             this.JobTitleComboBox = new System.Windows.Forms.ComboBox();
@@ -43,12 +50,6 @@
             this.SpecialtyCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.JobTitle = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.AvgSalary = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.label2 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.UniversityComboBox = new System.Windows.Forms.ComboBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.SpecialtyGridView)).BeginInit();
@@ -74,6 +75,58 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Specialty Data Entry";
+            // 
+            // UniversityComboBox
+            // 
+            this.UniversityComboBox.FormattingEnabled = true;
+            this.UniversityComboBox.Location = new System.Drawing.Point(106, 229);
+            this.UniversityComboBox.Name = "UniversityComboBox";
+            this.UniversityComboBox.Size = new System.Drawing.Size(164, 21);
+            this.UniversityComboBox.TabIndex = 16;
+            this.UniversityComboBox.SelectedIndexChanged += new System.EventHandler(this.UniversityComboBox_SelectedIndexChanged);
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(10, 229);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(53, 13);
+            this.label4.TabIndex = 15;
+            this.label4.Text = "University";
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(106, 186);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(164, 20);
+            this.textBox1.TabIndex = 14;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(10, 186);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(41, 13);
+            this.label3.TabIndex = 13;
+            this.label3.Text = "Weight";
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(106, 107);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(164, 21);
+            this.comboBox1.TabIndex = 12;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(9, 110);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(62, 13);
+            this.label2.TabIndex = 11;
+            this.label2.Text = "Department";
+            this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // AvgTierSalTextBox
             // 
@@ -193,58 +246,6 @@
             this.AvgSalary.Name = "AvgSalary";
             this.AvgSalary.ReadOnly = true;
             // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(9, 110);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(62, 13);
-            this.label2.TabIndex = 11;
-            this.label2.Text = "Department";
-            this.label2.Click += new System.EventHandler(this.label2_Click);
-            // 
-            // comboBox1
-            // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(106, 107);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(164, 21);
-            this.comboBox1.TabIndex = 12;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(10, 186);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(41, 13);
-            this.label3.TabIndex = 13;
-            this.label3.Text = "Weight";
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(106, 186);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(164, 20);
-            this.textBox1.TabIndex = 14;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(10, 229);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(53, 13);
-            this.label4.TabIndex = 15;
-            this.label4.Text = "University";
-            // 
-            // UniversityComboBox
-            // 
-            this.UniversityComboBox.FormattingEnabled = true;
-            this.UniversityComboBox.Location = new System.Drawing.Point(106, 229);
-            this.UniversityComboBox.Name = "UniversityComboBox";
-            this.UniversityComboBox.Size = new System.Drawing.Size(164, 21);
-            this.UniversityComboBox.TabIndex = 16;
-            this.UniversityComboBox.SelectedIndexChanged += new System.EventHandler(this.UniversityComboBox_SelectedIndexChanged);
-            // 
             // SpecialCodeManualEntry
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -254,8 +255,9 @@
             this.Controls.Add(this.CancleButton);
             this.Controls.Add(this.EnterButton);
             this.Controls.Add(this.groupBox1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "SpecialCodeManualEntry";
-            this.Text = "SpecialCodeManualEntry";
+            this.Text = "Special Code";
             this.Load += new System.EventHandler(this.SpecialCodeManualEntry_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();

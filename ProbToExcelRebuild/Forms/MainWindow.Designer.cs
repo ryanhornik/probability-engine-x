@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainWindow));
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.importDataToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -43,6 +44,7 @@
             this.employeeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.otherTier1ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.externalCToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.secondInternalEquityToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.employeeGrid = new System.Windows.Forms.DataGridView();
             this.ID_Employee = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TOTAL_SALARY = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -64,7 +66,6 @@
             this.ID_JOB_TITLE = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ID_UNIVERSITY = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.secondInternalEquityToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.employeeGrid)).BeginInit();
             this.tabControl1.SuspendLayout();
@@ -197,12 +198,12 @@
             this.externalCToolStripMenuItem.Text = "External Compression Measure";
             this.externalCToolStripMenuItem.Click += new System.EventHandler(this.externalCToolStripMenuItem_Click);
             // 
-            // externalCToolStripMenuItem
+            // secondInternalEquityToolStripMenuItem
             // 
-            this.externalCToolStripMenuItem.Name = "externalCToolStripMenuItem";
-            this.externalCToolStripMenuItem.Size = new System.Drawing.Size(236, 22);
-            this.externalCToolStripMenuItem.Text = "External Compression Measure";
-            this.externalCToolStripMenuItem.Click += new System.EventHandler(this.externalCToolStripMenuItem_Click);
+            this.secondInternalEquityToolStripMenuItem.Name = "secondInternalEquityToolStripMenuItem";
+            this.secondInternalEquityToolStripMenuItem.Size = new System.Drawing.Size(236, 22);
+            this.secondInternalEquityToolStripMenuItem.Text = "Second Internal Equity";
+            this.secondInternalEquityToolStripMenuItem.Click += new System.EventHandler(this.secondInternalEquityToolStripMenuItem_Click);
             // 
             // employeeGrid
             // 
@@ -396,13 +397,6 @@
             this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
             this.dataGridViewTextBoxColumn6.ReadOnly = true;
             // 
-            // secondInternalEquityToolStripMenuItem
-            // 
-            this.secondInternalEquityToolStripMenuItem.Name = "secondInternalEquityToolStripMenuItem";
-            this.secondInternalEquityToolStripMenuItem.Size = new System.Drawing.Size(236, 22);
-            this.secondInternalEquityToolStripMenuItem.Text = "Second Internal Equity";
-            this.secondInternalEquityToolStripMenuItem.Click += new System.EventHandler(this.secondInternalEquityToolStripMenuItem_Click);
-            // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -411,9 +405,10 @@
             this.ClientSize = new System.Drawing.Size(579, 347);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.menuStrip1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "MainWindow";
-            this.Text = "MainWindow";
+            this.Text = "Probability Engine X";
             this.Load += new System.EventHandler(this.MainWindow_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();

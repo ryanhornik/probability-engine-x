@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SecondInternalEquity));
             this.secondInternalEquityGrid = new System.Windows.Forms.DataGridView();
             this.JOB_TITLE = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Tier_One_Weighted = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -87,8 +88,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(651, 261);
             this.Controls.Add(this.secondInternalEquityGrid);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "SecondInternalEquity";
-            this.Text = "SecondInternalEquity";
+            this.Text = "Second Internal Equity";
             this.Load += new System.EventHandler(this.SecondInternalEquity_Load);
             ((System.ComponentModel.ISupportInitialize)(this.secondInternalEquityGrid)).EndInit();
             this.ResumeLayout(false);

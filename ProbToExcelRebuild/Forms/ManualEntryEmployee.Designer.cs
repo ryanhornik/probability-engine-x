@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ManualEntryEmployee));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.UniversityComboBox = new System.Windows.Forms.ComboBox();
             this.UniversityLabel = new System.Windows.Forms.Label();
@@ -169,8 +170,9 @@
             this.Controls.Add(this.ClearButton);
             this.Controls.Add(this.EnterButton);
             this.Controls.Add(this.groupBox1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "ManualEntryEmployee";
-            this.Text = "ManualEntryEmployee";
+            this.Text = "Employee";
             this.Load += new System.EventHandler(this.ManualEntryEmployee_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
