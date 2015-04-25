@@ -32,23 +32,7 @@ namespace ProbToExcelRebuild.Forms
 
         private void CalculateButton_Click(object sender, EventArgs e)
         {
-            if(MeanComboBox.SelectedItem.Equals("Department"))
-            {
-                MessageBox.Show("Department Success");
-                UpdateGridByDepartment();
-            }
-            else if(MeanComboBox.SelectedItem.Equals("Job Title"))
-            {
-                MessageBox.Show("Job Title Success");
-                UpdateGridByJobTitle();
-            }
-            else if(MeanComboBox.SelectedItem.Equals("University"))
-            {
-                MessageBox.Show("University Success");
-                UpdateGridByUniversity();
-            }
-            else
-                MessageBox.Show("Failure");
+             
         }
 
         private void CancelButton_Click(object sender, EventArgs e)
@@ -77,24 +61,6 @@ namespace ProbToExcelRebuild.Forms
             {
                 var sal = dep.Employees.Sum(imp => imp.TOTAL_SALARY);
             }
-        }
-
-        private class Averages
-        {
-            private double mean { get; set; }
-            private double median { get; set; }
-            private double IQR1 { get; set; }
-            private double IQR3 { get; set; }
-
-            private Averages()
-            {
-                mean = 0;
-                median = 0;
-                IQR1 = 0;
-                IQR3 = 0;
-            }
-
-
         }
 
         private void MeanAssGrid_CellContentClick(object sender, DataGridViewCellEventArgs e)
