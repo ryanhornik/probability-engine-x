@@ -63,11 +63,17 @@
     <SignManifests>true</SignManifests>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Antlr3.Runtime">
+      <HintPath>..\packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework">
       <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework.SqlServer">
       <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="ExpressionEvaluator">
+      <HintPath>..\packages\ExpressionEvaluator.2.0.2.0\lib\net40\ExpressionEvaluator.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Office.Interop.Excel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
       <EmbedInteropTypes>True</EmbedInteropTypes>
@@ -118,6 +124,12 @@
     </Compile>
     <Compile Include="Forms\MainWindow.Designer.cs">
       <DependentUpon>MainWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ProgramPEX.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ProgramPEX.Designer.cs">
+      <DependentUpon>ProgramPEX.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\SecondInternalEquity.cs">
       <SubType>Form</SubType>
@@ -188,6 +200,9 @@
     <EmbeddedResource Include="Forms\MainWindow.resx">
       <DependentUpon>MainWindow.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ProgramPEX.resx">
+      <DependentUpon>ProgramPEX.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\SecondInternalEquity.resx">
       <DependentUpon>SecondInternalEquity.cs</DependentUpon>
     </EmbeddedResource>
@@ -237,6 +252,7 @@
   <ItemGroup>
     <None Include="Resources\Load.gif" />
     <Content Include="enginex.ico" />
+    <Content Include="LICENSE.txt" />
     <Content Include="UniversityDb.mdf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

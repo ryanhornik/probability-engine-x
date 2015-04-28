@@ -66,6 +66,7 @@
             this.ID_JOB_TITLE = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ID_UNIVERSITY = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.programPEXToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.employeeGrid)).BeginInit();
             this.tabControl1.SuspendLayout();
@@ -172,7 +173,8 @@
             this.employeeToolStripMenuItem,
             this.otherTier1ToolStripMenuItem,
             this.externalCToolStripMenuItem,
-            this.secondInternalEquityToolStripMenuItem});
+            this.secondInternalEquityToolStripMenuItem,
+            this.programPEXToolStripMenuItem});
             this.calculateToolStripMenuItem.Name = "calculateToolStripMenuItem";
             this.calculateToolStripMenuItem.Size = new System.Drawing.Size(68, 20);
             this.calculateToolStripMenuItem.Text = "Calculate";
@@ -397,6 +399,13 @@
             this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
             this.dataGridViewTextBoxColumn6.ReadOnly = true;
             // 
+            // programPEXToolStripMenuItem
+            // 
+            this.programPEXToolStripMenuItem.Name = "programPEXToolStripMenuItem";
+            this.programPEXToolStripMenuItem.Size = new System.Drawing.Size(236, 22);
+            this.programPEXToolStripMenuItem.Text = "Program PEX";
+            this.programPEXToolStripMenuItem.Click += new System.EventHandler(this.programPEXToolStripMenuItem_Click);
+            // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -466,5 +475,6 @@
         private System.Windows.Forms.ToolStripMenuItem averageNewHireDataToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem externalCToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem secondInternalEquityToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem programPEXToolStripMenuItem;
     }
 }

@@ -631,5 +631,13 @@ namespace ProbToExcelRebuild.Forms
             form.ShowDialog();
             Show();
         }
+
+        private void programPEXToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ProgramPEX form = new ProgramPEX();
+            Hide();
+            form.ShowDialog();
+            Show();
+        }
     }
 }

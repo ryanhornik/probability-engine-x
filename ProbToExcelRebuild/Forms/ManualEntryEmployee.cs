@@ -109,10 +109,12 @@ namespace ProbToExcelRebuild.Forms
                 ID_JOB_TITLE = db.Job_Title.First(s => s.JOB_TITLE_NAME.Equals(job_title.JOB_TITLE_NAME)).ID_JOB_TITLE,
                 ID_DEPARTMENT = db.Departments.First(s => s.ID_DEPARTMENT.Equals(dprtmt.ID_DEPARTMENT)).ID_DEPARTMENT
             };
+            
 
             db.Employees.Add(sal);
             db.SaveChanges();
-    
+            Invoke(new Action(UpdateEmployeeGridView));
+            //UpdateEmployeeGridView();
         }
 
         private void groupBox1_Enter(object sender, EventArgs e)
@@ -140,5 +142,28 @@ namespace ProbToExcelRebuild.Forms
         {
 
         }
+
+        private void UpdateEmployeeGridView()
+        {
+            try
+            {
+                foreach (var emp in db.EmployeeViews)
+                {
+                    var row = new object[4];                   
+                    row[0] = emp.JOB_TITLE_NAME;
+                    row[1] = emp.UNIVERSITY_NAME;
+                    row[2] = emp.ID_DEPARTMENT;
+                    row[3] = emp.TOTAL_SALARY.ToString("$000,000.00");
+
+                    EmployeeGridView.Rows.Add(row);
+                }
+                MessageBox.Show("Added Successfully!");
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Grid not updating!");
+            }
+        }
+         
     }
 }

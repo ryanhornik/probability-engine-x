@@ -41,7 +41,15 @@
             this.EnterButton = new System.Windows.Forms.Button();
             this.ClearButton = new System.Windows.Forms.Button();
             this.CancelButton = new System.Windows.Forms.Button();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.EmployeeGridView = new System.Windows.Forms.DataGridView();
+            this.JobTitle = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.University = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Department = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Salary = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox1.SuspendLayout();
+            this.groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.EmployeeGridView)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -54,9 +62,9 @@
             this.groupBox1.Controls.Add(this.SalaryLabel);
             this.groupBox1.Controls.Add(this.DepartmentLabel);
             this.groupBox1.Controls.Add(this.JobTitleLabel);
-            this.groupBox1.Location = new System.Drawing.Point(73, 85);
+            this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(359, 248);
+            this.groupBox1.Size = new System.Drawing.Size(359, 211);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "EmployeeData";
@@ -133,7 +141,7 @@
             // 
             // EnterButton
             // 
-            this.EnterButton.Location = new System.Drawing.Point(12, 410);
+            this.EnterButton.Location = new System.Drawing.Point(285, 449);
             this.EnterButton.Name = "EnterButton";
             this.EnterButton.Size = new System.Drawing.Size(159, 42);
             this.EnterButton.TabIndex = 3;
@@ -143,7 +151,7 @@
             // 
             // ClearButton
             // 
-            this.ClearButton.Location = new System.Drawing.Point(177, 410);
+            this.ClearButton.Location = new System.Drawing.Point(450, 449);
             this.ClearButton.Name = "ClearButton";
             this.ClearButton.Size = new System.Drawing.Size(159, 42);
             this.ClearButton.TabIndex = 4;
@@ -153,7 +161,7 @@
             // 
             // CancelButton
             // 
-            this.CancelButton.Location = new System.Drawing.Point(342, 410);
+            this.CancelButton.Location = new System.Drawing.Point(615, 449);
             this.CancelButton.Name = "CancelButton";
             this.CancelButton.Size = new System.Drawing.Size(159, 42);
             this.CancelButton.TabIndex = 5;
@@ -161,11 +169,63 @@
             this.CancelButton.UseVisualStyleBackColor = true;
             this.CancelButton.Click += new System.EventHandler(this.CancelButton_Click);
             // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.EmployeeGridView);
+            this.groupBox2.Location = new System.Drawing.Point(417, 12);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(602, 382);
+            this.groupBox2.TabIndex = 6;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Employees";
+            // 
+            // EmployeeGridView
+            // 
+            this.EmployeeGridView.AllowUserToAddRows = false;
+            this.EmployeeGridView.AllowUserToDeleteRows = false;
+            this.EmployeeGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.EmployeeGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.JobTitle,
+            this.University,
+            this.Department,
+            this.Salary});
+            this.EmployeeGridView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.EmployeeGridView.Location = new System.Drawing.Point(3, 16);
+            this.EmployeeGridView.Name = "EmployeeGridView";
+            this.EmployeeGridView.ReadOnly = true;
+            this.EmployeeGridView.Size = new System.Drawing.Size(596, 363);
+            this.EmployeeGridView.TabIndex = 0;
+            // 
+            // JobTitle
+            // 
+            this.JobTitle.HeaderText = "Job Title";
+            this.JobTitle.Name = "JobTitle";
+            this.JobTitle.ReadOnly = true;
+            // 
+            // University
+            // 
+            this.University.HeaderText = "University";
+            this.University.Name = "University";
+            this.University.ReadOnly = true;
+            // 
+            // Department
+            // 
+            this.Department.HeaderText = "Department";
+            this.Department.Name = "Department";
+            this.Department.ReadOnly = true;
+            // 
+            // Salary
+            // 
+            this.Salary.HeaderText = "Salary";
+            this.Salary.Name = "Salary";
+            this.Salary.ReadOnly = true;
+            // 
             // ManualEntryEmployee
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(543, 503);
+            this.ClientSize = new System.Drawing.Size(1032, 503);
+            this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.CancelButton);
             this.Controls.Add(this.ClearButton);
             this.Controls.Add(this.EnterButton);
@@ -176,6 +236,8 @@
             this.Load += new System.EventHandler(this.ManualEntryEmployee_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.EmployeeGridView)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -194,5 +256,11 @@
         private System.Windows.Forms.Label SalaryLabel;
         private System.Windows.Forms.Label DepartmentLabel;
         private System.Windows.Forms.ComboBox UniversityComboBox;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.DataGridView EmployeeGridView;
+        private System.Windows.Forms.DataGridViewTextBoxColumn JobTitle;
+        private System.Windows.Forms.DataGridViewTextBoxColumn University;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Department;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Salary;
     }
 }
