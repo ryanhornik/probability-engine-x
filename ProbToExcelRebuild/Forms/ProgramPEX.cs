@@ -5,6 +5,7 @@ using System.Data;
 using System.Data.Entity;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices.ComTypes;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -43,7 +44,7 @@ namespace ProbToExcelRebuild.Forms
             string textboxCompiler = CompilerBox.Text;
 
             Regex tokens = new Regex(@"[A-D,S,N][j,d,u,y][A-Z]?\d+");
-            //var mo = tokens.Replace(textboxCompiler, ReplaceTokens);
+            var mo = tokens.Replace(textboxCompiler, ReplaceTokens);
 
             var expression = new CompiledExpression(mo) { TypeRegistry = reg };
 
@@ -53,47 +54,38 @@ namespace ProbToExcelRebuild.Forms
         }
 
         private string ReplaceTokens(Match m)
-        //{
-        //    var avgTypeChar = m.Value[0];
-        //    var subGroupChar = m.Value[1];
-        //    var targetNum = m.Value.Substring(2); // In case of deptID this will be a string not an int
-        //    string ret;
+        {
+            var avgTypeChar = m.Value[0];
+            var subGroupChar = m.Value[1];
+            var targetNum = m.Value.Substring(2); // In case of deptID this will be a string not an int
+            string ret;
             Averageable averageable;
+            switch (subGroupChar)
+            {
+                case 'j':
                     {
                         var asNum = Convert.ToInt32(targetNum);
                         averageable = db.Job_Title.First(s => s.ID_JOB_TITLE == asNum);
                         break;
                     }
+                case 'd':
                     averageable = db.Departments.First(s => s.ID_DEPARTMENT.Equals(targetNum));
+                    break;
+                case 'u':
                     {
                         var asNum = Convert.ToInt32(targetNum);
                         averageable = db.Universities.First(s => s.ID_UNIVERSITY == asNum);
                         break;
                     }
-                        db.New_Associate_Professor_Average_Salary
+                case 'y':
+                    ret = db.New_Associate_Professor_Average_Salary
                         .Where(s => s.YEAR >= DateTime.Today.Year - Convert.ToInt32(targetNum))
                         .Average(s => s.AVERAGE_SALARY).ToString();
                     return ret; //If we hit this no further calculations are needed maybe?
+                default: throw new Exception("The command you have entered is invalid at character (2) legal characters include 'A','B','C','D','S','N' See help menu for details");
+            }
+
             switch (avgTypeChar)
-        //    switch (subGroupChar)
-        //    {
-        //        case 'j':
-        //            ret = "db.Job_Title.Find("+targetNum+").CalculateAverages()";
-        //            break;
-        //        case 'd':
-        //            ret = "db.Departments.Find("+targetNum+").CalculateAverages()";
-        //            break;
-        //        case 'u':
-        //            ret = "db.Universities.Find(" + targetNum + ").CalculateAverages()";
-        //            break;
-        //        case 'y':
-        //            ret =
-        //                db.New_Associate_Professor_Average_Salary.Where(
-        //                    s => s.YEAR >= DateTime.Today.Year - +"targetNum" + ");";
-        //            break;
-        //        default: throw new Exception("The command you have entered is invalid at character (2) legal characters include 'j','d','u','y' See help menu for details");
-        //    }
-        //}
             {
                 case 'A':
                     ret = averageable.CalculateAverages().Mean.ToString();
