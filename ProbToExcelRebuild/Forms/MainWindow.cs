@@ -73,7 +73,9 @@ namespace ProbToExcelRebuild.Forms
 
             if (result == DialogResult.OK && university != null)
             {
+                //var totalRows = worksheet.Rows.Count - dataStartRow;
                 var loadForm = new LoadingSplash();
+                //loadForm.numOfRows = totalRows;
                 loadForm.Show();
                 Hide();
 
@@ -82,8 +84,10 @@ namespace ProbToExcelRebuild.Forms
                     var application = new Excel.Application();
                     var workbook = application.Workbooks.Open(openFileDialog.FileName);
                     var worksheet = (Excel.Worksheet)workbook.Worksheets.Item[1];
-                    var totalRows = worksheet.Rows.Count - dataStartRow;
+                    var totalRows = worksheet.UsedRange.Rows.Count - dataStartRow;
                     object misValue = Missing.Value;
+                    loadForm.numOfRows = totalRows;
+                    
 
                     var dataCurrentRow = dataStartRow;
 
@@ -95,7 +99,12 @@ namespace ProbToExcelRebuild.Forms
 
                         while (worksheet.Range[deptIDColumn + dataCurrentRow].Value2 != null)
                         {
-                            loadForm.Invoke((new Action(() => loadForm.updateLabel("First pass of two - " + (dataCurrentRow - dataStartRow) + "/"+totalRows+" rows processed"))));
+                            loadForm.Invoke(new Action(() =>
+                                {
+                                    loadForm.progressBar1.Value = (((dataCurrentRow - dataStartRow)*50)/totalRows);
+                                    loadForm.updateLabel("First pass of two - " + (dataCurrentRow - dataStartRow) + "/"+totalRows+" rows processed");
+                                }));
+                                
 
                             var jobTitle = worksheet.Range[(jobTitleColumn + dataCurrentRow)].Value2;
 
@@ -159,7 +168,11 @@ namespace ProbToExcelRebuild.Forms
                                     });
                             }
                             dataCurrentRow++;
-                            loadForm.Invoke((new Action(() => loadForm.updateLabel("Second pass of two - " + (dataCurrentRow - dataStartRow) + "/" + totalRows + " rows processed"))));
+                            loadForm.Invoke((new Action(() =>
+                                {
+                                    loadForm.updateLabel("Second pass of two - " + (dataCurrentRow - dataStartRow) + "/" + totalRows + " rows processed");
+                                    loadForm.progressBar1.Value = (((dataCurrentRow - dataStartRow) * 50) / totalRows) +50;
+                                })));
                         }
 
                         loadForm.Invoke((new Action(() => loadForm.updateLabel("Saving changes to database"))));

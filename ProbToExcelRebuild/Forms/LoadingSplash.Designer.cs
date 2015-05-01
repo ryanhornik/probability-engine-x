@@ -31,6 +31,8 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
             this.numProcessed = new System.Windows.Forms.Label();
+            this.progressBar1 = new NewProgressBar();
+            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -50,7 +52,7 @@
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.SystemColors.ControlText;
             this.label1.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label1.Location = new System.Drawing.Point(159, 382);
+            this.label1.Location = new System.Drawing.Point(159, 18);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(279, 13);
             this.label1.TabIndex = 1;
@@ -61,7 +63,7 @@
             this.numProcessed.AutoSize = true;
             this.numProcessed.BackColor = System.Drawing.SystemColors.ControlText;
             this.numProcessed.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.numProcessed.Location = new System.Drawing.Point(159, 405);
+            this.numProcessed.Location = new System.Drawing.Point(159, 297);
             this.numProcessed.MinimumSize = new System.Drawing.Size(279, 13);
             this.numProcessed.Name = "numProcessed";
             this.numProcessed.Size = new System.Drawing.Size(279, 13);
@@ -69,11 +71,27 @@
             this.numProcessed.Text = "...";
             this.numProcessed.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // progressBar1
+            // 
+            this.progressBar1.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.progressBar1.ForeColor = System.Drawing.Color.Aqua;
+            this.progressBar1.Location = new System.Drawing.Point(162, 269);
+            this.progressBar1.Name = "progressBar1";
+            this.progressBar1.Size = new System.Drawing.Size(276, 16);
+            this.progressBar1.TabIndex = 2;
+            // 
+            // backgroundWorker1
+            // 
+            this.backgroundWorker1.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker1_DoWork);
+            this.backgroundWorker1.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.backgroundWorker1_ProgressChanged);
+            this.backgroundWorker1.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorker1_RunWorkerCompleted);
+            // 
             // LoadingSplash
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(600, 450);
+            this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.numProcessed);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.pictureBox1);
@@ -92,6 +110,8 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label numProcessed;
+        public System.Windows.Forms.ProgressBar progressBar1;
+        public System.ComponentModel.BackgroundWorker backgroundWorker1;
 
     }
 }
