@@ -38,62 +38,71 @@ namespace ProbToExcelRebuild.Forms
         private void runToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var reg = new TypeRegistry();
-            reg.RegisterSymbol("db",db);
+            reg.RegisterSymbol("db", db);
 
             string textboxCompiler = CompilerBox.Text;
 
-            Regex tokens = new Regex(@"[A-D,S][j,d,u,y][A-Z]?\d+");
+            Regex tokens = new Regex(@"[A-D,S,N][j,d,u,y][A-Z]?\d+");
             var mo = tokens.Replace(textboxCompiler, ReplaceTokens);
 
-            var expression = new CompiledExpression(mo){TypeRegistry = reg};
+            var expression = new CompiledExpression(mo) { TypeRegistry = reg };
 
-            var result = expression.ScopeCompile();
+            var result = expression.Eval();
 
             DebugTextBox.Text = result.ToString();
         }
 
-        private static string ReplaceTokens(Match m)
+        private string ReplaceTokens(Match m)
         {
             var avgTypeChar = m.Value[0];
             var subGroupChar = m.Value[1];
             var targetNum = m.Value.Substring(2); // In case of deptID this will be a string not an int
             string ret;
+            Averageable averageable;
             switch (subGroupChar)
             {
                 case 'j':
-                    ret = "db.Job_Title.First(s => s.ID_JOB_TITLE == "+targetNum+")";
-                    break;
+                    {
+                        var asNum = Convert.ToInt32(targetNum);
+                        averageable = db.Job_Title.First(s => s.ID_JOB_TITLE == asNum);
+                        break;
+                    }
                 case 'd':
-                    ret = "db.Departments.First(s => s.ID_DEPARTMENT.Equals("+targetNum+"))";
+                    averageable = db.Departments.First(s => s.ID_DEPARTMENT.Equals(targetNum));
                     break;
                 case 'u':
-                    ret = "db.Universities.First(s => s.ID_UNIVERSITY == " + targetNum + ")";
-                    break;
+                    {
+                        var asNum = Convert.ToInt32(targetNum);
+                        averageable = db.Universities.First(s => s.ID_UNIVERSITY == asNum);
+                        break;
+                    }
                 case 'y':
                     ret =
-                        "db.New_Associate_Professor_Average_Salary.Where(s => s.YEAR >= DateTime.Today.Year - "+targetNum + ").Average(s => s.AVERAGE_SALARY)";
+                        db.New_Associate_Professor_Average_Salary
+                        .Where(s => s.YEAR >= DateTime.Today.Year - Convert.ToInt32(targetNum))
+                        .Average(s => s.AVERAGE_SALARY).ToString();
                     return ret; //If we hit this no further calculations are needed maybe?
                 default: throw new Exception("The command you have entered is invalid at character (2) legal characters include 'j','d','u','y' See help menu for details");
             }
             switch (avgTypeChar)
             {
                 case 'A':
-                    ret += ".CalculateAverages().Mean";
+                    ret = averageable.CalculateAverages().Mean.ToString();
                     break;
                 case 'B':
-                    ret += ".CalculateAverages().IQR1";
+                    ret = averageable.CalculateAverages().IQR1.ToString();
                     break;
                 case 'C':
-                    ret += ".CalculateAverages().Median";
+                    ret = averageable.CalculateAverages().Median.ToString();
                     break;
                 case 'D':
-                    ret += ".CalculateAverages().IQR3";
+                    ret = averageable.CalculateAverages().IQR3.ToString();
                     break;
                 case 'S':
-                    ret += ".Employees.Sum(s => s.TOTAL_SALARY)";
+                    ret = averageable.Employees.Sum(s => s.TOTAL_SALARY).ToString();
                     break;
                 case 'N':
-                    ret += ".Employees.Count";
+                    ret = averageable.Employees.Count.ToString();
                     break;
                 default: throw new Exception("The command you have entered is invalid at character (1) legal characters include 'A','B','C','D','S','N' See help menu for details");
             }
