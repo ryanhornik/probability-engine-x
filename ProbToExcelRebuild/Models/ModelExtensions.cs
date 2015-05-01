@@ -16,15 +16,15 @@ namespace ProbToExcelRebuild.Models
             var count = Employees.Count();
             var arr = Employees.ToArray();
 
-            avg.mean = (double)(sal / count);
+            avg.Mean = (double)(sal / count);
 
             if (count % 2 == 0)
             {
-                avg.median = ((double)(arr[count / 2].TOTAL_SALARY + arr[count / 2 - 1].TOTAL_SALARY)) / 2;
+                avg.Median = ((double)(arr[count / 2].TOTAL_SALARY + arr[count / 2 - 1].TOTAL_SALARY)) / 2;
             }
             else
             {
-                avg.median = (double)Employees.ToArray()[count / 2].TOTAL_SALARY;
+                avg.Median = (double)Employees.ToArray()[count / 2].TOTAL_SALARY;
             }
 
             if (count % 4 == 0)
@@ -82,15 +82,15 @@ namespace ProbToExcelRebuild.Models
                 return avg;
             }
 
-            avg.mean = (double)(sal / count);
+            avg.Mean = (double)(sal / count);
 
             if (count % 2 == 0)
             {
-                avg.median = ((double)(arr[count / 2].TOTAL_SALARY + arr[count / 2 - 1].TOTAL_SALARY)) / 2;
+                avg.Median = ((double)(arr[count / 2].TOTAL_SALARY + arr[count / 2 - 1].TOTAL_SALARY)) / 2;
             }
             else
             {
-                avg.median = (double)Employees.ToArray()[count / 2].TOTAL_SALARY;
+                avg.Median = (double)Employees.ToArray()[count / 2].TOTAL_SALARY;
             }
 
             if (count % 4 == 0)
@@ -110,15 +110,15 @@ namespace ProbToExcelRebuild.Models
 
     public class Averages
     {
-        public double mean { get; set; }
-        public double median { get; set; }
+        public double Mean { get; set; }
+        public double Median { get; set; }
         public double IQR1 { get; set; }
         public double IQR3 { get; set; }
 
         public Averages()
         {
-            mean = 0;
-            median = 0;
+            Mean = 0;
+            Median = 0;
             IQR1 = 0;
             IQR3 = 0;
         }

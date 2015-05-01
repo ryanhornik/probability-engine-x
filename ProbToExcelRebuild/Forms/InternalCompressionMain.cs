@@ -24,14 +24,8 @@ namespace ProbToExcelRebuild.Forms
         {
             k = Math.Pow(k, recentYears);
 
-            var recentlyHiredAssisProf =
-                db.New_Associate_Professor_Average_Salary
-                .Where(s => s.YEAR>=DateTime.Today.Year-recentYears);
-            var averageProfSalarySum =
-                recentlyHiredAssisProf
-                .Sum(s => (double) s.AVERAGE_SALARY);
-
-            var avgRecentHires = averageProfSalarySum / recentlyHiredAssisProf.Count();
+            var avgRecentHires =(double) db.New_Associate_Professor_Average_Salary
+                    .Where(s => s.YEAR >= DateTime.Today.Year - recentYears).Average(s => s.AVERAGE_SALARY);
 
             var adjustedMedianAssociate = (avgRecentHires*k + 7000)*Math.Pow(dAssociate, lAssociate);
             adjMedAss.Text = adjustedMedianAssociate.ToString();
@@ -42,12 +36,12 @@ namespace ProbToExcelRebuild.Forms
             var ASSOCIATE_PROFESSOR = db.Job_Title.First(s => s.JOB_TITLE_NAME.Equals("ASSOCIATE PROFESSOR"));
             var FULL_PROFESSOR = db.Job_Title.First(s => s.JOB_TITLE_NAME.Equals("PROFESSOR"));
 
-            var actualMedianAssociate = ASSOCIATE_PROFESSOR.CalculateAverages().median;
+            var actualMedianAssociate = ASSOCIATE_PROFESSOR.CalculateAverages().Median;
             var compressionRatioAssociate = adjustedMedianAssociate/actualMedianAssociate;
             actMedAss.Text = actualMedianAssociate.ToString();
             crAss.Text = compressionRatioAssociate.ToString();
 
-            var actualMedianFull = FULL_PROFESSOR.CalculateAverages().median;
+            var actualMedianFull = FULL_PROFESSOR.CalculateAverages().Median;
             var compressionRatioFull = adjustedMedianFull/actualMedianFull;
             actMedFull.Text = actualMedianFull.ToString();
             crFull.Text = compressionRatioFull.ToString();

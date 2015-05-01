@@ -82,7 +82,7 @@ namespace ProbToExcelRebuild.Forms
                     var application = new Excel.Application();
                     var workbook = application.Workbooks.Open(openFileDialog.FileName);
                     var worksheet = (Excel.Worksheet)workbook.Worksheets.Item[1];
-                    var totalRows = worksheet.Rows.Count = dataStartRow;
+                    var totalRows = worksheet.Rows.Count - dataStartRow;
                     object misValue = Missing.Value;
 
                     var dataCurrentRow = dataStartRow;
@@ -148,7 +148,6 @@ namespace ProbToExcelRebuild.Forms
 
                                 string jobTitleString = jobTitle.ToString();
                                 Job_Title title = db.Job_Title.First(s => s.JOB_TITLE_NAME.Equals(jobTitleString));
-
 
                                 newEmployees.Add(
                                     new Employee()
