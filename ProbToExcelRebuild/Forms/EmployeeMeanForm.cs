@@ -64,9 +64,9 @@ namespace ProbToExcelRebuild.Forms
                 var averages = avg.CalculateAverages();
                 var row = new object[5];
                 row[0] = avg.ToString();
-                row[1] = averages.mean;
+                row[1] = averages.Mean;
                 row[2] = averages.IQR1;
-                row[3] = averages.median;
+                row[3] = averages.Median;
                 row[4] = averages.IQR3;
                 MeanAssGrid.Rows.Add(row);
             }

@@ -158,7 +158,6 @@ namespace ProbToExcelRebuild.Forms
                                 string jobTitleString = jobTitle.ToString();
                                 Job_Title title = db.Job_Title.First(s => s.JOB_TITLE_NAME.Equals(jobTitleString));
 
-
                                 newEmployees.Add(
                                     new Employee()
                                     {

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.Entity;
 using System.Drawing;
 using System.Linq;
 using System.Runtime.InteropServices.ComTypes;
@@ -37,37 +38,32 @@ namespace ProbToExcelRebuild.Forms
         private void runToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var reg = new TypeRegistry();
-            reg = LoadPreDefinedReg();
-            char[] delimitior = { ';', '\n' };
-            string textboxCompiler = CompilerBox.Text.ToString();
-            string[] compileme = textboxCompiler.Split(delimitior);
-            //string[] textToCompile = Text.Split(delimitior);
+            reg.RegisterSymbol("db",db);
+
+            string textboxCompiler = CompilerBox.Text;
+
             Regex tokens = new Regex(@"[A-D,S][j,d,u,y][A-Z]?\d+");
             //var mo = tokens.Replace(textboxCompiler, ReplaceTokens);
 
-            foreach (string s in compileme)
-            {
-                var p = new CompiledExpression(compileme.ToString()) { TypeRegistry = reg };
-                if (p.Expression == null)
-                {
+            var expression = new CompiledExpression(mo){TypeRegistry = reg};
 
-                }
-                else
-                {
-                    var x = p.Eval();
-                    DebugTextBox.Text = x.ToString();
-                }
+            var result = expression.ScopeCompile();
 
-            }
+            DebugTextBox.Text = result.ToString();
         }
 
-        //private string ReplaceTokens(Match m)
+        private static string ReplaceTokens(Match m)
         //{
         //    var avgTypeChar = m.Value[0];
         //    var subGroupChar = m.Value[1];
         //    var targetNum = m.Value.Substring(2); // In case of deptID this will be a string not an int
         //    string ret;
-            
+                    ret = "db.Job_Title.First(s => s.ID_JOB_TITLE == "+targetNum+")";
+                    ret = "db.Departments.First(s => s.ID_DEPARTMENT.Equals("+targetNum+"))";
+                    ret = "db.Universities.First(s => s.ID_UNIVERSITY == " + targetNum + ")";
+                        "db.New_Associate_Professor_Average_Salary.Where(s => s.YEAR >= DateTime.Today.Year - "+targetNum + ").Average(s => s.AVERAGE_SALARY)";
+                    return ret; //If we hit this no further calculations are needed maybe?
+            switch (avgTypeChar)
         //    switch (subGroupChar)
         //    {
         //        case 'j':
@@ -86,24 +82,30 @@ namespace ProbToExcelRebuild.Forms
         //            break;
         //        default: throw new Exception("The command you have entered is invalid at character (2) legal characters include 'j','d','u','y' See help menu for details");
         //    }
-
-
-        //    return "";
         //}
+            {
+                case 'A':
+                    ret += ".CalculateAverages().Mean";
+                    break;
+                case 'B':
+                    ret += ".CalculateAverages().IQR1";
+                    break;
+                case 'C':
+                    ret += ".CalculateAverages().Median";
+                    break;
+                case 'D':
+                    ret += ".CalculateAverages().IQR3";
+                    break;
+                case 'S':
+                    ret += ".Employees.Sum(s => s.TOTAL_SALARY)";
+                    break;
+                case 'N':
+                    ret += ".Employees.Count";
+                    break;
+                default: throw new Exception("The command you have entered is invalid at character (1) legal characters include 'A','B','C','D','S','N' See help menu for details");
+            }
 
-        private TypeRegistry LoadPreDefinedReg()
-        {
-            var reg = new TypeRegistry();
-            reg.RegisterType("a##", typeof(double));
-            reg.RegisterType("b##", typeof(double));
-            reg.RegisterType("c##", typeof(double));
-            reg.RegisterType("d##", typeof(double));
-            reg.RegisterType("e##", typeof(double));
-            reg.RegisterType("f##", typeof(double));
-            reg.RegisterType("g##", typeof(double));
-
-
-            return reg;
+            return ret;
         }
 
         private void compileToolStripMenuItem_Click(object sender, EventArgs e)
