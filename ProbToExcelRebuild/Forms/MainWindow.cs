@@ -82,6 +82,7 @@ namespace ProbToExcelRebuild.Forms
                     var application = new Excel.Application();
                     var workbook = application.Workbooks.Open(openFileDialog.FileName);
                     var worksheet = (Excel.Worksheet)workbook.Worksheets.Item[1];
+                    var totalRows = worksheet.Rows.Count = dataStartRow;
                     object misValue = Missing.Value;
 
                     var dataCurrentRow = dataStartRow;
@@ -94,7 +95,7 @@ namespace ProbToExcelRebuild.Forms
 
                         while (worksheet.Range[deptIDColumn + dataCurrentRow].Value2 != null)
                         {
-                            loadForm.Invoke((new Action(() => loadForm.updateLabel("First pass of two - " + (dataCurrentRow - dataStartRow) + "/? rows processed"))));
+                            loadForm.Invoke((new Action(() => loadForm.updateLabel("First pass of two - " + (dataCurrentRow - dataStartRow) + "/"+totalRows+" rows processed"))));
 
                             var jobTitle = worksheet.Range[(jobTitleColumn + dataCurrentRow)].Value2;
 
@@ -124,7 +125,6 @@ namespace ProbToExcelRebuild.Forms
                             dataCurrentRow++;
                         }
 
-                        var totalRows = dataCurrentRow - dataStartRow;
                         db.Departments.AddRange(newDepartments);
                         db.SaveChanges();
 
