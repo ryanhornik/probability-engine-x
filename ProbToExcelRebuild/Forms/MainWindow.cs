@@ -73,9 +73,7 @@ namespace ProbToExcelRebuild.Forms
 
             if (result == DialogResult.OK && university != null)
             {
-                //var totalRows = worksheet.Rows.Count - dataStartRow;
                 var loadForm = new LoadingSplash();
-                //loadForm.numOfRows = totalRows;
                 loadForm.Show();
                 Hide();
 

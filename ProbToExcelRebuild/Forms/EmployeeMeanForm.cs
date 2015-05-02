@@ -5,10 +5,14 @@ using System.Data;
 using System.Data.Entity;
 using System.Drawing;
 using System.Linq;
+using System.Reflection;
+using System.Security.AccessControl;
 using System.Text;
 using System.Threading.Tasks;
+using Excel = Microsoft.Office.Interop.Excel;
 using System.Windows.Forms;
 using ProbToExcelRebuild.Models;
+using ProbToExcelRebuild;
 
 namespace ProbToExcelRebuild.Forms
 {
@@ -23,7 +27,7 @@ namespace ProbToExcelRebuild.Forms
 
         private void EmployeeMeanForm_Load(object sender, EventArgs e)
         {
-
+            
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -31,7 +35,20 @@ namespace ProbToExcelRebuild.Forms
 
         }
 
-        private void CalculateButton_Click(object sender, EventArgs e)
+        private void ExportButton_Click(object sender, EventArgs e)
+        {
+            Program.ExportToExcel(MeanAssGrid);
+        }
+
+        private void CancelButton_Click(object sender, EventArgs e)
+        {
+            MainWindow x = new MainWindow();
+            Hide();
+            x.Show();
+            Close();
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             var groupBy = MeanComboBox.SelectedItem.ToString();
             List<Averageable> prop;
@@ -70,20 +87,6 @@ namespace ProbToExcelRebuild.Forms
                 row[4] = averages.IQR3;
                 MeanAssGrid.Rows.Add(row);
             }
-        }
-
-        private void CancelButton_Click(object sender, EventArgs e)
-        {
-            MainWindow x = new MainWindow();
-            Hide();
-            x.Show();
-            Close();
-
-        }
-
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
         }
 
         private void UpdateGridByDepartment()

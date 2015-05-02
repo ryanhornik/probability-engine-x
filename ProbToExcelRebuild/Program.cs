@@ -19,5 +19,31 @@ namespace ProbToExcelRebuild
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new MainWindow());
         }
+
+        public static void ExportToExcel(DataGridView dgv)
+        {
+            var app = new Microsoft.Office.Interop.Excel.Application();
+            app.Visible = true;
+            System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en-US");
+
+            var wb = app.Workbooks.Add((Microsoft.Office.Interop.Excel.XlWBATemplate.xlWBATWorksheet));
+            var ws = (Microsoft.Office.Interop.Excel.Worksheet)wb.Worksheets[1];
+
+            if (ws == null)
+            {
+                MessageBox.Show("Excel worksheet could not be created");
+                return;
+            }
+            for (var i = 'A'; i - 'A' < dgv.ColumnCount; i++)
+            {
+                var j = 1;
+                ws.Range[i + "" + j].Value2 = dgv.Columns[i - 'A'].HeaderText;
+
+                for (j += 1; j < dgv.RowCount; j++)
+                {
+                    ws.Range[i + "" + j].Value2 = dgv.Rows[j].Cells[i - 'A'].Value;
+                }
+            }
+        }
     }
 }
