@@ -42,9 +42,6 @@ namespace ProbToExcelRebuild.Forms
 
         private void CancelButton_Click(object sender, EventArgs e)
         {
-            MainWindow x = new MainWindow();
-            Hide();
-            x.Show();
             Close();
         }
 

@@ -18,7 +18,6 @@ namespace ProbToExcelRebuild.Forms
 {
     public partial class ProgramPEX : Form
     {
-        //private ExpressionCompiler x = new CompiledExpression();
         private UniversityModel db = new UniversityModel();
 
         public ProgramPEX()

@@ -37,10 +37,7 @@ namespace ProbToExcelRebuild.Forms
 
         private void CancleButton_Click(object sender, EventArgs e)
         {
-            this.Hide();
-            MainWindow main = new MainWindow();
-            main.Show();
-            this.Close();
+            Close();
         }
 
         private void EnterButton_Click(object sender, EventArgs e)
