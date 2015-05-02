@@ -48,8 +48,6 @@ namespace ProbToExcelRebuild.Forms
             var reg = new TypeRegistry();
             reg.RegisterSymbol("db", db);
 
-            
-
             Regex tokens = new Regex(@"[A-D,S,N][j,d,u,y][A-Z]?\d+");
             var mo = tokens.Replace(textboxCompiler, ReplaceTokens);
 

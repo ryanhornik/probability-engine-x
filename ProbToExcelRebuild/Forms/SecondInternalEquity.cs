@@ -54,5 +54,15 @@ namespace ProbToExcelRebuild.Forms
             }
             
         }
+
+        private void exportButton_Click(object sender, EventArgs e)
+        {
+            HelperClass.ExportToExcel(secondInternalEquityGrid);
+        }
+
+        private void exitButton_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
     }
 }

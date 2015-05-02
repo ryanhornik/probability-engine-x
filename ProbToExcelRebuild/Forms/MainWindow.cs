@@ -649,5 +649,20 @@ namespace ProbToExcelRebuild.Forms
             form.ShowDialog();
             Show();
         }
+
+        private void averageSalariesByJobToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            HelperClass.ExportToExcel(averageByJobGrid);
+        }
+
+        private void employeesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            HelperClass.ExportToExcel(employeeGrid);
+        }
+
+        private void newAverageHireSalariesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            HelperClass.ExportToExcel(newHireAveragesGrid);
+        }
     }
 }

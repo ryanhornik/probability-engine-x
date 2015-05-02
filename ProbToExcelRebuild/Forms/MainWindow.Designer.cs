@@ -45,6 +45,7 @@
             this.otherTier1ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.externalCToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.secondInternalEquityToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.programPEXToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.employeeGrid = new System.Windows.Forms.DataGridView();
             this.ID_Employee = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TOTAL_SALARY = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -66,7 +67,10 @@
             this.ID_JOB_TITLE = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ID_UNIVERSITY = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.programPEXToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.exportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.employeesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.newAverageHireSalariesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.averageSalariesByJobToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.employeeGrid)).BeginInit();
             this.tabControl1.SuspendLayout();
@@ -92,6 +96,7 @@
             // 
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.importDataToolStripMenuItem,
+            this.exportToolStripMenuItem,
             this.manualInputToolStripMenuItem,
             this.exitToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
@@ -111,22 +116,22 @@
             // excelToolStripMenuItem
             // 
             this.excelToolStripMenuItem.Name = "excelToolStripMenuItem";
-            this.excelToolStripMenuItem.Size = new System.Drawing.Size(262, 22);
+            this.excelToolStripMenuItem.Size = new System.Drawing.Size(249, 22);
             this.excelToolStripMenuItem.Text = "Employees";
             this.excelToolStripMenuItem.Click += new System.EventHandler(this.excelToolStripMenuItem_Click);
             // 
             // averageNewHireSalariesToolStripMenuItem
             // 
             this.averageNewHireSalariesToolStripMenuItem.Name = "averageNewHireSalariesToolStripMenuItem";
-            this.averageNewHireSalariesToolStripMenuItem.Size = new System.Drawing.Size(262, 22);
+            this.averageNewHireSalariesToolStripMenuItem.Size = new System.Drawing.Size(249, 22);
             this.averageNewHireSalariesToolStripMenuItem.Text = "Average New Hire Salaries";
             this.averageNewHireSalariesToolStripMenuItem.Click += new System.EventHandler(this.averageNewHireSalariesToolStripMenuItem_Click);
             // 
             // averagesPerSalaryPerDepartmentToolStripMenuItem
             // 
             this.averagesPerSalaryPerDepartmentToolStripMenuItem.Name = "averagesPerSalaryPerDepartmentToolStripMenuItem";
-            this.averagesPerSalaryPerDepartmentToolStripMenuItem.Size = new System.Drawing.Size(262, 22);
-            this.averagesPerSalaryPerDepartmentToolStripMenuItem.Text = "Averages Per Salary Per Department";
+            this.averagesPerSalaryPerDepartmentToolStripMenuItem.Size = new System.Drawing.Size(249, 22);
+            this.averagesPerSalaryPerDepartmentToolStripMenuItem.Text = "Averages Per Job Per Department";
             this.averagesPerSalaryPerDepartmentToolStripMenuItem.Click += new System.EventHandler(this.averagesPerSalaryPerDepartmentToolStripMenuItem_Click);
             // 
             // manualInputToolStripMenuItem
@@ -206,6 +211,13 @@
             this.secondInternalEquityToolStripMenuItem.Size = new System.Drawing.Size(236, 22);
             this.secondInternalEquityToolStripMenuItem.Text = "Second Internal Equity";
             this.secondInternalEquityToolStripMenuItem.Click += new System.EventHandler(this.secondInternalEquityToolStripMenuItem_Click);
+            // 
+            // programPEXToolStripMenuItem
+            // 
+            this.programPEXToolStripMenuItem.Name = "programPEXToolStripMenuItem";
+            this.programPEXToolStripMenuItem.Size = new System.Drawing.Size(236, 22);
+            this.programPEXToolStripMenuItem.Text = "Program PEX";
+            this.programPEXToolStripMenuItem.Click += new System.EventHandler(this.programPEXToolStripMenuItem_Click);
             // 
             // employeeGrid
             // 
@@ -399,12 +411,36 @@
             this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
             this.dataGridViewTextBoxColumn6.ReadOnly = true;
             // 
-            // programPEXToolStripMenuItem
+            // exportToolStripMenuItem
             // 
-            this.programPEXToolStripMenuItem.Name = "programPEXToolStripMenuItem";
-            this.programPEXToolStripMenuItem.Size = new System.Drawing.Size(236, 22);
-            this.programPEXToolStripMenuItem.Text = "Program PEX";
-            this.programPEXToolStripMenuItem.Click += new System.EventHandler(this.programPEXToolStripMenuItem_Click);
+            this.exportToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.employeesToolStripMenuItem,
+            this.newAverageHireSalariesToolStripMenuItem,
+            this.averageSalariesByJobToolStripMenuItem});
+            this.exportToolStripMenuItem.Name = "exportToolStripMenuItem";
+            this.exportToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
+            this.exportToolStripMenuItem.Text = "Export To Excel";
+            // 
+            // employeesToolStripMenuItem
+            // 
+            this.employeesToolStripMenuItem.Name = "employeesToolStripMenuItem";
+            this.employeesToolStripMenuItem.Size = new System.Drawing.Size(249, 22);
+            this.employeesToolStripMenuItem.Text = "Employees";
+            this.employeesToolStripMenuItem.Click += new System.EventHandler(this.employeesToolStripMenuItem_Click);
+            // 
+            // newAverageHireSalariesToolStripMenuItem
+            // 
+            this.newAverageHireSalariesToolStripMenuItem.Name = "newAverageHireSalariesToolStripMenuItem";
+            this.newAverageHireSalariesToolStripMenuItem.Size = new System.Drawing.Size(249, 22);
+            this.newAverageHireSalariesToolStripMenuItem.Text = "New Average Hire Salaries";
+            this.newAverageHireSalariesToolStripMenuItem.Click += new System.EventHandler(this.newAverageHireSalariesToolStripMenuItem_Click);
+            // 
+            // averageSalariesByJobToolStripMenuItem
+            // 
+            this.averageSalariesByJobToolStripMenuItem.Name = "averageSalariesByJobToolStripMenuItem";
+            this.averageSalariesByJobToolStripMenuItem.Size = new System.Drawing.Size(249, 22);
+            this.averageSalariesByJobToolStripMenuItem.Text = "Averages Per Job Per Department";
+            this.averageSalariesByJobToolStripMenuItem.Click += new System.EventHandler(this.averageSalariesByJobToolStripMenuItem_Click);
             // 
             // MainWindow
             // 
@@ -476,5 +512,9 @@
         private System.Windows.Forms.ToolStripMenuItem externalCToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem secondInternalEquityToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem programPEXToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem exportToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem employeesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem newAverageHireSalariesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem averageSalariesByJobToolStripMenuItem;
     }
 }
