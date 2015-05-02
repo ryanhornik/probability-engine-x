@@ -34,6 +34,8 @@
             this.Average_UH_Salary = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Average_Tier_1_Salary = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.External_Equity = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.equityGrid)).BeginInit();
             this.SuspendLayout();
             // 
@@ -47,11 +49,11 @@
             this.Average_UH_Salary,
             this.Average_Tier_1_Salary,
             this.External_Equity});
-            this.equityGrid.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.equityGrid.Dock = System.Windows.Forms.DockStyle.Top;
             this.equityGrid.Location = new System.Drawing.Point(0, 0);
             this.equityGrid.Name = "equityGrid";
             this.equityGrid.ReadOnly = true;
-            this.equityGrid.Size = new System.Drawing.Size(700, 262);
+            this.equityGrid.Size = new System.Drawing.Size(718, 262);
             this.equityGrid.TabIndex = 0;
             // 
             // Job_Title
@@ -82,11 +84,31 @@
             this.External_Equity.Name = "External_Equity";
             this.External_Equity.ReadOnly = true;
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(230, 269);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(99, 33);
+            this.button1.TabIndex = 1;
+            this.button1.Text = "Export To Excel";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(335, 268);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(99, 33);
+            this.button2.TabIndex = 1;
+            this.button2.Text = "Export To Excel";
+            this.button2.UseVisualStyleBackColor = true;
+            // 
             // ExternalEquity
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(700, 262);
+            this.ClientSize = new System.Drawing.Size(718, 324);
+            this.Controls.Add(this.button2);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.equityGrid);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "ExternalEquity";
@@ -104,5 +126,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Average_UH_Salary;
         private System.Windows.Forms.DataGridViewTextBoxColumn Average_Tier_1_Salary;
         private System.Windows.Forms.DataGridViewTextBoxColumn External_Equity;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button2;
     }
 }

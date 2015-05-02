@@ -12,6 +12,7 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using ExpressionEvaluator;
+using Microsoft.Office.Interop.Excel;
 using ProbToExcelRebuild.Models;
 
 namespace ProbToExcelRebuild.Forms
@@ -37,19 +38,45 @@ namespace ProbToExcelRebuild.Forms
 
         private void runToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            string textboxCompiler = CompilerBox.Text;
+            if (textboxCompiler.Length == 0)
+            {
+                DebugTextBox.Text = "Please enter an expression";
+                return;
+            }
+
             var reg = new TypeRegistry();
             reg.RegisterSymbol("db", db);
 
-            string textboxCompiler = CompilerBox.Text;
+            
 
             Regex tokens = new Regex(@"[A-D,S,N][j,d,u,y][A-Z]?\d+");
             var mo = tokens.Replace(textboxCompiler, ReplaceTokens);
+
+            Regex powers = new Regex(@"\d+(\.\d+)? ?\^ ?\d+(\.\d+)?");
+            mo = powers.Replace(mo, ReplacePowers);
+
+            Regex doubles = new Regex(@"\d+(\.\d+)?");
+            mo = doubles.Replace(mo, ToDouble);
 
             var expression = new CompiledExpression(mo) { TypeRegistry = reg };
 
             var result = expression.Eval();
 
             DebugTextBox.Text = result.ToString();
+        }
+
+        private string ToDouble(Match m)
+        {
+            return "((double)"+m.Value+")";
+        }
+
+        private string ReplacePowers(Match m)
+        {
+            var caret = m.Value.IndexOf('^');
+            double before = Convert.ToDouble(m.Value.Substring(0,caret));
+            double after = Convert.ToDouble(m.Value.Substring(caret+1));
+            return Math.Pow(before, after).ToString();
         }
 
         private string ReplaceTokens(Match m)
@@ -77,10 +104,13 @@ namespace ProbToExcelRebuild.Forms
                         break;
                     }
                 case 'y':
+                {
+                    var asNum = Convert.ToInt32(targetNum);
                     ret = db.New_Associate_Professor_Average_Salary
-                        .Where(s => s.YEAR >= DateTime.Today.Year - Convert.ToInt32(targetNum))
+                        .Where(s => s.YEAR >= DateTime.Today.Year - asNum)
                         .Average(s => s.AVERAGE_SALARY).ToString();
                     return ret; //If we hit this no further calculations are needed maybe?
+                    }
                 default: throw new Exception("The command you have entered is invalid at character (2) legal characters include 'A','B','C','D','S','N' See help menu for details");
             }
 

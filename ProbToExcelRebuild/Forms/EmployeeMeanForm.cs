@@ -37,7 +37,7 @@ namespace ProbToExcelRebuild.Forms
 
         private void ExportButton_Click(object sender, EventArgs e)
         {
-            Program.ExportToExcel(MeanAssGrid);
+            HelperClass.ExportToExcel(MeanAssGrid);
         }
 
         private void CancelButton_Click(object sender, EventArgs e)

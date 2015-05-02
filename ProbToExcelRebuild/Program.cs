@@ -1,9 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Microsoft.Office.Interop.Excel;
 using ProbToExcelRebuild.Forms;
+using Application = System.Windows.Forms.Application;
 
 namespace ProbToExcelRebuild
 {
@@ -19,7 +23,10 @@ namespace ProbToExcelRebuild
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new MainWindow());
         }
+    }
 
+    public static class HelperClass
+    {
         public static void ExportToExcel(DataGridView dgv)
         {
             var app = new Microsoft.Office.Interop.Excel.Application();
