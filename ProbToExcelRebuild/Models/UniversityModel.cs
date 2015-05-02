@@ -12,6 +12,7 @@ namespace ProbToExcelRebuild.Models
         {
         }
 
+        public virtual DbSet<CustomFunction> CustomFunctions { get; set; }
         public virtual DbSet<Department> Departments { get; set; }
         public virtual DbSet<Employee> Employees { get; set; }
         public virtual DbSet<Job_Title> Job_Title { get; set; }
@@ -23,6 +24,14 @@ namespace ProbToExcelRebuild.Models
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<CustomFunction>()
+                .Property(e => e.FUNCTION)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<CustomFunction>()
+                .Property(e => e.NAME)
+                .IsUnicode(false);
+
             modelBuilder.Entity<Department>()
                 .Property(e => e.ID_DEPARTMENT)
                 .IsUnicode(false);

@@ -198,24 +198,28 @@
             // 
             // JobTitle
             // 
+            this.JobTitle.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.JobTitle.HeaderText = "Job Title";
             this.JobTitle.Name = "JobTitle";
             this.JobTitle.ReadOnly = true;
             // 
             // University
             // 
+            this.University.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.University.HeaderText = "University";
             this.University.Name = "University";
             this.University.ReadOnly = true;
             // 
             // Department
             // 
+            this.Department.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.Department.HeaderText = "Department";
             this.Department.Name = "Department";
             this.Department.ReadOnly = true;
             // 
             // Salary
             // 
+            this.Salary.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.Salary.HeaderText = "Salary";
             this.Salary.Name = "Salary";
             this.Salary.ReadOnly = true;

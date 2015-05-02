@@ -20,6 +20,8 @@ namespace ProbToExcelRebuild.Models
         [StringLength(10)]
         public string ID_DEPARTMENT { get; set; }
 
+        public virtual ICollection<Employee> Employees { get; set; }
+
         public virtual ICollection<New_Associate_Professor_Average_Salary> New_Associate_Professor_Average_Salary { get; set; }
 
         public virtual ICollection<Specialty_Code> Specialty_Code { get; set; }

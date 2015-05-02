@@ -173,6 +173,7 @@
     <Compile Include="Forms\SpecialCodeManualEntry.Designer.cs">
       <DependentUpon>SpecialCodeManualEntry.cs</DependentUpon>
     </Compile>
+    <Compile Include="Models\CustomFunction.cs" />
     <Compile Include="Models\Department.cs" />
     <Compile Include="Models\Employee.cs" />
     <Compile Include="Models\EmployeeView.cs" />

@@ -13,12 +13,13 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using ExpressionEvaluator;
 using ProbToExcelRebuild.Models;
+ 
 
 namespace ProbToExcelRebuild.Forms
 {
+    
     public partial class ProgramPEX : Form
     {
-        //private ExpressionCompiler x = new CompiledExpression();
         private UniversityModel db = new UniversityModel();
 
         public ProgramPEX()
@@ -35,24 +36,7 @@ namespace ProbToExcelRebuild.Forms
         {
             throw new NotImplementedException();
         }
-
-        private void runToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            var reg = new TypeRegistry();
-            reg.RegisterSymbol("db", db);
-
-            string textboxCompiler = CompilerBox.Text;
-
-            Regex tokens = new Regex(@"[A-D,S,N][j,d,u,y][A-Z]?\d+");
-            var mo = tokens.Replace(textboxCompiler, ReplaceTokens);
-
-            var expression = new CompiledExpression(mo) { TypeRegistry = reg };
-
-            var result = expression.Eval();
-
-            DebugTextBox.Text = result.ToString();
-        }
-
+        
         private string ReplaceTokens(Match m)
         {
             var avgTypeChar = m.Value[0];
@@ -117,6 +101,28 @@ namespace ProbToExcelRebuild.Forms
         }
 
         private void stopToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            var reg = new TypeRegistry();
+            reg.RegisterSymbol("db", db);
+
+            string textboxCompiler = CompilerBox.Text;
+
+            Regex tokens = new Regex(@"[A-D,S,N][j,d,u,y][A-Z]?\d+");
+            var mo = tokens.Replace(textboxCompiler, ReplaceTokens);
+
+            var expression = new CompiledExpression(mo) { TypeRegistry = reg };
+
+            var result = expression.Eval();
+
+            DebugTextBox.Text = result.ToString();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
         {
 
         }

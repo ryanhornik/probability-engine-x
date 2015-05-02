@@ -130,30 +130,35 @@
             // 
             // Property
             // 
+            this.Property.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.Property.HeaderText = "Property";
             this.Property.Name = "Property";
             this.Property.ReadOnly = true;
             // 
             // Mean
             // 
+            this.Mean.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.Mean.HeaderText = "Mean";
             this.Mean.Name = "Mean";
             this.Mean.ReadOnly = true;
             // 
             // FirstQuartile
             // 
+            this.FirstQuartile.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.FirstQuartile.HeaderText = "1st Quartile";
             this.FirstQuartile.Name = "FirstQuartile";
             this.FirstQuartile.ReadOnly = true;
             // 
             // Median
             // 
+            this.Median.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.Median.HeaderText = "Median";
             this.Median.Name = "Median";
             this.Median.ReadOnly = true;
             // 
             // ThirdQuartile
             // 
+            this.ThirdQuartile.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.ThirdQuartile.HeaderText = "3rd Quartile";
             this.ThirdQuartile.Name = "ThirdQuartile";
             this.ThirdQuartile.ReadOnly = true;

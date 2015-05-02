@@ -230,18 +230,21 @@
             // 
             // SpecialtyCode
             // 
+            this.SpecialtyCode.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.SpecialtyCode.HeaderText = "Specialty Code";
             this.SpecialtyCode.Name = "SpecialtyCode";
             this.SpecialtyCode.ReadOnly = true;
             // 
             // JobTitle
             // 
+            this.JobTitle.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.JobTitle.HeaderText = "Job Title";
             this.JobTitle.Name = "JobTitle";
             this.JobTitle.ReadOnly = true;
             // 
             // AvgSalary
             // 
+            this.AvgSalary.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.AvgSalary.HeaderText = "Avg Tier 1 Salary";
             this.AvgSalary.Name = "AvgSalary";
             this.AvgSalary.ReadOnly = true;
@@ -281,14 +284,14 @@
         private System.Windows.Forms.Button CancleButton;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.DataGridView SpecialtyGridView;
-        private System.Windows.Forms.DataGridViewTextBoxColumn SpecialtyCode;
-        private System.Windows.Forms.DataGridViewTextBoxColumn JobTitle;
-        private System.Windows.Forms.DataGridViewTextBoxColumn AvgSalary;
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ComboBox UniversityComboBox;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn SpecialtyCode;
+        private System.Windows.Forms.DataGridViewTextBoxColumn JobTitle;
+        private System.Windows.Forms.DataGridViewTextBoxColumn AvgSalary;
     }
 }
