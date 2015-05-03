@@ -37,19 +37,6 @@ namespace ProbToExcelRebuild.Forms
         {
             throw new NotImplementedException();
         }
-        
-            string textboxCompiler = CompilerBox.Text;
-            if (textboxCompiler.Length == 0)
-            {
-                DebugTextBox.Text = "Please enter an expression";
-                return;
-            }
-
-            Regex powers = new Regex(@"\d+(\.\d+)? ?\^ ?\d+(\.\d+)?");
-            mo = powers.Replace(mo, ReplacePowers);
-
-            Regex doubles = new Regex(@"\d+(\.\d+)?");
-            mo = doubles.Replace(mo, ToDouble);
 
         private string ToDouble(Match m)
         {
@@ -125,25 +112,26 @@ namespace ProbToExcelRebuild.Forms
             return ret;
         }
 
-        private void compileToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void stopToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void button1_Click(object sender, EventArgs e)
         {
+            var textboxCompiler = CompilerBox.Text;
+            if (textboxCompiler.Length == 0)
+            {
+                DebugTextBox.Text = "Please enter an expression";
+                return;
+            }
+
             var reg = new TypeRegistry();
-            reg.RegisterSymbol("db", db);
-
-            string textboxCompiler = CompilerBox.Text;
-
+            reg.RegisterSymbol("db",db);
+            
             Regex tokens = new Regex(@"[A-D,S,N][j,d,u,y][A-Z]?\d+");
             var mo = tokens.Replace(textboxCompiler, ReplaceTokens);
+
+            Regex powers = new Regex(@"\d+(\.\d+)? ?\^ ?\d+(\.\d+)?");
+            mo = powers.Replace(mo, ReplacePowers);
+
+            Regex doubles = new Regex(@"\d+(\.\d+)?");
+            mo = doubles.Replace(mo, ToDouble);
 
             var expression = new CompiledExpression(mo) { TypeRegistry = reg };
 

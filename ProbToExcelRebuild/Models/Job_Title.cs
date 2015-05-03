@@ -20,8 +20,6 @@ namespace ProbToExcelRebuild.Models
         [Required]
         public string JOB_TITLE_NAME { get; set; }
 
-        public virtual ICollection<Employee> Employees { get; set; }
-
         public virtual ICollection<Per_Job_Per_Department> Per_Job_Per_Department { get; set; }
     }
 }
