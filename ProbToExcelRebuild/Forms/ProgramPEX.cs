@@ -28,14 +28,14 @@ namespace ProbToExcelRebuild.Forms
             InitializeComponent();
         }
 
-        private void ErrorTextBox_TextChanged(object sender, EventArgs e)
+        private void SetBox<k,v>(ComboBox cb, IDictionary<k,v> dict)
         {
-
-        }
-
-        private void ProgramPEX_Load(object sender, EventArgs e)
-        {
-            throw new NotImplementedException();
+            if(dict.Count == 0)
+                return;
+            var jt = new SortedDictionary<k,v>(dict);
+            cb.DataSource = new BindingSource(jt, null);
+            cb.DisplayMember = "Key";
+            cb.ValueMember = "Value";
         }
 
         private string ToDouble(Match m)
@@ -143,6 +143,28 @@ namespace ProbToExcelRebuild.Forms
         private void button2_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void ProgramPEX_Load_1(object sender, EventArgs e)
+        {
+            var cfDict = db.CustomFunctions.ToDictionary(s => s.NAME, s => s.FUNCTION);
+            SetBox(CustomFunctionList, cfDict);
+            var jtDict = db.Job_Title.ToDictionary(s => s.JOB_TITLE_NAME, s => "j" + s.ID_JOB_TITLE);
+            SetBox(JobTitleList,jtDict);
+            var uDict = db.Universities.ToDictionary(s => s.UNIVERSITY_NAME, s => "u" + s.ID_UNIVERSITY);
+            SetBox(UniversityList, uDict);
+            var dDict = db.Departments.ToDictionary(s => s.ID_DEPARTMENT, s => "d" + s.ID_DEPARTMENT);
+            SetBox(DepartmentList, dDict);
+            var specialFunctions = new Dictionary<string, string>()
+            {
+                {"Mean","A"},
+                {"1st Quartile","B"},
+                {"Median","C"},
+                {"3rd Quartile","D"},
+                {"Sum","S"},
+                {"Count","N"}
+            };
+            SetBox(SpecialFunctionList, specialFunctions);
         }
     }
 }
