@@ -61,7 +61,7 @@
             this.yearHiredTextBox.Location = new System.Drawing.Point(142, 25);
             this.yearHiredTextBox.Name = "yearHiredTextBox";
             this.yearHiredTextBox.Size = new System.Drawing.Size(100, 20);
-            this.yearHiredTextBox.TabIndex = 0;
+            this.yearHiredTextBox.TabIndex = 1;
             // 
             // label2
             // 
@@ -77,7 +77,7 @@
             this.departmentIDTextBox.Location = new System.Drawing.Point(12, 72);
             this.departmentIDTextBox.Name = "departmentIDTextBox";
             this.departmentIDTextBox.Size = new System.Drawing.Size(100, 20);
-            this.departmentIDTextBox.TabIndex = 0;
+            this.departmentIDTextBox.TabIndex = 2;
             // 
             // label3
             // 
@@ -93,7 +93,7 @@
             this.dataStartTextBox.Location = new System.Drawing.Point(142, 72);
             this.dataStartTextBox.Name = "dataStartTextBox";
             this.dataStartTextBox.Size = new System.Drawing.Size(100, 20);
-            this.dataStartTextBox.TabIndex = 0;
+            this.dataStartTextBox.TabIndex = 3;
             // 
             // label4
             // 
@@ -109,7 +109,7 @@
             this.acceptButton.Location = new System.Drawing.Point(37, 98);
             this.acceptButton.Name = "acceptButton";
             this.acceptButton.Size = new System.Drawing.Size(75, 23);
-            this.acceptButton.TabIndex = 2;
+            this.acceptButton.TabIndex = 4;
             this.acceptButton.Text = "Accept";
             this.acceptButton.UseVisualStyleBackColor = true;
             this.acceptButton.Click += new System.EventHandler(this.acceptButton_Click);
@@ -119,7 +119,7 @@
             this.cancelButton.Location = new System.Drawing.Point(142, 98);
             this.cancelButton.Name = "cancelButton";
             this.cancelButton.Size = new System.Drawing.Size(75, 23);
-            this.cancelButton.TabIndex = 2;
+            this.cancelButton.TabIndex = 5;
             this.cancelButton.Text = "Cancel";
             this.cancelButton.UseVisualStyleBackColor = true;
             this.cancelButton.Click += new System.EventHandler(this.cancelButton_Click);

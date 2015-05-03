@@ -17,13 +17,13 @@ namespace ProbToExcelRebuild.Forms
         public LoadingSplash()
         {
             InitializeComponent();
-            //backgroundWorker1.RunWorkerAsync();
+
         }
 
-        public void updateLabel(string newText)
-        {
-            numProcessed.Text = newText;
-        }
+        //public void updateLabel(string newText)
+        //{
+        //    numProcessed.Text = newText;
+        //}
 
         private void progressBar1_Click(object sender, EventArgs e)
         {

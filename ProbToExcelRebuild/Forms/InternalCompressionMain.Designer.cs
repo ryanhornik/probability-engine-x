@@ -84,7 +84,7 @@
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(384, 257);
-            this.groupBox1.TabIndex = 0;
+            this.groupBox1.TabIndex = 9;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Variables";
             // 
@@ -93,7 +93,7 @@
             this.button2.Location = new System.Drawing.Point(158, 218);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 1;
+            this.button2.TabIndex = 7;
             this.button2.Text = "Exit";
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
@@ -103,7 +103,7 @@
             this.button1.Location = new System.Drawing.Point(66, 218);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 1;
+            this.button1.TabIndex = 6;
             this.button1.Text = "Calculate";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
@@ -113,14 +113,14 @@
             this.lFullTextBox.Location = new System.Drawing.Point(197, 128);
             this.lFullTextBox.Name = "lFullTextBox";
             this.lFullTextBox.Size = new System.Drawing.Size(100, 20);
-            this.lFullTextBox.TabIndex = 7;
+            this.lFullTextBox.TabIndex = 4;
             // 
             // lAssociateTextBox
             // 
             this.lAssociateTextBox.Location = new System.Drawing.Point(9, 128);
             this.lAssociateTextBox.Name = "lAssociateTextBox";
             this.lAssociateTextBox.Size = new System.Drawing.Size(100, 20);
-            this.lAssociateTextBox.TabIndex = 7;
+            this.lAssociateTextBox.TabIndex = 1;
             // 
             // label5
             // 
@@ -145,14 +145,14 @@
             this.dFullTextBox.Location = new System.Drawing.Point(197, 77);
             this.dFullTextBox.Name = "dFullTextBox";
             this.dFullTextBox.Size = new System.Drawing.Size(100, 20);
-            this.dFullTextBox.TabIndex = 7;
+            this.dFullTextBox.TabIndex = 3;
             // 
             // dAssociateTextBox
             // 
             this.dAssociateTextBox.Location = new System.Drawing.Point(9, 77);
             this.dAssociateTextBox.Name = "dAssociateTextBox";
             this.dAssociateTextBox.Size = new System.Drawing.Size(100, 20);
-            this.dAssociateTextBox.TabIndex = 7;
+            this.dAssociateTextBox.TabIndex = 0;
             // 
             // label7
             // 
@@ -195,7 +195,7 @@
             this.yearsTextBox.Location = new System.Drawing.Point(158, 180);
             this.yearsTextBox.Name = "yearsTextBox";
             this.yearsTextBox.Size = new System.Drawing.Size(100, 20);
-            this.yearsTextBox.TabIndex = 7;
+            this.yearsTextBox.TabIndex = 5;
             // 
             // label16
             // 
@@ -211,7 +211,7 @@
             this.kTextBox.Location = new System.Drawing.Point(41, 180);
             this.kTextBox.Name = "kTextBox";
             this.kTextBox.Size = new System.Drawing.Size(100, 20);
-            this.kTextBox.TabIndex = 7;
+            this.kTextBox.TabIndex = 2;
             // 
             // label1
             // 
@@ -239,7 +239,7 @@
             this.groupBox2.Location = new System.Drawing.Point(403, 13);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(332, 256);
-            this.groupBox2.TabIndex = 1;
+            this.groupBox2.TabIndex = 8;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Results";
             // 

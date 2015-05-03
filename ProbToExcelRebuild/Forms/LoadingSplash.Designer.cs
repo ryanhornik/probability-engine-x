@@ -30,7 +30,7 @@
         {
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.numProcessed = new System.Windows.Forms.Label();
+            //this.numProcessed = new System.Windows.Forms.Label();
             this.progressBar1 = new NewProgressBar();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -60,16 +60,16 @@
             // 
             // numProcessed
             // 
-            this.numProcessed.AutoSize = true;
-            this.numProcessed.BackColor = System.Drawing.SystemColors.ControlText;
-            this.numProcessed.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.numProcessed.Location = new System.Drawing.Point(159, 297);
-            this.numProcessed.MinimumSize = new System.Drawing.Size(279, 13);
-            this.numProcessed.Name = "numProcessed";
-            this.numProcessed.Size = new System.Drawing.Size(279, 13);
-            this.numProcessed.TabIndex = 1;
-            this.numProcessed.Text = "...";
-            this.numProcessed.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            //this.numProcessed.AutoSize = true;
+            //this.numProcessed.BackColor = System.Drawing.SystemColors.ControlText;
+            //this.numProcessed.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            //this.numProcessed.Location = new System.Drawing.Point(159, 297);
+            //this.numProcessed.MinimumSize = new System.Drawing.Size(279, 13);
+            //this.numProcessed.Name = "numProcessed";
+            //this.numProcessed.Size = new System.Drawing.Size(279, 13);
+            //this.numProcessed.TabIndex = 1;
+            //this.numProcessed.Text = "...";
+            //this.numProcessed.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // progressBar1
             // 
@@ -92,7 +92,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(600, 450);
             this.Controls.Add(this.progressBar1);
-            this.Controls.Add(this.numProcessed);
+            //this.Controls.Add(this.numProcessed);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.pictureBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -109,7 +109,7 @@
 
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label numProcessed;
+        //private System.Windows.Forms.Label numProcessed;
         public System.Windows.Forms.ProgressBar progressBar1;
         public System.ComponentModel.BackgroundWorker backgroundWorker1;
 

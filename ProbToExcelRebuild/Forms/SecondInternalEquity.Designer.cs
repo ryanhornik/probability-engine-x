@@ -99,7 +99,7 @@
             this.exportButton.Location = new System.Drawing.Point(173, 267);
             this.exportButton.Name = "exportButton";
             this.exportButton.Size = new System.Drawing.Size(99, 30);
-            this.exportButton.TabIndex = 3;
+            this.exportButton.TabIndex = 1;
             this.exportButton.Text = "Export To Excel";
             this.exportButton.UseVisualStyleBackColor = true;
             this.exportButton.Click += new System.EventHandler(this.exportButton_Click);

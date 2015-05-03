@@ -82,7 +82,7 @@
             this.UniversityComboBox.Location = new System.Drawing.Point(106, 229);
             this.UniversityComboBox.Name = "UniversityComboBox";
             this.UniversityComboBox.Size = new System.Drawing.Size(164, 21);
-            this.UniversityComboBox.TabIndex = 16;
+            this.UniversityComboBox.TabIndex = 5;
             this.UniversityComboBox.SelectedIndexChanged += new System.EventHandler(this.UniversityComboBox_SelectedIndexChanged);
             // 
             // label4
@@ -99,7 +99,7 @@
             this.textBox1.Location = new System.Drawing.Point(106, 186);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(164, 20);
-            this.textBox1.TabIndex = 14;
+            this.textBox1.TabIndex = 4;
             // 
             // label3
             // 
@@ -116,7 +116,7 @@
             this.comboBox1.Location = new System.Drawing.Point(106, 107);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(164, 21);
-            this.comboBox1.TabIndex = 12;
+            this.comboBox1.TabIndex = 2;
             // 
             // label2
             // 
@@ -134,14 +134,15 @@
             this.AvgTierSalTextBox.Name = "AvgTierSalTextBox";
             this.AvgTierSalTextBox.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.AvgTierSalTextBox.Size = new System.Drawing.Size(164, 20);
-            this.AvgTierSalTextBox.TabIndex = 10;
+            this.AvgTierSalTextBox.TabIndex = 3;
+            this.AvgTierSalTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // SpecialtyCodeTextBox
             // 
             this.SpecialtyCodeTextBox.Location = new System.Drawing.Point(106, 29);
             this.SpecialtyCodeTextBox.Name = "SpecialtyCodeTextBox";
             this.SpecialtyCodeTextBox.Size = new System.Drawing.Size(164, 20);
-            this.SpecialtyCodeTextBox.TabIndex = 9;
+            this.SpecialtyCodeTextBox.TabIndex = 0;
             // 
             // JobTitleComboBox
             // 
@@ -149,7 +150,7 @@
             this.JobTitleComboBox.Location = new System.Drawing.Point(106, 69);
             this.JobTitleComboBox.Name = "JobTitleComboBox";
             this.JobTitleComboBox.Size = new System.Drawing.Size(164, 21);
-            this.JobTitleComboBox.TabIndex = 5;
+            this.JobTitleComboBox.TabIndex = 1;
             this.JobTitleComboBox.SelectedIndexChanged += new System.EventHandler(this.JobTitleComboBox_SelectedIndexChanged);
             // 
             // label5
@@ -186,7 +187,7 @@
             this.EnterButton.Location = new System.Drawing.Point(284, 479);
             this.EnterButton.Name = "EnterButton";
             this.EnterButton.Size = new System.Drawing.Size(104, 34);
-            this.EnterButton.TabIndex = 1;
+            this.EnterButton.TabIndex = 6;
             this.EnterButton.Text = "Enter";
             this.EnterButton.UseVisualStyleBackColor = true;
             this.EnterButton.Click += new System.EventHandler(this.EnterButton_Click);
@@ -196,7 +197,7 @@
             this.CancleButton.Location = new System.Drawing.Point(459, 479);
             this.CancleButton.Name = "CancleButton";
             this.CancleButton.Size = new System.Drawing.Size(104, 34);
-            this.CancleButton.TabIndex = 2;
+            this.CancleButton.TabIndex = 7;
             this.CancleButton.Text = "Cancel";
             this.CancleButton.UseVisualStyleBackColor = true;
             this.CancleButton.Click += new System.EventHandler(this.CancleButton_Click);
@@ -207,7 +208,7 @@
             this.groupBox2.Location = new System.Drawing.Point(465, 55);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(397, 282);
-            this.groupBox2.TabIndex = 3;
+            this.groupBox2.TabIndex = 8;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Data Table";
             // 
@@ -225,7 +226,7 @@
             this.SpecialtyGridView.Name = "SpecialtyGridView";
             this.SpecialtyGridView.ReadOnly = true;
             this.SpecialtyGridView.Size = new System.Drawing.Size(391, 263);
-            this.SpecialtyGridView.TabIndex = 0;
+            this.SpecialtyGridView.TabIndex = 7;
             this.SpecialtyGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.SpecialtyGridView_CellContentClick);
             // 
             // SpecialtyCode

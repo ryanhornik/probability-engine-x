@@ -65,7 +65,7 @@
             this.deptIDTextBox.Location = new System.Drawing.Point(140, 34);
             this.deptIDTextBox.Name = "deptIDTextBox";
             this.deptIDTextBox.Size = new System.Drawing.Size(100, 20);
-            this.deptIDTextBox.TabIndex = 0;
+            this.deptIDTextBox.TabIndex = 1;
             // 
             // label2
             // 
@@ -81,14 +81,14 @@
             this.weightTextBox.Location = new System.Drawing.Point(12, 84);
             this.weightTextBox.Name = "weightTextBox";
             this.weightTextBox.Size = new System.Drawing.Size(100, 20);
-            this.weightTextBox.TabIndex = 0;
+            this.weightTextBox.TabIndex = 2;
             // 
             // jobTitleTextBox
             // 
             this.jobTitleTextBox.Location = new System.Drawing.Point(139, 84);
             this.jobTitleTextBox.Name = "jobTitleTextBox";
             this.jobTitleTextBox.Size = new System.Drawing.Size(100, 20);
-            this.jobTitleTextBox.TabIndex = 0;
+            this.jobTitleTextBox.TabIndex = 3;
             // 
             // label3
             // 
@@ -113,14 +113,14 @@
             this.averageSalaryTextBox.Location = new System.Drawing.Point(13, 138);
             this.averageSalaryTextBox.Name = "averageSalaryTextBox";
             this.averageSalaryTextBox.Size = new System.Drawing.Size(100, 20);
-            this.averageSalaryTextBox.TabIndex = 0;
+            this.averageSalaryTextBox.TabIndex = 4;
             // 
             // dataRowTextBox
             // 
             this.dataRowTextBox.Location = new System.Drawing.Point(140, 138);
             this.dataRowTextBox.Name = "dataRowTextBox";
             this.dataRowTextBox.Size = new System.Drawing.Size(100, 20);
-            this.dataRowTextBox.TabIndex = 0;
+            this.dataRowTextBox.TabIndex = 5;
             // 
             // label5
             // 
@@ -145,7 +145,7 @@
             this.acceptButton.Location = new System.Drawing.Point(37, 173);
             this.acceptButton.Name = "acceptButton";
             this.acceptButton.Size = new System.Drawing.Size(75, 23);
-            this.acceptButton.TabIndex = 2;
+            this.acceptButton.TabIndex = 6;
             this.acceptButton.Text = "Accept";
             this.acceptButton.UseVisualStyleBackColor = true;
             this.acceptButton.Click += new System.EventHandler(this.acceptButton_Click);
@@ -155,7 +155,7 @@
             this.cancelButton.Location = new System.Drawing.Point(139, 173);
             this.cancelButton.Name = "cancelButton";
             this.cancelButton.Size = new System.Drawing.Size(75, 23);
-            this.cancelButton.TabIndex = 2;
+            this.cancelButton.TabIndex = 7;
             this.cancelButton.Text = "Cancel";
             this.cancelButton.UseVisualStyleBackColor = true;
             this.cancelButton.Click += new System.EventHandler(this.cancelButton_Click);

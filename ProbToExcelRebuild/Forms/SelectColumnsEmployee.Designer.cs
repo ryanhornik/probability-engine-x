@@ -61,7 +61,7 @@
             this.salaryTextBox.Location = new System.Drawing.Point(12, 75);
             this.salaryTextBox.Name = "salaryTextBox";
             this.salaryTextBox.Size = new System.Drawing.Size(100, 20);
-            this.salaryTextBox.TabIndex = 0;
+            this.salaryTextBox.TabIndex = 2;
             // 
             // label2
             // 
@@ -77,14 +77,14 @@
             this.departmentTextBox.Location = new System.Drawing.Point(142, 28);
             this.departmentTextBox.Name = "departmentTextBox";
             this.departmentTextBox.Size = new System.Drawing.Size(100, 20);
-            this.departmentTextBox.TabIndex = 0;
+            this.departmentTextBox.TabIndex = 1;
             // 
             // dataRowTextBox
             // 
             this.dataRowTextBox.Location = new System.Drawing.Point(142, 75);
             this.dataRowTextBox.Name = "dataRowTextBox";
             this.dataRowTextBox.Size = new System.Drawing.Size(100, 20);
-            this.dataRowTextBox.TabIndex = 0;
+            this.dataRowTextBox.TabIndex = 3;
             // 
             // label3
             // 
@@ -109,7 +109,7 @@
             this.acceptButton.Location = new System.Drawing.Point(37, 111);
             this.acceptButton.Name = "acceptButton";
             this.acceptButton.Size = new System.Drawing.Size(75, 23);
-            this.acceptButton.TabIndex = 2;
+            this.acceptButton.TabIndex = 4;
             this.acceptButton.Text = "Accept";
             this.acceptButton.UseMnemonic = false;
             this.acceptButton.UseVisualStyleBackColor = true;
@@ -120,13 +120,13 @@
             this.cancelButton.Location = new System.Drawing.Point(141, 111);
             this.cancelButton.Name = "cancelButton";
             this.cancelButton.Size = new System.Drawing.Size(75, 23);
-            this.cancelButton.TabIndex = 2;
+            this.cancelButton.TabIndex = 5;
             this.cancelButton.Text = "Cancel";
             this.cancelButton.UseMnemonic = false;
             this.cancelButton.UseVisualStyleBackColor = true;
             this.cancelButton.Click += new System.EventHandler(this.cancelButton_Click);
             // 
-            // SelectColumns
+            // SelectColumnsEmployee
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -142,7 +142,7 @@
             this.Controls.Add(this.departmentTextBox);
             this.Controls.Add(this.salaryTextBox);
             this.Controls.Add(this.jobTitleTextBox);
-            this.Name = "SelectColumns";
+            this.Name = "SelectColumnsEmployee";
             this.Text = "Select Columns";
             this.Load += new System.EventHandler(this.SelectColumns_Load);
             this.ResumeLayout(false);

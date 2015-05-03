@@ -7,6 +7,7 @@ using System.Threading;
 using System.Windows.Forms;
 using Excel = Microsoft.Office.Interop.Excel;
 using ProbToExcelRebuild.Models;
+using System.Drawing;
 
 namespace ProbToExcelRebuild.Forms
 {
@@ -100,7 +101,7 @@ namespace ProbToExcelRebuild.Forms
                             loadForm.Invoke(new Action(() =>
                                 {
                                     loadForm.progressBar1.Value = (((dataCurrentRow - dataStartRow)*50)/totalRows);
-                                    loadForm.updateLabel("First pass of two - " + (dataCurrentRow - dataStartRow) + "/"+totalRows+" rows processed");
+                                    loadForm.progressBar1.CreateGraphics().DrawString((((dataCurrentRow - dataStartRow) * 50) / totalRows) + "%", new System.Drawing.Font("Arial", (float)8.25, System.Drawing.FontStyle.Regular), Brushes.Black, new System.Drawing.PointF(loadForm.progressBar1.Width / 2 - 10, loadForm.progressBar1.Height / 2 - 7));
                                 }));
                                 
 
@@ -168,12 +169,12 @@ namespace ProbToExcelRebuild.Forms
                             dataCurrentRow++;
                             loadForm.Invoke((new Action(() =>
                                 {
-                                    loadForm.updateLabel("Second pass of two - " + (dataCurrentRow - dataStartRow) + "/" + totalRows + " rows processed");
-                                    loadForm.progressBar1.Value = (((dataCurrentRow - dataStartRow) * 50) / totalRows) +50;
+                                    loadForm.progressBar1.Value = ((((dataCurrentRow - dataStartRow) * 50) / totalRows) + 50);
+                                    loadForm.progressBar1.CreateGraphics().DrawString(((((dataCurrentRow - dataStartRow) * 50) / totalRows) + 50) + "%", new System.Drawing.Font("Arial", (float)8.25, System.Drawing.FontStyle.Regular), Brushes.Black, new System.Drawing.PointF(loadForm.progressBar1.Width / 2 - 10, loadForm.progressBar1.Height / 2 - 7));
                                 })));
                         }
 
-                        loadForm.Invoke((new Action(() => loadForm.updateLabel("Saving changes to database"))));
+                        loadForm.Invoke((new Action(() => loadForm.progressBar1.CreateGraphics().DrawString("Saving changes to database", new System.Drawing.Font("Arial", (float)8.25, System.Drawing.FontStyle.Regular), Brushes.Black, new System.Drawing.PointF(loadForm.progressBar1.Width / 2 - 10, loadForm.progressBar1.Height / 2 - 7)))));
                         db.Employees.AddRange(newEmployees);
                         db.SaveChanges();
                     }
@@ -267,6 +268,7 @@ namespace ProbToExcelRebuild.Forms
                     var workbook = application.Workbooks.Open(openFileDialog.FileName);
                     var worksheet = (Excel.Worksheet)workbook.Worksheets.Item[1];
                     object misValue = Missing.Value;
+                    var totalRows = worksheet.UsedRange.Rows.Count - dataStartRow;
 
                     var dataCurrentRow = dataStartRow;
 
@@ -276,7 +278,11 @@ namespace ProbToExcelRebuild.Forms
 
                         while (worksheet.Range[deptIDColumn + dataCurrentRow].Value2 != null)
                         {
-                            loadForm.Invoke((new Action(() => loadForm.updateLabel("First pass of two - " + (dataCurrentRow - dataStartRow) + "/? rows processed"))));
+                            loadForm.Invoke(new Action(() =>
+                            {
+                                loadForm.progressBar1.Value = (((dataCurrentRow - dataStartRow) * 50) / totalRows);
+                                loadForm.progressBar1.CreateGraphics().DrawString((((dataCurrentRow - dataStartRow) * 50) / totalRows) + "%", new System.Drawing.Font("Arial", (float)8.25, System.Drawing.FontStyle.Regular), Brushes.Black, new System.Drawing.PointF(loadForm.progressBar1.Width / 2 - 10, loadForm.progressBar1.Height / 2 - 7));
+                            }));
 
                             var deptID = worksheet.Range[deptIDColumn + dataCurrentRow].Value2;
 
@@ -292,12 +298,12 @@ namespace ProbToExcelRebuild.Forms
                             dataCurrentRow++;
                         }
 
-                        loadForm.Invoke((new Action(() => loadForm.updateLabel("Saving changes to database"))));
+                        loadForm.Invoke((new Action(() => loadForm.progressBar1.CreateGraphics().DrawString("Saving changes to database", new System.Drawing.Font("Arial", (float)8.25, System.Drawing.FontStyle.Regular), Brushes.Black, new System.Drawing.PointF(loadForm.progressBar1.Width / 2 - 10, loadForm.progressBar1.Height / 2 - 7)))));
 
                         db.Departments.AddRange(newDepartments);
                         db.SaveChanges();
 
-                        var totalRows = dataCurrentRow - dataStartRow;
+                        //var totalRows = dataCurrentRow - dataStartRow;
                         dataCurrentRow = dataStartRow;
                         var newAverageSalaries = new List<New_Associate_Professor_Average_Salary>();
                         while (worksheet.Range[deptIDColumn + dataCurrentRow].Value2 != null)
@@ -319,10 +325,14 @@ namespace ProbToExcelRebuild.Forms
                             }
                                 );
                             dataCurrentRow++;
-                            loadForm.Invoke((new Action(() => loadForm.updateLabel("Second pass of two - " + (dataCurrentRow - dataStartRow) + "/" + totalRows + " rows processed"))));
+                            loadForm.Invoke(new Action(() =>
+                            {
+                                loadForm.progressBar1.Value = (((dataCurrentRow - dataStartRow) * 50) / totalRows) + 50;
+                                loadForm.progressBar1.CreateGraphics().DrawString(((((dataCurrentRow - dataStartRow) * 50) / totalRows)+50) + "%", new System.Drawing.Font("Arial", (float)8.25, System.Drawing.FontStyle.Regular), Brushes.Black, new System.Drawing.PointF(loadForm.progressBar1.Width / 2 - 10, loadForm.progressBar1.Height / 2 - 7));
+                            }));
                         }
 
-                        loadForm.Invoke((new Action(() => loadForm.updateLabel("Saving changes to database"))));
+                        loadForm.Invoke((new Action(() => loadForm.progressBar1.CreateGraphics().DrawString("Saving changes to database", new System.Drawing.Font("Arial", (float)8.25, System.Drawing.FontStyle.Regular), Brushes.Black, new System.Drawing.PointF(loadForm.progressBar1.Width / 2 - 10, loadForm.progressBar1.Height / 2 - 7)))));
 
                         db.New_Associate_Professor_Average_Salary.AddRange(newAverageSalaries);
                         db.SaveChanges();
@@ -395,6 +405,8 @@ namespace ProbToExcelRebuild.Forms
                     var workbook = application.Workbooks.Open(openFileDialog.FileName);
                     var worksheet = (Excel.Worksheet)workbook.Worksheets.Item[1];
                     object misValue = Missing.Value;
+                    var totalRows = worksheet.UsedRange.Rows.Count - dataStartRow;
+
 
                     var dataCurrentRow = dataStartRow;
 
@@ -406,7 +418,11 @@ namespace ProbToExcelRebuild.Forms
 
                         while (worksheet.Range[specialtyCodeColumn + dataCurrentRow].Value2 != null)
                         {
-                            loadForm.Invoke((new Action(() => loadForm.updateLabel("First pass of two - " + (dataCurrentRow - dataStartRow) + "/? rows processed"))));
+                            loadForm.Invoke(new Action(() =>
+                            {
+                                loadForm.progressBar1.Value = (((dataCurrentRow - dataStartRow) * 50) / totalRows);
+                                loadForm.progressBar1.CreateGraphics().DrawString((((dataCurrentRow - dataStartRow) * 50) / totalRows) + "%", new System.Drawing.Font("Arial", (float)8.25, System.Drawing.FontStyle.Regular), Brushes.Black, new System.Drawing.PointF(loadForm.progressBar1.Width / 2 - 10, loadForm.progressBar1.Height / 2 - 7));
+                            }));
 
                             var jobTitle = worksheet.Range[(jobTitleColumn + dataCurrentRow)].Value2;
 
@@ -458,7 +474,7 @@ namespace ProbToExcelRebuild.Forms
                         }
 
 
-                        loadForm.Invoke((new Action(() => loadForm.updateLabel("Saving changes to database"))));
+                        loadForm.Invoke((new Action(() => loadForm.progressBar1.CreateGraphics().DrawString("Saving changes to database", new System.Drawing.Font("Arial", (float)8.25, System.Drawing.FontStyle.Regular), Brushes.Black, new System.Drawing.PointF(loadForm.progressBar1.Width / 2 - 10, loadForm.progressBar1.Height / 2 - 7)))));
 
                         db.Departments.AddRange(newDepartments);
                         db.SaveChanges();
@@ -469,7 +485,7 @@ namespace ProbToExcelRebuild.Forms
                         db.Specialty_Code.AddRange(newSpecialtyCodes);
                         db.SaveChanges();
 
-                        var totalRows = dataCurrentRow - dataStartRow;
+                        //var totalRows = dataCurrentRow - dataStartRow;
                         dataCurrentRow = dataStartRow;
                         var newPerJobPerDepartment = new List<Per_Job_Per_Department>();
 
@@ -502,10 +518,14 @@ namespace ProbToExcelRebuild.Forms
                             });
 
                             dataCurrentRow++;
-                            loadForm.Invoke((new Action(() => loadForm.updateLabel("Second pass of two - " + (dataCurrentRow - dataStartRow) + "/" + totalRows + " rows processed"))));
+                            loadForm.Invoke(new Action(() =>
+                            {
+                                loadForm.progressBar1.Value = (((dataCurrentRow - dataStartRow) * 50) / totalRows) + 50;
+                                loadForm.progressBar1.CreateGraphics().DrawString(((((dataCurrentRow - dataStartRow) * 50) / totalRows)+50) + "%", new System.Drawing.Font("Arial", (float)8.25, System.Drawing.FontStyle.Regular), Brushes.Black, new System.Drawing.PointF(loadForm.progressBar1.Width / 2 - 10, loadForm.progressBar1.Height / 2 - 7));
+                            }));
                         }
 
-                        loadForm.Invoke((new Action(() => loadForm.updateLabel("Saving changes to database"))));
+                        loadForm.Invoke((new Action(() => loadForm.progressBar1.CreateGraphics().DrawString("Saving changes to database", new System.Drawing.Font("Arial", (float)8.25, System.Drawing.FontStyle.Regular), Brushes.Black, new System.Drawing.PointF(loadForm.progressBar1.Width / 2 - 10, loadForm.progressBar1.Height / 2 - 7)))));
 
                         db.Per_Job_Per_Department.AddRange(newPerJobPerDepartment);
                         db.SaveChanges();

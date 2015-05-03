@@ -76,7 +76,7 @@
             this.UniversityComboBox.Location = new System.Drawing.Point(106, 74);
             this.UniversityComboBox.Name = "UniversityComboBox";
             this.UniversityComboBox.Size = new System.Drawing.Size(148, 21);
-            this.UniversityComboBox.TabIndex = 7;
+            this.UniversityComboBox.TabIndex = 1;
             // 
             // UniversityLabel
             // 
@@ -93,7 +93,7 @@
             this.SalaryTextBox.Location = new System.Drawing.Point(106, 151);
             this.SalaryTextBox.Name = "SalaryTextBox";
             this.SalaryTextBox.Size = new System.Drawing.Size(148, 20);
-            this.SalaryTextBox.TabIndex = 5;
+            this.SalaryTextBox.TabIndex = 3;
             // 
             // DepartmentComboBox
             // 
@@ -101,7 +101,7 @@
             this.DepartmentComboBox.Location = new System.Drawing.Point(106, 112);
             this.DepartmentComboBox.Name = "DepartmentComboBox";
             this.DepartmentComboBox.Size = new System.Drawing.Size(148, 21);
-            this.DepartmentComboBox.TabIndex = 4;
+            this.DepartmentComboBox.TabIndex = 2;
             // 
             // JobTitleComboBox
             // 
@@ -109,7 +109,7 @@
             this.JobTitleComboBox.Location = new System.Drawing.Point(106, 33);
             this.JobTitleComboBox.Name = "JobTitleComboBox";
             this.JobTitleComboBox.Size = new System.Drawing.Size(148, 21);
-            this.JobTitleComboBox.TabIndex = 3;
+            this.JobTitleComboBox.TabIndex = 0;
             this.JobTitleComboBox.SelectedIndexChanged += new System.EventHandler(this.JobTitleComboBox_SelectedIndexChanged);
             // 
             // SalaryLabel
@@ -144,7 +144,7 @@
             this.EnterButton.Location = new System.Drawing.Point(285, 449);
             this.EnterButton.Name = "EnterButton";
             this.EnterButton.Size = new System.Drawing.Size(159, 42);
-            this.EnterButton.TabIndex = 3;
+            this.EnterButton.TabIndex = 4;
             this.EnterButton.Text = "Enter";
             this.EnterButton.UseVisualStyleBackColor = true;
             this.EnterButton.Click += new System.EventHandler(this.EnterButton_Click);
@@ -154,7 +154,7 @@
             this.ClearButton.Location = new System.Drawing.Point(450, 449);
             this.ClearButton.Name = "ClearButton";
             this.ClearButton.Size = new System.Drawing.Size(159, 42);
-            this.ClearButton.TabIndex = 4;
+            this.ClearButton.TabIndex = 5;
             this.ClearButton.Text = "Clear";
             this.ClearButton.UseVisualStyleBackColor = true;
             this.ClearButton.Click += new System.EventHandler(this.ClearButton_Click);
@@ -164,7 +164,7 @@
             this.CancelButton.Location = new System.Drawing.Point(615, 449);
             this.CancelButton.Name = "CancelButton";
             this.CancelButton.Size = new System.Drawing.Size(159, 42);
-            this.CancelButton.TabIndex = 5;
+            this.CancelButton.TabIndex = 6;
             this.CancelButton.Text = "Cancel";
             this.CancelButton.UseVisualStyleBackColor = true;
             this.CancelButton.Click += new System.EventHandler(this.CancelButton_Click);
@@ -175,7 +175,7 @@
             this.groupBox2.Location = new System.Drawing.Point(417, 12);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(602, 382);
-            this.groupBox2.TabIndex = 6;
+            this.groupBox2.TabIndex = 8;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Employees";
             // 
@@ -194,7 +194,7 @@
             this.EmployeeGridView.Name = "EmployeeGridView";
             this.EmployeeGridView.ReadOnly = true;
             this.EmployeeGridView.Size = new System.Drawing.Size(596, 363);
-            this.EmployeeGridView.TabIndex = 0;
+            this.EmployeeGridView.TabIndex = 7;
             // 
             // JobTitle
             // 
