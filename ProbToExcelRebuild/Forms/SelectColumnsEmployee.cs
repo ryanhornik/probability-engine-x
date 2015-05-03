@@ -15,15 +15,23 @@ namespace ProbToExcelRebuild.Forms
         public string jobTitleColumn;
         public string proposedTotalSalaryColumn;
         public string deptIDColumn;
+        public string uniColumn;
         public int dataStartRow;
+        private bool uniFromFile;
 
-        public SelectColumnsEmployee()
+        public SelectColumnsEmployee(bool uniFromFile)
         {
             InitializeComponent();
+            this.uniFromFile = uniFromFile;
         }
 
         private void acceptButton_Click(object sender, EventArgs e)
         {
+            if (uniFromFile)
+            {
+                uniColumn = uniTextBox.Text;
+            }
+
             jobTitleColumn = jobTitleTextBox.Text;
             proposedTotalSalaryColumn = salaryTextBox.Text;
             deptIDColumn = departmentTextBox.Text;
@@ -41,10 +49,24 @@ namespace ProbToExcelRebuild.Forms
 
         private void SelectColumns_Load(object sender, EventArgs e)
         {
-            jobTitleTextBox.Text = "B";
-            salaryTextBox.Text = "O";
-            departmentTextBox.Text = "AA";
-            dataRowTextBox.Text = "8";
+            if (uniFromFile)
+            {
+                uniTextBox.Text = "C";
+                jobTitleTextBox.Text = "E";
+                salaryTextBox.Text = "B";
+                departmentTextBox.Text = "D";
+                dataRowTextBox.Text = "2";
+            }
+            else
+            {
+                unilabel.Hide();
+                uniTextBox.Hide();
+                jobTitleTextBox.Text = "B";
+                salaryTextBox.Text = "O";
+                departmentTextBox.Text = "AA";
+                dataRowTextBox.Text = "8";
+            }
+
         }
     }
 }

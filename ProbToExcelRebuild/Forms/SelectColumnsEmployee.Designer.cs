@@ -38,6 +38,8 @@
             this.label4 = new System.Windows.Forms.Label();
             this.acceptButton = new System.Windows.Forms.Button();
             this.cancelButton = new System.Windows.Forms.Button();
+            this.uniTextBox = new System.Windows.Forms.TextBox();
+            this.unilabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // jobTitleTextBox
@@ -58,7 +60,7 @@
             // 
             // salaryTextBox
             // 
-            this.salaryTextBox.Location = new System.Drawing.Point(12, 75);
+            this.salaryTextBox.Location = new System.Drawing.Point(268, 28);
             this.salaryTextBox.Name = "salaryTextBox";
             this.salaryTextBox.Size = new System.Drawing.Size(100, 20);
             this.salaryTextBox.TabIndex = 0;
@@ -66,7 +68,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(9, 59);
+            this.label2.Location = new System.Drawing.Point(265, 12);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(101, 13);
             this.label2.TabIndex = 1;
@@ -106,7 +108,7 @@
             // 
             // acceptButton
             // 
-            this.acceptButton.Location = new System.Drawing.Point(37, 111);
+            this.acceptButton.Location = new System.Drawing.Point(105, 114);
             this.acceptButton.Name = "acceptButton";
             this.acceptButton.Size = new System.Drawing.Size(75, 23);
             this.acceptButton.TabIndex = 2;
@@ -117,7 +119,7 @@
             // 
             // cancelButton
             // 
-            this.cancelButton.Location = new System.Drawing.Point(141, 111);
+            this.cancelButton.Location = new System.Drawing.Point(209, 114);
             this.cancelButton.Name = "cancelButton";
             this.cancelButton.Size = new System.Drawing.Size(75, 23);
             this.cancelButton.TabIndex = 2;
@@ -126,23 +128,41 @@
             this.cancelButton.UseVisualStyleBackColor = true;
             this.cancelButton.Click += new System.EventHandler(this.cancelButton_Click);
             // 
-            // SelectColumns
+            // uniTextBox
+            // 
+            this.uniTextBox.Location = new System.Drawing.Point(15, 75);
+            this.uniTextBox.Name = "uniTextBox";
+            this.uniTextBox.Size = new System.Drawing.Size(100, 20);
+            this.uniTextBox.TabIndex = 0;
+            // 
+            // unilabel
+            // 
+            this.unilabel.AutoSize = true;
+            this.unilabel.Location = new System.Drawing.Point(12, 59);
+            this.unilabel.Name = "unilabel";
+            this.unilabel.Size = new System.Drawing.Size(91, 13);
+            this.unilabel.TabIndex = 1;
+            this.unilabel.Text = "University Column";
+            // 
+            // SelectColumnsEmployee
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(284, 149);
+            this.ClientSize = new System.Drawing.Size(429, 149);
             this.ControlBox = false;
             this.Controls.Add(this.cancelButton);
             this.Controls.Add(this.acceptButton);
+            this.Controls.Add(this.unilabel);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label3);
+            this.Controls.Add(this.uniTextBox);
             this.Controls.Add(this.dataRowTextBox);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.departmentTextBox);
             this.Controls.Add(this.salaryTextBox);
             this.Controls.Add(this.jobTitleTextBox);
-            this.Name = "SelectColumns";
+            this.Name = "SelectColumnsEmployee";
             this.Text = "Select Columns";
             this.Load += new System.EventHandler(this.SelectColumns_Load);
             this.ResumeLayout(false);
@@ -162,5 +182,7 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button acceptButton;
         private System.Windows.Forms.Button cancelButton;
+        private System.Windows.Forms.TextBox uniTextBox;
+        private System.Windows.Forms.Label unilabel;
     }
 }
