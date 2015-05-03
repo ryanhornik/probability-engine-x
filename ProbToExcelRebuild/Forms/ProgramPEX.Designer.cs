@@ -31,11 +31,8 @@ namespace ProbToExcelRebuild.Forms
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ProgramPEX));
-            this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.DebuggerTabPage = new System.Windows.Forms.TabPage();
-            this.DebugTextBox = new System.Windows.Forms.RichTextBox();
             this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.SaveButton = new System.Windows.Forms.Button();
             this.CompilerBox = new System.Windows.Forms.TextBox();
             this.UniversityList = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -55,40 +52,10 @@ namespace ProbToExcelRebuild.Forms
             this.label6 = new System.Windows.Forms.Label();
             this.AddCustom = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.tabControl1.SuspendLayout();
-            this.DebuggerTabPage.SuspendLayout();
+            this.DebugTextBox = new System.Windows.Forms.RichTextBox();
+            this.label7 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // tabControl1
-            // 
-            this.tabControl1.Controls.Add(this.DebuggerTabPage);
-            this.tabControl1.Location = new System.Drawing.Point(12, 31);
-            this.tabControl1.Name = "tabControl1";
-            this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(545, 226);
-            this.tabControl1.TabIndex = 1;
-            // 
-            // DebuggerTabPage
-            // 
-            this.DebuggerTabPage.Controls.Add(this.DebugTextBox);
-            this.DebuggerTabPage.Location = new System.Drawing.Point(4, 22);
-            this.DebuggerTabPage.Name = "DebuggerTabPage";
-            this.DebuggerTabPage.Padding = new System.Windows.Forms.Padding(3);
-            this.DebuggerTabPage.Size = new System.Drawing.Size(537, 200);
-            this.DebuggerTabPage.TabIndex = 0;
-            this.DebuggerTabPage.Text = "Output";
-            this.DebuggerTabPage.UseVisualStyleBackColor = true;
-            // 
-            // DebugTextBox
-            // 
-            this.DebugTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.DebugTextBox.Location = new System.Drawing.Point(3, 3);
-            this.DebugTextBox.Name = "DebugTextBox";
-            this.DebugTextBox.ReadOnly = true;
-            this.DebugTextBox.Size = new System.Drawing.Size(531, 194);
-            this.DebugTextBox.TabIndex = 0;
-            this.DebugTextBox.Text = "";
             // 
             // button1
             // 
@@ -100,21 +67,21 @@ namespace ProbToExcelRebuild.Forms
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // button2
+            // SaveButton
             // 
-            this.button2.Location = new System.Drawing.Point(221, 325);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(121, 37);
-            this.button2.TabIndex = 4;
-            this.button2.Text = "Save";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.SaveButton.Location = new System.Drawing.Point(221, 325);
+            this.SaveButton.Name = "SaveButton";
+            this.SaveButton.Size = new System.Drawing.Size(121, 37);
+            this.SaveButton.TabIndex = 4;
+            this.SaveButton.Text = "Save";
+            this.SaveButton.UseVisualStyleBackColor = true;
+            this.SaveButton.Click += new System.EventHandler(this.SaveButton_Click);
             // 
             // CompilerBox
             // 
-            this.CompilerBox.Location = new System.Drawing.Point(12, 284);
+            this.CompilerBox.Location = new System.Drawing.Point(19, 284);
             this.CompilerBox.Name = "CompilerBox";
-            this.CompilerBox.Size = new System.Drawing.Size(541, 20);
+            this.CompilerBox.Size = new System.Drawing.Size(531, 20);
             this.CompilerBox.TabIndex = 5;
             // 
             // UniversityList
@@ -142,6 +109,7 @@ namespace ProbToExcelRebuild.Forms
             this.AddUniversity.TabIndex = 8;
             this.AddUniversity.Text = "Add To Function";
             this.AddUniversity.UseVisualStyleBackColor = true;
+            this.AddUniversity.Click += new System.EventHandler(this.AddUniversity_Click);
             // 
             // JobTitleList
             // 
@@ -168,6 +136,7 @@ namespace ProbToExcelRebuild.Forms
             this.AddTitle.TabIndex = 8;
             this.AddTitle.Text = "Add To Function";
             this.AddTitle.UseVisualStyleBackColor = true;
+            this.AddTitle.Click += new System.EventHandler(this.AddTitle_Click);
             // 
             // DepartmentList
             // 
@@ -194,6 +163,7 @@ namespace ProbToExcelRebuild.Forms
             this.AddDepartment.TabIndex = 8;
             this.AddDepartment.Text = "Add To Function";
             this.AddDepartment.UseVisualStyleBackColor = true;
+            this.AddDepartment.Click += new System.EventHandler(this.AddDepartment_Click);
             // 
             // SpecialFunctionList
             // 
@@ -220,6 +190,7 @@ namespace ProbToExcelRebuild.Forms
             this.AddSpecial.TabIndex = 8;
             this.AddSpecial.Text = "Add To Function";
             this.AddSpecial.UseVisualStyleBackColor = true;
+            this.AddSpecial.Click += new System.EventHandler(this.AddSpecial_Click);
             // 
             // button7
             // 
@@ -265,6 +236,7 @@ namespace ProbToExcelRebuild.Forms
             this.AddCustom.TabIndex = 8;
             this.AddCustom.Text = "Add To Function";
             this.AddCustom.UseVisualStyleBackColor = true;
+            this.AddCustom.Click += new System.EventHandler(this.AddCustom_Click);
             // 
             // groupBox1
             // 
@@ -277,11 +249,31 @@ namespace ProbToExcelRebuild.Forms
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Function Helpers";
             // 
+            // DebugTextBox
+            // 
+            this.DebugTextBox.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.DebugTextBox.Location = new System.Drawing.Point(19, 37);
+            this.DebugTextBox.Name = "DebugTextBox";
+            this.DebugTextBox.ReadOnly = true;
+            this.DebugTextBox.Size = new System.Drawing.Size(531, 194);
+            this.DebugTextBox.TabIndex = 0;
+            this.DebugTextBox.Text = "";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(16, 21);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(39, 13);
+            this.label7.TabIndex = 7;
+            this.label7.Text = "Output";
+            // 
             // ProgramPEX
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(907, 374);
+            this.Controls.Add(this.DebugTextBox);
             this.Controls.Add(this.AddDepartment);
             this.Controls.Add(this.AddCustom);
             this.Controls.Add(this.AddSpecial);
@@ -294,21 +286,19 @@ namespace ProbToExcelRebuild.Forms
             this.Controls.Add(this.SpecialFunctionList);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.JobTitleList);
+            this.Controls.Add(this.label7);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.UniversityList);
             this.Controls.Add(this.CompilerBox);
             this.Controls.Add(this.button7);
-            this.Controls.Add(this.button2);
+            this.Controls.Add(this.SaveButton);
             this.Controls.Add(this.button1);
-            this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.groupBox1);
             this.HelpButton = true;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "ProgramPEX";
             this.Text = "Custom Functions";
             this.Load += new System.EventHandler(this.ProgramPEX_Load_1);
-            this.tabControl1.ResumeLayout(false);
-            this.DebuggerTabPage.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
@@ -318,11 +308,8 @@ namespace ProbToExcelRebuild.Forms
 
         #endregion
 
-        private System.Windows.Forms.TabControl tabControl1;
-        private System.Windows.Forms.TabPage DebuggerTabPage;
-        private System.Windows.Forms.RichTextBox DebugTextBox;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button SaveButton;
         private System.Windows.Forms.TextBox CompilerBox;
         private System.Windows.Forms.ComboBox UniversityList;
         private System.Windows.Forms.Label label1;
@@ -342,5 +329,7 @@ namespace ProbToExcelRebuild.Forms
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Button AddCustom;
         private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.RichTextBox DebugTextBox;
+        private System.Windows.Forms.Label label7;
     }
 }

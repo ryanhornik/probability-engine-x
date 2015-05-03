@@ -4,15 +4,17 @@ using System.ComponentModel;
 using System.Data;
 using System.Data.Entity;
 using System.Drawing;
+using System.Drawing.Text;
 using System.Linq;
+using System.Media;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices.ComTypes;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Forms.VisualStyles;
 using ExpressionEvaluator;
-using Microsoft.Office.Interop.Excel;
 using ProbToExcelRebuild.Models;
  
 
@@ -134,15 +136,39 @@ namespace ProbToExcelRebuild.Forms
             mo = doubles.Replace(mo, ToDouble);
 
             var expression = new CompiledExpression(mo) { TypeRegistry = reg };
+            try
+            {
+                var result = expression.Eval();
+            
 
-            var result = expression.Eval();
+            if (currentResultAmmount > RESULT_LIMIT)
+            {
+                IEnumerable<string> lines = DebugTextBox.Text.Split('\n');
+                lines = lines.Skip(RESULTS_TO_DELETE_ON_LIMIT);
+                var newText = lines.Aggregate("", (current, l) => current + (l + "\n"));
+                DebugTextBox.Text = newText.Remove(newText.Length - 1);
+                currentResultAmmount -= RESULTS_TO_DELETE_ON_LIMIT;
+            }
+            DebugTextBox.AppendText(result.ToString()+"\n");
+            currentResultAmmount++;
+            DebugTextBox.ScrollToCaret();
 
-            DebugTextBox.Text = result.ToString();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Function not recognized or unable to be evaluated:\n\n"+
+                    ex.Message+
+                    ((ex.InnerException == null)?"":"\nMore Details:\n"+ex.InnerException.Message));
+            }
         }
+
+        private const int RESULT_LIMIT = 200;
+        private const int RESULTS_TO_DELETE_ON_LIMIT = 50;
+        private int currentResultAmmount = 0;
 
         private void button2_Click(object sender, EventArgs e)
         {
-
+            Close();
         }
 
         private void ProgramPEX_Load_1(object sender, EventArgs e)
@@ -165,6 +191,89 @@ namespace ProbToExcelRebuild.Forms
                 {"Count","N"}
             };
             SetBox(SpecialFunctionList, specialFunctions);
+        }
+
+        private void AddCustom_Click(object sender, EventArgs e)
+        {
+            AddText(CustomFunctionList.SelectedValue.ToString());
+        }
+
+        private void AddText(string insertText)
+        {
+            var newSelectIndex = CompilerBox.SelectionStart + insertText.Length;
+            CompilerBox.Text = CompilerBox.Text.Insert(CompilerBox.SelectionStart, insertText);
+            CompilerBox.SelectionStart = newSelectIndex;
+        }
+
+        private void AddSpecial_Click(object sender, EventArgs e)
+        {
+            AddText(SpecialFunctionList.SelectedValue.ToString());
+        }
+
+        private void AddTitle_Click(object sender, EventArgs e)
+        {
+            AddText(JobTitleList.SelectedValue.ToString());
+        }
+
+        private void AddDepartment_Click(object sender, EventArgs e)
+        {
+            AddText(DepartmentList.SelectedValue.ToString());
+        }
+
+        private void AddUniversity_Click(object sender, EventArgs e)
+        {
+            AddText(UniversityList.SelectedValue.ToString());
+        }
+
+        private void SaveButton_Click(object sender, EventArgs e)
+        {
+            if (CompilerBox.Text.Length == 0)
+            {
+                SystemSounds.Asterisk.Play();
+                return;
+            }
+            var funcName = FunctionName();
+            if (funcName == null)
+            {
+                return;
+            }
+            var cf = new CustomFunction()
+            {
+                NAME = funcName,
+                FUNCTION = CompilerBox.Text
+            };
+            db.CustomFunctions.Add(cf);
+            db.SaveChanges();
+
+            var dict = db.CustomFunctions.ToDictionary(s => s.NAME, s => s.FUNCTION);
+            SetBox(CustomFunctionList,dict);
+        }
+
+        public static string FunctionName()
+        {
+            var textLabel = new Label() { Left = 25, Top = 20, Text = "Function Name" };
+            var textBox = new TextBox() { Left = 25, Top = 50, Width = 175 };
+            var confirmation = new Button() { Text = "Ok", Left = 25, Width = 75, Top = 80 };
+            var cancel = new Button() { Text = "Cancel", Left = 130, Width = 75, Top = 80 };
+            var prompt = new Form
+            {
+                Width = 250,
+                Height = 150,
+                FormBorderStyle = FormBorderStyle.FixedDialog,
+                Text = "New Function",
+                StartPosition = FormStartPosition.WindowsDefaultLocation,
+                AcceptButton = confirmation,
+                CancelButton = cancel
+            };
+            prompt.Controls.Add(textBox);
+            prompt.Controls.Add(confirmation);
+            prompt.Controls.Add(cancel);
+            prompt.Controls.Add(textLabel);
+            confirmation.Click += (sender, e) => { prompt.DialogResult = DialogResult.OK; prompt.Close(); };
+            cancel.Click += (sender, e) => { prompt.DialogResult = DialogResult.Cancel; prompt.Close(); };
+            
+            var result = prompt.ShowDialog();
+            return result == DialogResult.OK ? textBox.Text : null;
         }
     }
 }
