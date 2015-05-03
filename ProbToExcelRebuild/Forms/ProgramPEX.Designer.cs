@@ -86,26 +86,27 @@ namespace ProbToExcelRebuild.Forms
             // 
             // UniversityList
             // 
+            this.UniversityList.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.UniversityList.FormattingEnabled = true;
-            this.UniversityList.Location = new System.Drawing.Point(720, 291);
+            this.UniversityList.ItemHeight = 13;
+            this.UniversityList.Location = new System.Drawing.Point(110, 277);
             this.UniversityList.Name = "UniversityList";
-            this.UniversityList.Size = new System.Drawing.Size(121, 21);
+            this.UniversityList.Size = new System.Drawing.Size(225, 21);
             this.UniversityList.TabIndex = 6;
             // 
             // label1
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(118, 239);
+            this.label1.Location = new System.Drawing.Point(0, 260);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(53, 13);
+            this.label1.Size = new System.Drawing.Size(336, 13);
             this.label1.TabIndex = 7;
             this.label1.Text = "University";
             // 
             // AddUniversity
             // 
-            this.AddUniversity.Location = new System.Drawing.Point(618, 290);
+            this.AddUniversity.Location = new System.Drawing.Point(5, 275);
             this.AddUniversity.Name = "AddUniversity";
-            this.AddUniversity.Size = new System.Drawing.Size(96, 23);
+            this.AddUniversity.Size = new System.Drawing.Size(100, 25);
             this.AddUniversity.TabIndex = 8;
             this.AddUniversity.Text = "Add To Function";
             this.AddUniversity.UseVisualStyleBackColor = true;
@@ -113,26 +114,27 @@ namespace ProbToExcelRebuild.Forms
             // 
             // JobTitleList
             // 
+            this.JobTitleList.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.JobTitleList.FormattingEnabled = true;
-            this.JobTitleList.Location = new System.Drawing.Point(720, 183);
+            this.JobTitleList.ItemHeight = 13;
+            this.JobTitleList.Location = new System.Drawing.Point(110, 167);
             this.JobTitleList.Name = "JobTitleList";
-            this.JobTitleList.Size = new System.Drawing.Size(121, 21);
+            this.JobTitleList.Size = new System.Drawing.Size(225, 21);
             this.JobTitleList.TabIndex = 6;
             // 
             // label2
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(691, 166);
+            this.label2.Location = new System.Drawing.Point(0, 150);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(47, 13);
+            this.label2.Size = new System.Drawing.Size(339, 13);
             this.label2.TabIndex = 7;
             this.label2.Text = "Job Title";
             // 
             // AddTitle
             // 
-            this.AddTitle.Location = new System.Drawing.Point(618, 182);
+            this.AddTitle.Location = new System.Drawing.Point(5, 165);
             this.AddTitle.Name = "AddTitle";
-            this.AddTitle.Size = new System.Drawing.Size(96, 23);
+            this.AddTitle.Size = new System.Drawing.Size(100, 25);
             this.AddTitle.TabIndex = 8;
             this.AddTitle.Text = "Add To Function";
             this.AddTitle.UseVisualStyleBackColor = true;
@@ -140,26 +142,27 @@ namespace ProbToExcelRebuild.Forms
             // 
             // DepartmentList
             // 
+            this.DepartmentList.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.DepartmentList.FormattingEnabled = true;
-            this.DepartmentList.Location = new System.Drawing.Point(720, 236);
+            this.DepartmentList.ItemHeight = 13;
+            this.DepartmentList.Location = new System.Drawing.Point(110, 222);
             this.DepartmentList.Name = "DepartmentList";
-            this.DepartmentList.Size = new System.Drawing.Size(121, 21);
+            this.DepartmentList.Size = new System.Drawing.Size(225, 21);
             this.DepartmentList.TabIndex = 6;
             // 
             // label3
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(113, 184);
+            this.label3.Location = new System.Drawing.Point(0, 205);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(62, 13);
+            this.label3.Size = new System.Drawing.Size(339, 13);
             this.label3.TabIndex = 7;
             this.label3.Text = "Department";
             // 
             // AddDepartment
             // 
-            this.AddDepartment.Location = new System.Drawing.Point(618, 235);
+            this.AddDepartment.Location = new System.Drawing.Point(5, 220);
             this.AddDepartment.Name = "AddDepartment";
-            this.AddDepartment.Size = new System.Drawing.Size(96, 23);
+            this.AddDepartment.Size = new System.Drawing.Size(100, 25);
             this.AddDepartment.TabIndex = 8;
             this.AddDepartment.Text = "Add To Function";
             this.AddDepartment.UseVisualStyleBackColor = true;
@@ -167,26 +170,27 @@ namespace ProbToExcelRebuild.Forms
             // 
             // SpecialFunctionList
             // 
+            this.SpecialFunctionList.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.SpecialFunctionList.FormattingEnabled = true;
-            this.SpecialFunctionList.Location = new System.Drawing.Point(720, 128);
+            this.SpecialFunctionList.ItemHeight = 13;
+            this.SpecialFunctionList.Location = new System.Drawing.Point(110, 112);
             this.SpecialFunctionList.Name = "SpecialFunctionList";
-            this.SpecialFunctionList.Size = new System.Drawing.Size(121, 21);
+            this.SpecialFunctionList.Size = new System.Drawing.Size(225, 21);
             this.SpecialFunctionList.TabIndex = 6;
             // 
             // label4
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(675, 111);
+            this.label4.Location = new System.Drawing.Point(0, 95);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(91, 13);
+            this.label4.Size = new System.Drawing.Size(339, 13);
             this.label4.TabIndex = 7;
             this.label4.Text = "Special Functions";
             // 
             // AddSpecial
             // 
-            this.AddSpecial.Location = new System.Drawing.Point(618, 127);
+            this.AddSpecial.Location = new System.Drawing.Point(5, 110);
             this.AddSpecial.Name = "AddSpecial";
-            this.AddSpecial.Size = new System.Drawing.Size(96, 23);
+            this.AddSpecial.Size = new System.Drawing.Size(100, 25);
             this.AddSpecial.TabIndex = 8;
             this.AddSpecial.Text = "Add To Function";
             this.AddSpecial.UseVisualStyleBackColor = true;
@@ -213,26 +217,27 @@ namespace ProbToExcelRebuild.Forms
             // 
             // CustomFunctionList
             // 
+            this.CustomFunctionList.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.CustomFunctionList.FormattingEnabled = true;
-            this.CustomFunctionList.Location = new System.Drawing.Point(720, 78);
+            this.CustomFunctionList.ItemHeight = 13;
+            this.CustomFunctionList.Location = new System.Drawing.Point(110, 57);
             this.CustomFunctionList.Name = "CustomFunctionList";
-            this.CustomFunctionList.Size = new System.Drawing.Size(121, 21);
+            this.CustomFunctionList.Size = new System.Drawing.Size(225, 21);
             this.CustomFunctionList.TabIndex = 6;
             // 
             // label6
             // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(675, 61);
+            this.label6.Location = new System.Drawing.Point(0, 40);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(87, 13);
+            this.label6.Size = new System.Drawing.Size(339, 13);
             this.label6.TabIndex = 7;
             this.label6.Text = "Saved Functions";
             // 
             // AddCustom
             // 
-            this.AddCustom.Location = new System.Drawing.Point(618, 77);
+            this.AddCustom.Location = new System.Drawing.Point(5, 55);
             this.AddCustom.Name = "AddCustom";
-            this.AddCustom.Size = new System.Drawing.Size(96, 23);
+            this.AddCustom.Size = new System.Drawing.Size(100, 25);
             this.AddCustom.TabIndex = 8;
             this.AddCustom.Text = "Add To Function";
             this.AddCustom.UseVisualStyleBackColor = true;
@@ -240,11 +245,27 @@ namespace ProbToExcelRebuild.Forms
             // 
             // groupBox1
             // 
+            this.groupBox1.BackColor = System.Drawing.SystemColors.Control;
+            this.groupBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.groupBox1.Controls.Add(this.label6);
+            this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Location = new System.Drawing.Point(574, 34);
+            this.groupBox1.Controls.Add(this.label4);
+            this.groupBox1.Controls.Add(this.AddSpecial);
+            this.groupBox1.Controls.Add(this.AddDepartment);
+            this.groupBox1.Controls.Add(this.AddTitle);
+            this.groupBox1.Controls.Add(this.AddCustom);
+            this.groupBox1.Controls.Add(this.CustomFunctionList);
+            this.groupBox1.Controls.Add(this.SpecialFunctionList);
+            this.groupBox1.Controls.Add(this.AddUniversity);
+            this.groupBox1.Controls.Add(this.JobTitleList);
+            this.groupBox1.Controls.Add(this.DepartmentList);
+            this.groupBox1.Controls.Add(this.UniversityList);
+            this.groupBox1.Cursor = System.Windows.Forms.Cursors.Arrow;
+            this.groupBox1.Location = new System.Drawing.Point(571, 21);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(303, 313);
+            this.groupBox1.Size = new System.Drawing.Size(339, 341);
             this.groupBox1.TabIndex = 9;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Function Helpers";
@@ -272,23 +293,10 @@ namespace ProbToExcelRebuild.Forms
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(907, 374);
+            this.ClientSize = new System.Drawing.Size(922, 374);
             this.Controls.Add(this.DebugTextBox);
-            this.Controls.Add(this.AddDepartment);
-            this.Controls.Add(this.AddCustom);
-            this.Controls.Add(this.AddSpecial);
-            this.Controls.Add(this.AddTitle);
-            this.Controls.Add(this.AddUniversity);
-            this.Controls.Add(this.DepartmentList);
-            this.Controls.Add(this.label6);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.CustomFunctionList);
-            this.Controls.Add(this.SpecialFunctionList);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.JobTitleList);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label5);
-            this.Controls.Add(this.UniversityList);
             this.Controls.Add(this.CompilerBox);
             this.Controls.Add(this.button7);
             this.Controls.Add(this.SaveButton);
@@ -300,7 +308,6 @@ namespace ProbToExcelRebuild.Forms
             this.Text = "Custom Functions";
             this.Load += new System.EventHandler(this.ProgramPEX_Load_1);
             this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 

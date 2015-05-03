@@ -16,11 +16,11 @@ using System.Windows.Forms;
 using System.Windows.Forms.VisualStyles;
 using ExpressionEvaluator;
 using ProbToExcelRebuild.Models;
- 
+
 
 namespace ProbToExcelRebuild.Forms
 {
-    
+
     public partial class ProgramPEX : Form
     {
         private UniversityModel db = new UniversityModel();
@@ -30,11 +30,11 @@ namespace ProbToExcelRebuild.Forms
             InitializeComponent();
         }
 
-        private void SetBox<k,v>(ComboBox cb, IDictionary<k,v> dict)
+        private void SetBox<k, v>(ComboBox cb, IDictionary<k, v> dict)
         {
-            if(dict.Count == 0)
+            if (dict.Count == 0)
                 return;
-            var jt = new SortedDictionary<k,v>(dict);
+            var jt = new SortedDictionary<k, v>(dict);
             cb.DataSource = new BindingSource(jt, null);
             cb.DisplayMember = "Key";
             cb.ValueMember = "Value";
@@ -42,14 +42,14 @@ namespace ProbToExcelRebuild.Forms
 
         private string ToDouble(Match m)
         {
-            return "((double)"+m.Value+")";
+            return "((double)" + m.Value + ")";
         }
 
         private string ReplacePowers(Match m)
         {
             var caret = m.Value.IndexOf('^');
-            double before = Convert.ToDouble(m.Value.Substring(0,caret));
-            double after = Convert.ToDouble(m.Value.Substring(caret+1));
+            double before = Convert.ToDouble(m.Value.Substring(0, caret));
+            double after = Convert.ToDouble(m.Value.Substring(caret + 1));
             return Math.Pow(before, after).ToString();
         }
 
@@ -78,12 +78,12 @@ namespace ProbToExcelRebuild.Forms
                         break;
                     }
                 case 'y':
-                {
-                    var asNum = Convert.ToInt32(targetNum);
-                    ret = db.New_Associate_Professor_Average_Salary
-                        .Where(s => s.YEAR >= DateTime.Today.Year - asNum)
-                        .Average(s => s.AVERAGE_SALARY).ToString();
-                    return ret; //If we hit this no further calculations are needed maybe?
+                    {
+                        var asNum = Convert.ToInt32(targetNum);
+                        ret = db.New_Associate_Professor_Average_Salary
+                            .Where(s => s.YEAR >= DateTime.Today.Year - asNum)
+                            .Average(s => s.AVERAGE_SALARY).ToString();
+                        return ret; //If we hit this no further calculations are needed maybe?
                     }
                 default: throw new Exception("The command you have entered is invalid at character (2) legal characters include 'A','B','C','D','S','N' See help menu for details");
             }
@@ -116,6 +116,23 @@ namespace ProbToExcelRebuild.Forms
 
         private void button1_Click(object sender, EventArgs e)
         {
+            processFunction();//This way regardless of how we exit we can do a couple things
+
+            if (currentResultAmmount > RESULT_LIMIT)
+            {
+                IEnumerable<string> lines = DebugTextBox.Text.Split('\n');
+                lines = lines.Skip(RESULTS_TO_DELETE_ON_LIMIT);
+                var newText = lines.Aggregate("", (current, l) => current + (l + "\n"));
+                DebugTextBox.Text = newText.Remove(newText.Length - 1);
+                currentResultAmmount -= RESULTS_TO_DELETE_ON_LIMIT;
+                DebugTextBox.ScrollToCaret();
+            }
+
+            CompilerBox.Focus();
+        }
+
+        private void processFunction()
+        {
             var textboxCompiler = CompilerBox.Text;
             if (textboxCompiler.Length == 0)
             {
@@ -124,8 +141,8 @@ namespace ProbToExcelRebuild.Forms
             }
 
             var reg = new TypeRegistry();
-            reg.RegisterSymbol("db",db);
-            
+            reg.RegisterSymbol("db", db);
+
             Regex tokens = new Regex(@"[A-D,S,N][j,d,u,y][A-Z]?\d+");
             var mo = tokens.Replace(textboxCompiler, ReplaceTokens);
 
@@ -139,26 +156,17 @@ namespace ProbToExcelRebuild.Forms
             try
             {
                 var result = expression.Eval();
-            
 
-            if (currentResultAmmount > RESULT_LIMIT)
-            {
-                IEnumerable<string> lines = DebugTextBox.Text.Split('\n');
-                lines = lines.Skip(RESULTS_TO_DELETE_ON_LIMIT);
-                var newText = lines.Aggregate("", (current, l) => current + (l + "\n"));
-                DebugTextBox.Text = newText.Remove(newText.Length - 1);
-                currentResultAmmount -= RESULTS_TO_DELETE_ON_LIMIT;
-            }
-            DebugTextBox.AppendText(result.ToString()+"\n");
-            currentResultAmmount++;
-            DebugTextBox.ScrollToCaret();
+                DebugTextBox.AppendText(result.ToString() + "\n");
+                currentResultAmmount++;
+
 
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Function not recognized or unable to be evaluated:\n\n"+
-                    ex.Message+
-                    ((ex.InnerException == null)?"":"\nMore Details:\n"+ex.InnerException.Message));
+                MessageBox.Show("Function not recognized or unable to be evaluated:\n\n" +
+                    ex.Message +
+                    ((ex.InnerException == null) ? "" : "\nMore Details:\n" + ex.InnerException.Message));
             }
         }
 
@@ -176,7 +184,7 @@ namespace ProbToExcelRebuild.Forms
             var cfDict = db.CustomFunctions.ToDictionary(s => s.NAME, s => s.FUNCTION);
             SetBox(CustomFunctionList, cfDict);
             var jtDict = db.Job_Title.ToDictionary(s => s.JOB_TITLE_NAME, s => "j" + s.ID_JOB_TITLE);
-            SetBox(JobTitleList,jtDict);
+            SetBox(JobTitleList, jtDict);
             var uDict = db.Universities.ToDictionary(s => s.UNIVERSITY_NAME, s => "u" + s.ID_UNIVERSITY);
             SetBox(UniversityList, uDict);
             var dDict = db.Departments.ToDictionary(s => s.ID_DEPARTMENT, s => "d" + s.ID_DEPARTMENT);
@@ -191,38 +199,47 @@ namespace ProbToExcelRebuild.Forms
                 {"Count","N"}
             };
             SetBox(SpecialFunctionList, specialFunctions);
+            CompilerBox.Focus();
         }
 
         private void AddCustom_Click(object sender, EventArgs e)
         {
-            AddText(CustomFunctionList.SelectedValue.ToString());
+            AddText(CustomFunctionList);
         }
 
-        private void AddText(string insertText)
+        private void AddText(ComboBox cb)
         {
+            if (cb.SelectedItem == null)
+            {
+                SystemSounds.Asterisk.Play();
+                return;
+            }
+            var insertText = cb.SelectedValue.ToString();
             var newSelectIndex = CompilerBox.SelectionStart + insertText.Length;
             CompilerBox.Text = CompilerBox.Text.Insert(CompilerBox.SelectionStart, insertText);
             CompilerBox.SelectionStart = newSelectIndex;
+            CompilerBox.Focus();
         }
 
         private void AddSpecial_Click(object sender, EventArgs e)
         {
-            AddText(SpecialFunctionList.SelectedValue.ToString());
+
+            AddText(SpecialFunctionList);
         }
 
         private void AddTitle_Click(object sender, EventArgs e)
         {
-            AddText(JobTitleList.SelectedValue.ToString());
+            AddText(JobTitleList);
         }
 
         private void AddDepartment_Click(object sender, EventArgs e)
         {
-            AddText(DepartmentList.SelectedValue.ToString());
+            AddText(DepartmentList);
         }
 
         private void AddUniversity_Click(object sender, EventArgs e)
         {
-            AddText(UniversityList.SelectedValue.ToString());
+            AddText(UniversityList);
         }
 
         private void SaveButton_Click(object sender, EventArgs e)
@@ -237,16 +254,32 @@ namespace ProbToExcelRebuild.Forms
             {
                 return;
             }
-            var cf = new CustomFunction()
+            try
+            {
+                var cf = new CustomFunction()
             {
                 NAME = funcName,
                 FUNCTION = CompilerBox.Text
             };
-            db.CustomFunctions.Add(cf);
-            db.SaveChanges();
+                db.CustomFunctions.Add(cf);
+                db.SaveChanges();
+
+            }
+            catch (Exception ex)
+            {
+                var exText = "";
+                var currentEx = ex;
+                do
+                {
+                    exText += currentEx.Message + "\n";
+                    currentEx = currentEx.InnerException;
+                } while (currentEx != null);
+                MessageBox.Show("Unable to save the function - you may have already used that name\n\n"+"Details:\n"+exText);
+            }
+
 
             var dict = db.CustomFunctions.ToDictionary(s => s.NAME, s => s.FUNCTION);
-            SetBox(CustomFunctionList,dict);
+            SetBox(CustomFunctionList, dict);
         }
 
         public static string FunctionName()
@@ -263,7 +296,10 @@ namespace ProbToExcelRebuild.Forms
                 Text = "New Function",
                 StartPosition = FormStartPosition.WindowsDefaultLocation,
                 AcceptButton = confirmation,
-                CancelButton = cancel
+                CancelButton = cancel,
+                ControlBox = false,
+                MaximumSize = new Size(250, 150),
+                MinimumSize = new Size(250, 150)
             };
             prompt.Controls.Add(textBox);
             prompt.Controls.Add(confirmation);
@@ -271,7 +307,7 @@ namespace ProbToExcelRebuild.Forms
             prompt.Controls.Add(textLabel);
             confirmation.Click += (sender, e) => { prompt.DialogResult = DialogResult.OK; prompt.Close(); };
             cancel.Click += (sender, e) => { prompt.DialogResult = DialogResult.Cancel; prompt.Close(); };
-            
+
             var result = prompt.ShowDialog();
             return result == DialogResult.OK ? textBox.Text : null;
         }
