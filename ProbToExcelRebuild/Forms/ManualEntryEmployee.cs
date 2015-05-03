@@ -22,10 +22,7 @@ namespace ProbToExcelRebuild.Forms
 
         private void CancelButton_Click(object sender, EventArgs e)
         {
-            this.Hide();
-            MainWindow mainWindow = new MainWindow();
-            mainWindow.Show();
-            this.Close();
+            Close();
         }
 
         private void ClearButton_Click(object sender, EventArgs e)

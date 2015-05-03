@@ -217,14 +217,12 @@ namespace ProbToExcelRebuild.Forms
 
         private void enterUHDataToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //TODO add manual entry form for UH data
             ManualEntryEmployee manualForm = new ManualEntryEmployee();
-            this.Hide();
-            manualForm.Show();
+            Hide();
+            manualForm.ShowDialog();
+            Show();
         }
 
-            //this.Hide();
-            //form.Show();
         private void averageNewHireSalariesToolStripMenuItem_Click(object sender, EventArgs e)
         {
             string averageSalaryColumn;
@@ -599,7 +597,8 @@ namespace ProbToExcelRebuild.Forms
         {
             EmployeeMeanForm x = new EmployeeMeanForm();
             Hide();
-            x.Show();
+            x.ShowDialog();
+            Show();
         }
 
         private void externalCToolStripMenuItem_Click(object sender, EventArgs e)
@@ -617,14 +616,15 @@ namespace ProbToExcelRebuild.Forms
 
         private void averageNewHireDataToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            //TODO Add manual entry for new hire averages
         }
         
         private void enterSpecialCodeToolStripMenuItem_Click(object sender, EventArgs e)
         {
             SpecialCodeManualEntry form = new SpecialCodeManualEntry();
             Hide();
-            form.Show();
+            form.ShowDialog();
+            Show();
         }
 
         private void internalCompressionToolStripMenuItem_Click(object sender, EventArgs e)
@@ -648,6 +648,21 @@ namespace ProbToExcelRebuild.Forms
             Hide();
             form.ShowDialog();
             Show();
+        }
+
+        private void averageSalariesByJobToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            HelperClass.ExportToExcel(averageByJobGrid);
+        }
+
+        private void employeesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            HelperClass.ExportToExcel(employeeGrid);
+        }
+
+        private void newAverageHireSalariesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            HelperClass.ExportToExcel(newHireAveragesGrid);
         }
     }
 }

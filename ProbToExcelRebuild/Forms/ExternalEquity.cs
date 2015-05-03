@@ -44,5 +44,15 @@ namespace ProbToExcelRebuild.Forms
                 equityGrid.Rows.Add(row);
             }
         }
+
+        private void exportButton_Click(object sender, EventArgs e)
+        {
+            HelperClass.ExportToExcel(equityGrid);
+        }
+
+        private void exitButton_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
     }
 }
