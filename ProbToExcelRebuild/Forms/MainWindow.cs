@@ -204,11 +204,13 @@ namespace ProbToExcelRebuild.Forms
                                     });
                             }
                             dataCurrentRow++;
-                            loadForm.Invoke((new Action(() =>
-                                {
-                                    loadForm.progressBar1.Value = ((((dataCurrentRow - dataStartRow) * 50) / totalRows) + 50);
-                                    loadForm.progressBar1.CreateGraphics().DrawString(((((dataCurrentRow - dataStartRow) * 50) / totalRows) + 50) + "%", new System.Drawing.Font("Arial", (float)8.25, System.Drawing.FontStyle.Regular), Brushes.Black, new System.Drawing.PointF(loadForm.progressBar1.Width / 2 - 10, loadForm.progressBar1.Height / 2 - 7));
-                                })));
+                            loadForm.Invoke(new Action(() =>
+                            {
+                                var percentage = Math.Min(((dataCurrentRow - dataStartRow) * 50) / totalRows + 50, 100);
+                                loadForm.progressBar1.Value = percentage;
+                                loadForm.progressBar1.CreateGraphics()
+                                    .DrawString((percentage + "%"), new System.Drawing.Font("Arial", (float)8.25, System.Drawing.FontStyle.Regular), Brushes.Black, new System.Drawing.PointF(loadForm.progressBar1.Width / 2 - 10, loadForm.progressBar1.Height / 2 - 7));
+                            }));
                         }
 
                         loadForm.Invoke((new Action(() => loadForm.progressBar1.CreateGraphics().DrawString("Saving changes to database", new System.Drawing.Font("Arial", (float)8.25, System.Drawing.FontStyle.Regular), Brushes.Black, new System.Drawing.PointF(loadForm.progressBar1.Width / 2 - 10, loadForm.progressBar1.Height / 2 - 7)))));
@@ -364,8 +366,10 @@ namespace ProbToExcelRebuild.Forms
                             dataCurrentRow++;
                             loadForm.Invoke(new Action(() =>
                             {
-                                loadForm.progressBar1.Value = (((dataCurrentRow - dataStartRow) * 50) / totalRows) + 50;
-                                loadForm.progressBar1.CreateGraphics().DrawString(((((dataCurrentRow - dataStartRow) * 50) / totalRows)+50) + "%", new System.Drawing.Font("Arial", (float)8.25, System.Drawing.FontStyle.Regular), Brushes.Black, new System.Drawing.PointF(loadForm.progressBar1.Width / 2 - 10, loadForm.progressBar1.Height / 2 - 7));
+                                var percentage = Math.Min(((dataCurrentRow - dataStartRow)*50)/totalRows + 50, 100);
+                                loadForm.progressBar1.Value = percentage;
+                                loadForm.progressBar1.CreateGraphics()
+                                    .DrawString( (percentage+ "%"), new System.Drawing.Font("Arial", (float)8.25, System.Drawing.FontStyle.Regular), Brushes.Black, new System.Drawing.PointF(loadForm.progressBar1.Width / 2 - 10, loadForm.progressBar1.Height / 2 - 7));
                             }));
                         }
 
@@ -557,8 +561,10 @@ namespace ProbToExcelRebuild.Forms
                             dataCurrentRow++;
                             loadForm.Invoke(new Action(() =>
                             {
-                                loadForm.progressBar1.Value = (((dataCurrentRow - dataStartRow) * 50) / totalRows) + 50;
-                                loadForm.progressBar1.CreateGraphics().DrawString(((((dataCurrentRow - dataStartRow) * 50) / totalRows)+50) + "%", new System.Drawing.Font("Arial", (float)8.25, System.Drawing.FontStyle.Regular), Brushes.Black, new System.Drawing.PointF(loadForm.progressBar1.Width / 2 - 10, loadForm.progressBar1.Height / 2 - 7));
+                                var percentage = Math.Min(((dataCurrentRow - dataStartRow) * 50) / totalRows + 50, 100);
+                                loadForm.progressBar1.Value = percentage;
+                                loadForm.progressBar1.CreateGraphics()
+                                    .DrawString((percentage + "%"), new System.Drawing.Font("Arial", (float)8.25, System.Drawing.FontStyle.Regular), Brushes.Black, new System.Drawing.PointF(loadForm.progressBar1.Width / 2 - 10, loadForm.progressBar1.Height / 2 - 7));
                             }));
                         }
 

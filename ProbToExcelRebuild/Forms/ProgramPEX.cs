@@ -311,5 +311,11 @@ namespace ProbToExcelRebuild.Forms
             var result = prompt.ShowDialog();
             return result == DialogResult.OK ? textBox.Text : null;
         }
+
+        private void button2_Click_1(object sender, EventArgs e)
+        {
+            var form = new HelpForm();
+            form.ShowDialog();
+        }
     }
 }

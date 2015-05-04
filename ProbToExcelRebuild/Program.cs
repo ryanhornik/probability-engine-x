@@ -46,9 +46,9 @@ namespace ProbToExcelRebuild
                 var j = 1;
                 ws.Range[i + "" + j].Value2 = dgv.Columns[i - 'A'].HeaderText;
 
-                for (j += 1; j < dgv.RowCount; j++)
+                for (; j-1 < dgv.RowCount; j++)
                 {
-                    ws.Range[i + "" + j].Value2 = dgv.Rows[j].Cells[i - 'A'].Value;
+                    ws.Range[i + "" + (j+1)].Value2 = dgv.Rows[j-1].Cells[i - 'A'].Value;
                 }
             }
         }

@@ -54,6 +54,7 @@ namespace ProbToExcelRebuild.Forms
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.DebugTextBox = new System.Windows.Forms.RichTextBox();
             this.label7 = new System.Windows.Forms.Label();
+            this.button2 = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -247,6 +248,7 @@ namespace ProbToExcelRebuild.Forms
             // 
             this.groupBox1.BackColor = System.Drawing.SystemColors.Control;
             this.groupBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.groupBox1.Controls.Add(this.button2);
             this.groupBox1.Controls.Add(this.label6);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.label3);
@@ -288,6 +290,16 @@ namespace ProbToExcelRebuild.Forms
             this.label7.Size = new System.Drawing.Size(39, 13);
             this.label7.TabIndex = 7;
             this.label7.Text = "Output";
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(136, 311);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.TabIndex = 10;
+            this.button2.Text = "Help";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click_1);
             // 
             // ProgramPEX
             // 
@@ -338,5 +350,6 @@ namespace ProbToExcelRebuild.Forms
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.RichTextBox DebugTextBox;
         private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Button button2;
     }
 }

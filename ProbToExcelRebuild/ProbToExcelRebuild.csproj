@@ -101,6 +101,12 @@
     <Compile Include="Forms\ExternalEquity.Designer.cs">
       <DependentUpon>ExternalEquity.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\HelpForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\HelpForm.Designer.cs">
+      <DependentUpon>HelpForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\InternalCompressionMain.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -188,6 +194,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Forms\ExternalEquity.resx">
       <DependentUpon>ExternalEquity.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\helpform.resx">
+      <DependentUpon>HelpForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\InternalCompressionMain.resx">
       <DependentUpon>InternalCompressionMain.cs</DependentUpon>
