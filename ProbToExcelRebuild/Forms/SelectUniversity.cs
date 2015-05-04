@@ -14,6 +14,8 @@ namespace ProbToExcelRebuild.Forms
     public partial class SelectUniversity : Form
     {
         public University SelectedUniversity;
+        public bool FromFile;
+
         private UniversityModel db = new UniversityModel();
 
         public SelectUniversity()
@@ -30,6 +32,13 @@ namespace ProbToExcelRebuild.Forms
         //Accept Button
         private void button1_Click(object sender, EventArgs e)
         {
+            if (FromFile)
+            {
+                DialogResult = DialogResult.OK;
+                Close();
+                return;
+            }
+
             var uni = UniversityDropDown.SelectedItem;
             University castedUni;
             if (uni != null)
@@ -55,6 +64,13 @@ namespace ProbToExcelRebuild.Forms
         {
             DialogResult = DialogResult.Cancel;
             Close();
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            FromFile = fromFileCheckBox.Checked;
+            UniversityDropDown.Enabled = !FromFile;
+            UniversityDropDown.BackColor = (FromFile) ? SystemColors.ControlDark : SystemColors.Window;
         }
     }
 }

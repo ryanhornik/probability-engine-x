@@ -19,7 +19,7 @@ namespace ProbToExcelRebuild.Forms
         {
             InitializeComponent();
         }
-        
+
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Application.Exit();
@@ -27,14 +27,20 @@ namespace ProbToExcelRebuild.Forms
 
         private void excelToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            University university;
+            University university = null;
+            bool FromFile;
 
             using (var form = new SelectUniversity())
             {
                 var selectResult = form.ShowDialog();
                 if (selectResult == DialogResult.OK)
                 {
-                    university = form.SelectedUniversity;
+                    FromFile = form.FromFile;
+                    if (!form.FromFile)
+                    {
+                        university = form.SelectedUniversity;
+                    }
+
                 }
                 else
                 {
@@ -42,16 +48,21 @@ namespace ProbToExcelRebuild.Forms
                 }
             }
 
+            string universityColumn = "X";
             string jobTitleColumn;
             string proposedTotalSalaryColumn;
             string deptIDColumn;
             int dataStartRow;
 
-            using (var form = new SelectColumnsEmployee())
+            using (var form = new SelectColumnsEmployee(FromFile))
             {
                 var selectResult = form.ShowDialog();
                 if (selectResult == DialogResult.OK)
                 {
+                    if (FromFile)
+                    {
+                        universityColumn = form.uniColumn;
+                    }
                     jobTitleColumn = form.jobTitleColumn;
                     proposedTotalSalaryColumn = form.proposedTotalSalaryColumn;
                     deptIDColumn = form.deptIDColumn;
@@ -72,7 +83,7 @@ namespace ProbToExcelRebuild.Forms
 
             var result = openFileDialog.ShowDialog();
 
-            if (result == DialogResult.OK && university != null)
+            if (result == DialogResult.OK)
             {
                 var loadForm = new LoadingSplash();
                 loadForm.Show();
@@ -86,7 +97,7 @@ namespace ProbToExcelRebuild.Forms
                     var totalRows = worksheet.UsedRange.Rows.Count - dataStartRow;
                     object misValue = Missing.Value;
                     loadForm.numOfRows = totalRows;
-                    
+
 
                     var dataCurrentRow = dataStartRow;
 
@@ -95,15 +106,16 @@ namespace ProbToExcelRebuild.Forms
                         var newDepartments = new List<Department>();
                         var newJobTitles = new List<Job_Title>();
                         var newEmployees = new List<Employee>();
+                        var newUniversities = new List<University>();
 
                         while (worksheet.Range[deptIDColumn + dataCurrentRow].Value2 != null)
                         {
                             loadForm.Invoke(new Action(() =>
                                 {
-                                    loadForm.progressBar1.Value = (((dataCurrentRow - dataStartRow)*50)/totalRows);
+                                    loadForm.progressBar1.Value = (((dataCurrentRow - dataStartRow) * 50) / totalRows);
                                     loadForm.progressBar1.CreateGraphics().DrawString((((dataCurrentRow - dataStartRow) * 50) / totalRows) + "%", new System.Drawing.Font("Arial", (float)8.25, System.Drawing.FontStyle.Regular), Brushes.Black, new System.Drawing.PointF(loadForm.progressBar1.Width / 2 - 10, loadForm.progressBar1.Height / 2 - 7));
                                 }));
-                                
+
 
                             var jobTitle = worksheet.Range[(jobTitleColumn + dataCurrentRow)].Value2;
 
@@ -111,6 +123,21 @@ namespace ProbToExcelRebuild.Forms
 
                             if (jobTitle != null)
                             {
+                                if (FromFile)
+                                {
+                                    var uniName = worksheet.Range[universityColumn + dataCurrentRow].Value2;
+                                    string uniNameString = uniName.ToString();
+                                    if (!db.Universities.Any(s => s.UNIVERSITY_NAME.Equals(uniNameString)) &&
+                                        !newUniversities.Any(s => s.UNIVERSITY_NAME.Equals(uniNameString)))
+                                    {
+                                        newUniversities.Add(new University()
+                                        {
+                                            UNIVERSITY_NAME = uniNameString,
+                                            IS_TIER_1 = true
+                                        });
+                                    }
+                                }
+
                                 string deptIDString = deptID.ToString();
                                 if (!db.Departments.Any(s => s.ID_DEPARTMENT.Equals(deptIDString)) && !newDepartments.Any(s => s.ID_DEPARTMENT.Equals(deptIDString)))
                                 {
@@ -139,6 +166,9 @@ namespace ProbToExcelRebuild.Forms
                         db.Job_Title.AddRange(newJobTitles);
                         db.SaveChanges();
 
+                        db.Universities.AddRange(newUniversities);
+                        db.SaveChanges();
+
                         dataCurrentRow = dataStartRow;
                         while (worksheet.Range[deptIDColumn + dataCurrentRow].Value2 != null)
                         {
@@ -156,6 +186,13 @@ namespace ProbToExcelRebuild.Forms
 
                                 string jobTitleString = jobTitle.ToString();
                                 Job_Title title = db.Job_Title.First(s => s.JOB_TITLE_NAME.Equals(jobTitleString));
+
+                                if (FromFile)
+                                {
+                                    var uniName = worksheet.Range[universityColumn + dataCurrentRow].Value2;
+                                    string uniNameString = uniName.ToString();
+                                    university = db.Universities.First(s => s.UNIVERSITY_NAME.Equals(uniNameString));
+                                }
 
                                 newEmployees.Add(
                                     new Employee()
@@ -560,7 +597,7 @@ namespace ProbToExcelRebuild.Forms
         private void UpdateEmployeeGridView()
         {
             var rowCount = employeeGrid.Rows.Count;
-            for (var i = rowCount-1; i >= 0; i--)
+            for (var i = rowCount - 1; i >= 0; i--)
             {
                 employeeGrid.Rows.RemoveAt(i);
             }
@@ -592,7 +629,7 @@ namespace ProbToExcelRebuild.Forms
                 newHireAveragesGrid.Rows.Add(row);
             }
         }
-        
+
         private void UpdateAverageByJobGridView()
         {
             var rowCount = averageByJobGrid.Rows.Count;
@@ -638,7 +675,7 @@ namespace ProbToExcelRebuild.Forms
         {
             //TODO Add manual entry for new hire averages
         }
-        
+
         private void enterSpecialCodeToolStripMenuItem_Click(object sender, EventArgs e)
         {
             SpecialCodeManualEntry form = new SpecialCodeManualEntry();
