@@ -28,11 +28,36 @@ namespace ProbToExcelRebuild.Forms
                 "After running you will see your output " +
                 "in the text area at the top left.",
 
-                "",
+                "\nSupport Operators\n\n"+
+                "These are the supported operators: +(plus)"+
+                ", -(subtraction), /(divide), *(multiplication)\n"+
+                ", )((parentheses), <=(less than or equal), >="+
+                ", <(less than), >(greater than), ==(equals), ^"+
+                "(power)",
                 
-                "",
+                "\nWorking with your data\n\n"+
+                "Saving Functions:\n"+
+                "You can save any working function you want"+
+                " after you have completed it by clicking on the Save"+
+                " button. This will allow you to call these functions from the"+
+                " drop down menu.\n\n"+
+                "Using Stored Data:\n"+
+                "You can use stored data such as University, Job Title, "+
+                "etc, that is imported from the excel documents. They are found in the drop"+
+                " down menus.\n\n"+
+                "Adding Values to the console:\n"+
+                "Click on the Add to function button to add a function to the console.\n\n",
 
-                ""//TODO finish help text
+                "Special Functions:\n\n"+
+                "A: Finds the mean.\n"+
+                "B: Finds the first quartile.\n"+
+                "C: Finds the median.\n"+
+                "D: Finds the third quartile.\n"+
+                "S: Finds the summation of all total salarys.\n"+
+                "N: Finds the amount of items selected.\n"+
+                "AyX: Finds the average salary of a given title of X number of years back.\n"
+
+
             };
             InitializeComponent();
         }

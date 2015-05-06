@@ -342,7 +342,6 @@ namespace ProbToExcelRebuild.Forms
                         db.Departments.AddRange(newDepartments);
                         db.SaveChanges();
 
-                        //var totalRows = dataCurrentRow - dataStartRow;
                         dataCurrentRow = dataStartRow;
                         var newAverageSalaries = new List<New_Associate_Professor_Average_Salary>();
                         while (worksheet.Range[deptIDColumn + dataCurrentRow].Value2 != null)
