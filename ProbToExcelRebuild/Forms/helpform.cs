@@ -33,7 +33,7 @@ namespace ProbToExcelRebuild.Forms
                 ", -(subtraction), /(divide), *(multiplication)\n"+
                 ", )((parentheses), <=(less than or equal), >="+
                 ", <(less than), >(greater than), ==(equals), ^"+
-                "(power)",
+                "(power)\n",
                 
                 "\nWorking with your data\n\n"+
                 "Saving Functions:\n"+
@@ -55,7 +55,9 @@ namespace ProbToExcelRebuild.Forms
                 "D: Finds the third quartile.\n"+
                 "S: Finds the summation of all total salarys.\n"+
                 "N: Finds the amount of items selected.\n"+
-                "AyX: Finds the average salary of a given title of X number of years back.\n"
+                "AyX: Finds the average salary of a given title of X number of years back.\n"+
+                "Example:\n"+
+                "Aj1: This will find the mean of a job title id of number 1"
 
 
             };
