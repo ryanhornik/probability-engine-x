@@ -111,7 +111,6 @@ namespace ProbToExcelRebuild.Forms
             db.Employees.Add(sal);
             db.SaveChanges();
             Invoke(new Action(UpdateEmployeeGridView));
-            //UpdateEmployeeGridView();
         }
 
         private void groupBox1_Enter(object sender, EventArgs e)

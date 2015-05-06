@@ -140,6 +140,12 @@
     <Compile Include="Forms\MainWindow.Designer.cs">
       <DependentUpon>MainWindow.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\ManualEntryAverage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ManualEntryAverage.Designer.cs">
+      <DependentUpon>ManualEntryAverage.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\ProgramPEX.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -199,6 +205,11 @@
     <Compile Include="Models\Specialty_Code.cs" />
     <Compile Include="Models\University.cs" />
     <Compile Include="Models\UniversityModel.cs" />
+    <Compile Include="ProbAppDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ProbAppDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Forms\ErrorMessageBox.resx">
@@ -221,6 +232,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\MainWindow.resx">
       <DependentUpon>MainWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ManualEntryAverage.resx">
+      <DependentUpon>ManualEntryAverage.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\ProgramPEX.resx">
       <DependentUpon>ProgramPEX.cs</DependentUpon>
@@ -257,6 +271,17 @@
       <DesignTime>True</DesignTime>
     </Compile>
     <None Include="packages.config" />
+    <None Include="ProbAppDataSet.xsc">
+      <DependentUpon>ProbAppDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="ProbAppDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ProbAppDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="ProbAppDataSet.xss">
+      <DependentUpon>ProbAppDataSet.xsd</DependentUpon>
+    </None>
     <None Include="ProbToExcelRebuild_TemporaryKey.pfx" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

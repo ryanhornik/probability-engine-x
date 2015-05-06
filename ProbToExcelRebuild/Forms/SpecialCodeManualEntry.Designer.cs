@@ -71,7 +71,7 @@
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Location = new System.Drawing.Point(25, 55);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(303, 352);
+            this.groupBox1.Size = new System.Drawing.Size(303, 277);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Specialty Data Entry";
@@ -205,9 +205,9 @@
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.SpecialtyGridView);
-            this.groupBox2.Location = new System.Drawing.Point(465, 55);
+            this.groupBox2.Location = new System.Drawing.Point(334, 55);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(397, 282);
+            this.groupBox2.Size = new System.Drawing.Size(528, 352);
             this.groupBox2.TabIndex = 8;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Data Table";
@@ -225,7 +225,7 @@
             this.SpecialtyGridView.Location = new System.Drawing.Point(3, 16);
             this.SpecialtyGridView.Name = "SpecialtyGridView";
             this.SpecialtyGridView.ReadOnly = true;
-            this.SpecialtyGridView.Size = new System.Drawing.Size(391, 263);
+            this.SpecialtyGridView.Size = new System.Drawing.Size(522, 333);
             this.SpecialtyGridView.TabIndex = 7;
             this.SpecialtyGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.SpecialtyGridView_CellContentClick);
             // 
@@ -254,7 +254,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(874, 525);
+            this.ClientSize = new System.Drawing.Size(874, 523);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.CancleButton);
             this.Controls.Add(this.EnterButton);

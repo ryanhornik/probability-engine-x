@@ -767,7 +767,10 @@ namespace ProbToExcelRebuild.Forms
 
         private void averageNewHireDataToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //TODO Add manual entry for new hire averages
+            ManualEntryAverage form = new ManualEntryAverage();
+            Hide();
+            form.ShowDialog();
+            Show();
         }
 
         private void enterSpecialCodeToolStripMenuItem_Click(object sender, EventArgs e)
