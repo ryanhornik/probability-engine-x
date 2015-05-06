@@ -17,7 +17,6 @@ namespace ProbToExcelRebuild.Models
         }
 
         [Key]
-        [StringLength(10)]
         public string ID_DEPARTMENT { get; set; }
 
         public virtual ICollection<New_Associate_Professor_Average_Salary> New_Associate_Professor_Average_Salary { get; set; }

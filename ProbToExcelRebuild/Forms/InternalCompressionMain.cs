@@ -30,7 +30,7 @@ namespace ProbToExcelRebuild.Forms
             var adjustedMedianAssociate = (avgRecentHires*k + 7000)*Math.Pow(dAssociate, lAssociate);
             adjMedAss.Text = adjustedMedianAssociate.ToString();
 
-            var adjustedMedianFull = (adjustedMedianAssociate + 100000)*Math.Pow(dFull, lFull);
+            var adjustedMedianFull = (adjustedMedianAssociate + 10000)*Math.Pow(dFull, lFull);
             adjMedFull.Text = adjustedMedianFull.ToString();
 
             var ASSOCIATE_PROFESSOR = db.Job_Title.First(s => s.JOB_TITLE_NAME.Equals("ASSOCIATE PROFESSOR"));

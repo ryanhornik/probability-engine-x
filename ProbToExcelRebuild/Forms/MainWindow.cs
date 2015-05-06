@@ -219,7 +219,7 @@ namespace ProbToExcelRebuild.Forms
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show("Import Failed: " + ex.Message);
+                        MessageBox.Show("Import Failed: " + ex.Message + "\n" + ex.StackTrace + "\n" + ex.Data);
                     }
 
                     workbook.Close(true, misValue, misValue);
