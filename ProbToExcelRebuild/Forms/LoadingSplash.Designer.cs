@@ -28,10 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LoadingSplash));
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
-            //this.numProcessed = new System.Windows.Forms.Label();
-            this.progressBar1 = new NewProgressBar();
+            this.progressBar1 = new ProbToExcelRebuild.Forms.LoadingSplash.NewProgressBar();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -46,6 +46,7 @@
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
+            this.pictureBox1.UseWaitCursor = true;
             // 
             // label1
             // 
@@ -57,19 +58,7 @@
             this.label1.Size = new System.Drawing.Size(279, 13);
             this.label1.TabIndex = 1;
             this.label1.Text = "Processing excel document this may take a few minutes...";
-            // 
-            // numProcessed
-            // 
-            //this.numProcessed.AutoSize = true;
-            //this.numProcessed.BackColor = System.Drawing.SystemColors.ControlText;
-            //this.numProcessed.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            //this.numProcessed.Location = new System.Drawing.Point(159, 297);
-            //this.numProcessed.MinimumSize = new System.Drawing.Size(279, 13);
-            //this.numProcessed.Name = "numProcessed";
-            //this.numProcessed.Size = new System.Drawing.Size(279, 13);
-            //this.numProcessed.TabIndex = 1;
-            //this.numProcessed.Text = "...";
-            //this.numProcessed.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label1.UseWaitCursor = true;
             // 
             // progressBar1
             // 
@@ -79,6 +68,7 @@
             this.progressBar1.Name = "progressBar1";
             this.progressBar1.Size = new System.Drawing.Size(276, 16);
             this.progressBar1.TabIndex = 2;
+            this.progressBar1.UseWaitCursor = true;
             // 
             // backgroundWorker1
             // 
@@ -92,13 +82,15 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(600, 450);
             this.Controls.Add(this.progressBar1);
-            //this.Controls.Add(this.numProcessed);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.pictureBox1);
+            this.Cursor = System.Windows.Forms.Cursors.WaitCursor;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "LoadingSplash";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "LoadingSplash";
+            this.UseWaitCursor = true;
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -110,7 +102,7 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label label1;
         //private System.Windows.Forms.Label numProcessed;
-        public System.Windows.Forms.ProgressBar progressBar1;
+        public NewProgressBar progressBar1;
         public System.ComponentModel.BackgroundWorker backgroundWorker1;
 
     }

@@ -20,11 +20,6 @@ namespace ProbToExcelRebuild.Forms
 
         }
 
-        //public void updateLabel(string newText)
-        //{
-        //    numProcessed.Text = newText;
-        //}
-
         private void progressBar1_Click(object sender, EventArgs e)
         {
 
@@ -50,11 +45,29 @@ namespace ProbToExcelRebuild.Forms
 
         }
 
-        class NewProgressBar : ProgressBar
+        public class NewProgressBar : ProgressBar
         {
+            public void SetValue(int value)
+            {
+                SetValue(value, null);
+            }
+
+            private readonly Font BarFont = new Font("Arial", (float) 8.25, FontStyle.Regular);
+
+            public void SetValue(int value, string message)
+            {
+                var text = message ?? value+"%";
+                Value = Math.Min(value,100);
+                CreateGraphics().DrawString(
+                    text,
+                    BarFont,
+                    Brushes.Black, 
+                    new PointF(Width / 2 - 10, Height / 2 - 7));
+            }
+
             public NewProgressBar()
             {
-                this.SetStyle(ControlStyles.UserPaint, true);
+                SetStyle(ControlStyles.UserPaint, true);
             }
 
             protected override void OnPaint(PaintEventArgs e)

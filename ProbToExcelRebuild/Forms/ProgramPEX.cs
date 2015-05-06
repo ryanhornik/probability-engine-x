@@ -164,9 +164,7 @@ namespace ProbToExcelRebuild.Forms
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Function not recognized or unable to be evaluated:\n\n" +
-                    ex.Message +
-                    ((ex.InnerException == null) ? "" : "\nMore Details:\n" + ex.InnerException.Message));
+                new ErrorMessageBox(ex, "Function parsing failed").ShowDialog();
             }
         }
 
@@ -267,14 +265,7 @@ namespace ProbToExcelRebuild.Forms
             }
             catch (Exception ex)
             {
-                var exText = "";
-                var currentEx = ex;
-                do
-                {
-                    exText += currentEx.Message + "\n";
-                    currentEx = currentEx.InnerException;
-                } while (currentEx != null);
-                MessageBox.Show("Unable to save the function - you may have already used that name\n\n"+"Details:\n"+exText);
+                new ErrorMessageBox(ex, "Failed to save the function - the name may already be taken").ShowDialog();
             }
 
 

@@ -17,7 +17,6 @@ namespace ProbToExcelRebuild.Models
         [StringLength(50)]
         public string ID_CODE { get; set; }
 
-        [StringLength(10)]
         public string ID_DEPARTMENT { get; set; }
 
         public double WEIGHT { get; set; }
