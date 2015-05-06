@@ -12,12 +12,16 @@ namespace ProbToExcelRebuild.Forms
 {
     public partial class SelectColumnsPerDepartmentPerSpecialCode : Form
     {
-        public string averageSalaryColumn { get; set; }
-        public string specialtyCodeColumn { get; set; }
-        public string jobTitleColumn { get; set; }
-        public string weightColumn { get; set; }
-        public string deptIDColumn { get; set; }
-        public int dataStartRow { get; set; }
+        public string Document1SpecialtyCodeColumn { get; set; }
+        public string Document1CodeWeightColumn { get; set; }
+        public string Document1DepartmentIdColumn { get; set; }
+        public int Document1DataRow { get; set; }
+
+        public string Document2SpecialtyCodeColumn { get; set; }
+        public string Document2SalaryColumn { get; set; }
+        public string Document2JobTitleColumn { get; set; }
+        public int Document2DataRow { get; set; }
+
 
         public SelectColumnsPerDepartmentPerSpecialCode()
         {
@@ -26,12 +30,15 @@ namespace ProbToExcelRebuild.Forms
 
         private void acceptButton_Click(object sender, EventArgs e)
         {
-            averageSalaryColumn = averageSalaryTextBox.Text;
-            specialtyCodeColumn = specialtyCodeTextBox.Text;
-            jobTitleColumn = jobTitleTextBox.Text;
-            weightColumn = weightTextBox.Text;
-            deptIDColumn = deptIDTextBox.Text;
-            dataStartRow = Convert.ToInt32(dataRowTextBox.Text);
+            Document1SpecialtyCodeColumn = specialtyCode1TextBox.Text;
+            Document1CodeWeightColumn = weightTextBox.Text;
+            Document1DepartmentIdColumn = deptIDTextBox.Text;
+            Document1DataRow = Convert.ToInt32(dataRow1TextBox.Text);
+            
+            Document2SpecialtyCodeColumn = specialtyCode2TextBox.Text;
+            Document2SalaryColumn = averageSalaryTextBox.Text;
+            Document2JobTitleColumn = jobTitleTextBox.Text;
+            Document2DataRow = Convert.ToInt32(dataRow2TextBox.Text);
 
             DialogResult = DialogResult.OK;
             Close();
@@ -45,12 +52,15 @@ namespace ProbToExcelRebuild.Forms
 
         private void SelectColumnsPerDepartmentPerSpecialCode_Load(object sender, EventArgs e)
         {
-            averageSalaryTextBox.Text = "E";
-            specialtyCodeTextBox.Text = "A";
-            jobTitleTextBox.Text = "D";
-            weightTextBox.Text = "C";
-            deptIDTextBox.Text = "B";
-            dataRowTextBox.Text = "2";
+            specialtyCode1TextBox.Text = "A";
+            weightTextBox.Text = "D";
+            deptIDTextBox.Text = "C";
+            dataRow1TextBox.Text = "2";
+
+            specialtyCode2TextBox.Text = "C";
+            averageSalaryTextBox.Text = "A";
+            jobTitleTextBox.Text = "B";
+            dataRow2TextBox.Text = "2";
         }
     }
 }

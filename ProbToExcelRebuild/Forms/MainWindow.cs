@@ -8,6 +8,7 @@ using System.Windows.Forms;
 using Excel = Microsoft.Office.Interop.Excel;
 using ProbToExcelRebuild.Models;
 using System.Drawing;
+using System.Globalization;
 
 namespace ProbToExcelRebuild.Forms
 {
@@ -127,8 +128,8 @@ namespace ProbToExcelRebuild.Forms
                                 {
                                     var uniName = worksheet.Range[universityColumn + dataCurrentRow].Value2;
                                     string uniNameString = uniName.ToString();
-                                    if (!db.Universities.Any(s => s.UNIVERSITY_NAME.Equals(uniNameString)) &&
-                                        !newUniversities.Any(s => s.UNIVERSITY_NAME.Equals(uniNameString)))
+                                    if (!db.Universities.Any(s => s.UNIVERSITY_NAME.Equals(uniNameString, StringComparison.OrdinalIgnoreCase)) &&
+                                        !newUniversities.Any(s => s.UNIVERSITY_NAME.Equals(uniNameString, StringComparison.OrdinalIgnoreCase)))
                                     {
                                         newUniversities.Add(new University()
                                         {
@@ -138,21 +139,22 @@ namespace ProbToExcelRebuild.Forms
                                     }
                                 }
 
-                                string deptIDString = deptID.ToString();
-                                if (!db.Departments.Any(s => s.ID_DEPARTMENT.Equals(deptIDString)) && !newDepartments.Any(s => s.ID_DEPARTMENT.Equals(deptIDString)))
+                                string deptIDString = deptID.ToString().ToUpper();
+                                if (!db.Departments.Any(s => s.ID_DEPARTMENT.Equals(deptIDString)) &&
+                                    !newDepartments.Any(s => s.ID_DEPARTMENT.Equals(deptIDString)))
                                 {
                                     newDepartments.Add(new Department()
                                     {
-                                        ID_DEPARTMENT = deptID.ToString()
+                                        ID_DEPARTMENT = deptIDString
                                     });
                                 }
 
-                                string jobTitleString = jobTitle.ToString();
+                                string jobTitleString = jobTitle.ToString().ToUpper();
                                 if (!db.Job_Title.Any(s => s.JOB_TITLE_NAME.Equals(jobTitleString)) && !newJobTitles.Any(s => s.JOB_TITLE_NAME.Equals(jobTitleString)))
                                 {
                                     newJobTitles.Add(new Job_Title()
                                     {
-                                        JOB_TITLE_NAME = jobTitle.ToString()
+                                        JOB_TITLE_NAME = jobTitleString
                                     });
                                 }
                             }
@@ -181,17 +183,17 @@ namespace ProbToExcelRebuild.Forms
 
                             if (jobTitle != null)
                             {
-                                string deptIDString = deptID.ToString();
+                                string deptIDString = deptID.ToString().ToUpper();
                                 Department dept = db.Departments.First(s => s.ID_DEPARTMENT == deptIDString);
 
-                                string jobTitleString = jobTitle.ToString();
+                                string jobTitleString = jobTitle.ToString().ToUpper();
                                 Job_Title title = db.Job_Title.First(s => s.JOB_TITLE_NAME.Equals(jobTitleString));
 
                                 if (FromFile)
                                 {
                                     var uniName = worksheet.Range[universityColumn + dataCurrentRow].Value2;
                                     string uniNameString = uniName.ToString();
-                                    university = db.Universities.First(s => s.UNIVERSITY_NAME.Equals(uniNameString));
+                                    university = db.Universities.First(s => s.UNIVERSITY_NAME.Equals(uniNameString, StringComparison.OrdinalIgnoreCase));
                                 }
 
                                 newEmployees.Add(
@@ -325,12 +327,13 @@ namespace ProbToExcelRebuild.Forms
 
                             var deptID = worksheet.Range[deptIDColumn + dataCurrentRow].Value2;
 
-                            string deptIDString = deptID.ToString();
-                            if (!db.Departments.Any(s => s.ID_DEPARTMENT.Equals(deptIDString)) && !newDepartments.Any(s => s.ID_DEPARTMENT.Equals(deptIDString)))
+                            string deptIDString = deptID.ToString().ToUpper();
+                            if (!db.Departments.Any(s => s.ID_DEPARTMENT.Equals(deptIDString)) &&
+                                !newDepartments.Any(s => s.ID_DEPARTMENT.Equals(deptIDString)))
                             {
                                 newDepartments.Add(new Department()
                                 {
-                                    ID_DEPARTMENT = deptID.ToString()
+                                    ID_DEPARTMENT = deptIDString
                                 });
                             }
 
@@ -342,7 +345,6 @@ namespace ProbToExcelRebuild.Forms
                         db.Departments.AddRange(newDepartments);
                         db.SaveChanges();
 
-                        //var totalRows = dataCurrentRow - dataStartRow;
                         dataCurrentRow = dataStartRow;
                         var newAverageSalaries = new List<New_Associate_Professor_Average_Salary>();
                         while (worksheet.Range[deptIDColumn + dataCurrentRow].Value2 != null)
@@ -353,7 +355,7 @@ namespace ProbToExcelRebuild.Forms
 
                             var yearHired = worksheet.Range[yearHiredColumn + dataCurrentRow].Value2;
 
-                            string deptIDString = deptID.ToString();
+                            string deptIDString = deptID.ToString().ToUpper();
                             var dept = db.Departments.First(s => s.ID_DEPARTMENT.Equals(deptIDString));
 
                             newAverageSalaries.Add(new New_Associate_Professor_Average_Salary()
@@ -366,10 +368,10 @@ namespace ProbToExcelRebuild.Forms
                             dataCurrentRow++;
                             loadForm.Invoke(new Action(() =>
                             {
-                                var percentage = Math.Min(((dataCurrentRow - dataStartRow)*50)/totalRows + 50, 100);
+                                var percentage = Math.Min(((dataCurrentRow - dataStartRow) * 50) / totalRows + 50, 100);
                                 loadForm.progressBar1.Value = percentage;
                                 loadForm.progressBar1.CreateGraphics()
-                                    .DrawString( (percentage+ "%"), new System.Drawing.Font("Arial", (float)8.25, System.Drawing.FontStyle.Regular), Brushes.Black, new System.Drawing.PointF(loadForm.progressBar1.Width / 2 - 10, loadForm.progressBar1.Height / 2 - 7));
+                                    .DrawString((percentage + "%"), new System.Drawing.Font("Arial", (float)8.25, System.Drawing.FontStyle.Regular), Brushes.Black, new System.Drawing.PointF(loadForm.progressBar1.Width / 2 - 10, loadForm.progressBar1.Height / 2 - 7));
                             }));
                         }
 
@@ -400,24 +402,32 @@ namespace ProbToExcelRebuild.Forms
 
         private void averagesPerSalaryPerDepartmentToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            string averageSalaryColumn;
-            string specialtyCodeColumn;
-            string jobTitleColumn;
-            string weightColumn;
-            string deptIDColumn;
-            int dataStartRow;
+
+            #region Preparation
+            string Document1SpecialtyCodeColumn;
+            string Document1CodeWeightColumn;
+            string Document1DepartmentIdColumn;
+            int Document1DataRow;
+
+            string Document2SpecialtyCodeColumn;
+            string Document2SalaryColumn;
+            string Document2JobTitleColumn;
+            int Document2DataRow;
 
             using (var form = new SelectColumnsPerDepartmentPerSpecialCode())
             {
                 var selectResult = form.ShowDialog();
                 if (selectResult == DialogResult.OK)
                 {
-                    averageSalaryColumn = form.averageSalaryColumn;
-                    specialtyCodeColumn = form.specialtyCodeColumn;
-                    jobTitleColumn = form.jobTitleColumn;
-                    weightColumn = form.weightColumn;
-                    deptIDColumn = form.deptIDColumn;
-                    dataStartRow = form.dataStartRow;
+                    Document1SpecialtyCodeColumn = form.Document1SpecialtyCodeColumn;
+                    Document1CodeWeightColumn = form.Document1CodeWeightColumn;
+                    Document1DepartmentIdColumn = form.Document1DepartmentIdColumn;
+                    Document1DataRow = form.Document1DataRow;
+
+                    Document2SpecialtyCodeColumn = form.Document2SpecialtyCodeColumn;
+                    Document2SalaryColumn = form.Document2SalaryColumn;
+                    Document2JobTitleColumn = form.Document2JobTitleColumn;
+                    Document2DataRow = form.Document2DataRow;
                 }
                 else
                 {
@@ -425,172 +435,214 @@ namespace ProbToExcelRebuild.Forms
                 }
             }
 
-            OpenFileDialog openFileDialog = new OpenFileDialog
+            OpenFileDialog document1 = new OpenFileDialog
             {
                 Filter = "Excel Files (.xls, .xlsx)|*.xlsx;*.xls",
                 FilterIndex = 1,
                 Multiselect = false
             };
-
-            var result = openFileDialog.ShowDialog();
-
-            if (result == DialogResult.OK)
+            var result = document1.ShowDialog();
+            if (result != DialogResult.OK)
             {
-                var loadForm = new LoadingSplash();
-                loadForm.Show();
-                Hide();
-
-                var thread = new Thread(() =>
-                {
-                    var application = new Excel.Application();
-                    var workbook = application.Workbooks.Open(openFileDialog.FileName);
-                    var worksheet = (Excel.Worksheet)workbook.Worksheets.Item[1];
-                    object misValue = Missing.Value;
-                    var totalRows = worksheet.UsedRange.Rows.Count - dataStartRow;
-
-
-                    var dataCurrentRow = dataStartRow;
-
-                    try
-                    {
-                        var newDepartments = new List<Department>();
-                        var newJobTitles = new List<Job_Title>();
-                        var newSpecialtyCodes = new List<Specialty_Code>();
-
-                        while (worksheet.Range[specialtyCodeColumn + dataCurrentRow].Value2 != null)
-                        {
-                            loadForm.Invoke(new Action(() =>
-                            {
-                                loadForm.progressBar1.Value = (((dataCurrentRow - dataStartRow) * 50) / totalRows);
-                                loadForm.progressBar1.CreateGraphics().DrawString((((dataCurrentRow - dataStartRow) * 50) / totalRows) + "%", new System.Drawing.Font("Arial", (float)8.25, System.Drawing.FontStyle.Regular), Brushes.Black, new System.Drawing.PointF(loadForm.progressBar1.Width / 2 - 10, loadForm.progressBar1.Height / 2 - 7));
-                            }));
-
-                            var jobTitle = worksheet.Range[(jobTitleColumn + dataCurrentRow)].Value2;
-
-                            var deptID = worksheet.Range[deptIDColumn + dataCurrentRow].Value2;
-
-                            var specialtyCode = worksheet.Range[specialtyCodeColumn + dataCurrentRow].Value2;
-
-                            var weight = worksheet.Range[weightColumn + dataCurrentRow].Value2;
-
-                            string deptIDString = null;
-
-                            if (deptID != null)
-                            {
-                                deptIDString = deptID.ToString();
-                                if (!db.Departments.Any(s => s.ID_DEPARTMENT.Equals(deptIDString)) &&
-                                    !newDepartments.Any(s => s.ID_DEPARTMENT.Equals(deptIDString)))
-                                {
-                                    newDepartments.Add(new Department()
-                                    {
-                                        ID_DEPARTMENT = deptID.ToString()
-                                    });
-                                }
-                            }
-
-
-                            string jobTitleString = jobTitle.ToString();
-                            if (!db.Job_Title.Any(s => s.JOB_TITLE_NAME.Equals(jobTitleString)) &&
-                                !newJobTitles.Any(s => s.JOB_TITLE_NAME.Equals(jobTitleString)))
-                            {
-                                newJobTitles.Add(new Job_Title()
-                                {
-                                    JOB_TITLE_NAME = jobTitle.ToString()
-                                });
-                            }
-
-                            string specialtyCodeString = specialtyCode.ToString();
-                            if (!db.Specialty_Code.Any(s => s.ID_CODE.Equals(specialtyCodeString)) &&
-                                !newSpecialtyCodes.Any(s => s.ID_CODE.Equals(specialtyCodeString)))
-                            {
-                                newSpecialtyCodes.Add(new Specialty_Code()
-                                {
-                                    ID_CODE = specialtyCodeString,
-                                    ID_DEPARTMENT = deptIDString,
-                                    WEIGHT = weight
-                                });
-                            }
-
-                            dataCurrentRow++;
-                        }
-
-
-                        loadForm.Invoke((new Action(() => loadForm.progressBar1.CreateGraphics().DrawString("Saving changes to database", new System.Drawing.Font("Arial", (float)8.25, System.Drawing.FontStyle.Regular), Brushes.Black, new System.Drawing.PointF(loadForm.progressBar1.Width / 2 - 10, loadForm.progressBar1.Height / 2 - 7)))));
-
-                        db.Departments.AddRange(newDepartments);
-                        db.SaveChanges();
-
-                        db.Job_Title.AddRange(newJobTitles);
-                        db.SaveChanges();
-
-                        db.Specialty_Code.AddRange(newSpecialtyCodes);
-                        db.SaveChanges();
-
-                        //var totalRows = dataCurrentRow - dataStartRow;
-                        dataCurrentRow = dataStartRow;
-                        var newPerJobPerDepartment = new List<Per_Job_Per_Department>();
-
-                        int UHID = db.Universities.First(s => s.UNIVERSITY_NAME.Equals("University of Houston")).ID_UNIVERSITY;
-                        int OTHERID = db.Universities.First(s => s.UNIVERSITY_NAME.Equals("Unknown Tier 1")).ID_UNIVERSITY;
-
-                        while (worksheet.Range[specialtyCodeColumn + dataCurrentRow].Value2 != null)
-                        {
-                            var jobTitle = worksheet.Range[(jobTitleColumn + dataCurrentRow)].Value2;
-
-                            var deptID = worksheet.Range[deptIDColumn + dataCurrentRow].Value2;
-
-                            var specialtyCode = worksheet.Range[specialtyCodeColumn + dataCurrentRow].Value2.ToString();
-
-                            var averageSalary = worksheet.Range[averageSalaryColumn + dataCurrentRow].Value2;
-
-                            string jobTitleString = jobTitle.ToString();
-
-                            var jobTitleFromDB =
-                                db.Job_Title.First(s => s.JOB_TITLE_NAME.Equals(jobTitleString));
-                            var jobTitleID = jobTitleFromDB.ID_JOB_TITLE;
-
-
-                            newPerJobPerDepartment.Add(new Per_Job_Per_Department()
-                            {
-                                AVERAGE_SALARY = (decimal)averageSalary,
-                                ID_CODE = specialtyCode,
-                                ID_JOB_TITLE = jobTitleID,
-                                ID_UNIVERSITY = (deptID != null) ? UHID : OTHERID
-                            });
-
-                            dataCurrentRow++;
-                            loadForm.Invoke(new Action(() =>
-                            {
-                                var percentage = Math.Min(((dataCurrentRow - dataStartRow) * 50) / totalRows + 50, 100);
-                                loadForm.progressBar1.Value = percentage;
-                                loadForm.progressBar1.CreateGraphics()
-                                    .DrawString((percentage + "%"), new System.Drawing.Font("Arial", (float)8.25, System.Drawing.FontStyle.Regular), Brushes.Black, new System.Drawing.PointF(loadForm.progressBar1.Width / 2 - 10, loadForm.progressBar1.Height / 2 - 7));
-                            }));
-                        }
-
-                        loadForm.Invoke((new Action(() => loadForm.progressBar1.CreateGraphics().DrawString("Saving changes to database", new System.Drawing.Font("Arial", (float)8.25, System.Drawing.FontStyle.Regular), Brushes.Black, new System.Drawing.PointF(loadForm.progressBar1.Width / 2 - 10, loadForm.progressBar1.Height / 2 - 7)))));
-
-                        db.Per_Job_Per_Department.AddRange(newPerJobPerDepartment);
-                        db.SaveChanges();
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show("Import Failed: " + ex.Message);
-                    }
-
-                    workbook.Close(true, misValue, misValue);
-                    application.Quit();
-
-                    ReleaseObject(worksheet);
-                    ReleaseObject(workbook);
-                    ReleaseObject(application);
-
-                    Invoke(new Action(UpdateAverageByJobGridView));
-                    loadForm.Invoke(new Action(() => { loadForm.Close(); }));
-                    Invoke(new Action(Show));
-                });
-                thread.Start();
+                return;
             }
+
+            OpenFileDialog document2 = new OpenFileDialog
+            {
+                Filter = "Excel Files (.xls, .xlsx)|*.xlsx;*.xls",
+                FilterIndex = 1,
+                Multiselect = false
+            };
+            result = document2.ShowDialog();
+            if (result != DialogResult.OK)
+            {
+                return;
+            }
+
+
+            var loadForm = new LoadingSplash();
+            loadForm.Show();
+            Hide();
+            #endregion
+
+            var thread = new Thread(() =>
+            {
+                object misValue = Missing.Value;
+
+                #region Document1Processing
+                var application1 = new Excel.Application();
+                var workbook1 = application1.Workbooks.Open(document1.FileName);
+                var worksheet1 = (Excel.Worksheet)workbook1.Worksheets.Item[1];
+                var totalRows1 = worksheet1.UsedRange.Rows.Count - Document1DataRow;
+
+                var dataCurrentRow1 = Document1DataRow - 1; // Have to increment at top of loop
+
+                try
+                {
+                    var specialCodes = new List<Specialty_Code>();
+                    var departments = new List<Department>();
+
+                    while (worksheet1.Range[Document1SpecialtyCodeColumn + (dataCurrentRow1+1)].Value2 != null)
+                    {
+                        dataCurrentRow1++;
+                        loadForm.Invoke(new Action(() =>
+                        {
+                            loadForm.progressBar1.SetValue(((dataCurrentRow1 - Document1DataRow) * 50) / totalRows1);
+                        }));
+
+                        var specialtyCode = worksheet1.Range[Document1SpecialtyCodeColumn + dataCurrentRow1].Value2;
+                        var department = worksheet1.Range[Document1DepartmentIdColumn + dataCurrentRow1].Value2;
+                        var weight = worksheet1.Range[Document1CodeWeightColumn + dataCurrentRow1].Value2;
+
+                        string specialtyCodeString = specialtyCode.ToString();
+                        if (db.Specialty_Code.Any(s => s.ID_CODE.Equals(specialtyCodeString)) ||
+                            specialCodes.Any(s => s.ID_CODE.Equals(specialtyCodeString))) { continue; }
+
+                        Department dept;
+                        string departmentString = department.ToString().ToUpper();
+                        if (db.Departments.All(s => !s.ID_DEPARTMENT.Equals(departmentString)) &&
+                            departments.All(s => !s.ID_DEPARTMENT.Equals(departmentString)))
+                        {
+                            dept = new Department()
+                            {
+                                ID_DEPARTMENT = departmentString
+                            };
+                            departments.Add(dept);
+                        }
+                        else
+                        {
+                            dept = departments.FirstOrDefault(s => s.ID_DEPARTMENT.Equals(departmentString)) ??
+                                   db.Departments.FirstOrDefault(s => s.ID_DEPARTMENT.Equals(departmentString));
+                        }
+
+                        specialCodes.Add(new Specialty_Code()
+                        {
+                            ID_DEPARTMENT = dept.ID_DEPARTMENT,
+                            ID_CODE = specialtyCode.ToString(),
+                            WEIGHT = Convert.ToDouble(weight.ToString())
+                        });
+
+                        
+                    }
+
+                    loadForm.Invoke((new Action(() => loadForm.progressBar1.SetValue(50, "Saving changes to the database"))));
+                    db.Departments.AddRange(departments);
+                    db.SaveChanges();
+                    db.Specialty_Code.AddRange(specialCodes);
+                    db.SaveChanges();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Import Failed: " + ex.Message);
+                }
+
+                workbook1.Close(true, misValue, misValue);
+                application1.Quit();
+
+                ReleaseObject(worksheet1);
+                ReleaseObject(workbook1);
+                ReleaseObject(application1);
+                #endregion
+
+                #region Document2Processing
+                var application2 = new Excel.Application();
+                var workbook2 = application2.Workbooks.Open(document2.FileName);
+                var worksheet2 = (Excel.Worksheet)workbook2.Worksheets.Item[1];
+                var totalRows2 = worksheet2.UsedRange.Rows.Count - Document2DataRow;
+
+                var dataCurrentRow2 = Document2DataRow;
+
+                try
+                {
+                    var pjpd = new List<Per_Job_Per_Department>();
+                    var jobs = new List<Job_Title>();
+                    var codes = new List<Specialty_Code>();
+
+                    while (worksheet2.Range[Document2SpecialtyCodeColumn + dataCurrentRow2].Value2 != null)
+                    {
+                        loadForm.Invoke(new Action(() =>
+                        {
+                            loadForm.progressBar1.SetValue(50 + ((dataCurrentRow2 - Document2DataRow) * 50) / totalRows2);
+                        }));
+
+                        var salary = worksheet2.Range[Document2SalaryColumn + dataCurrentRow2].Value2;
+                        var title = worksheet2.Range[Document2JobTitleColumn + dataCurrentRow2].Value2;
+                        var code = worksheet2.Range[Document2SpecialtyCodeColumn + dataCurrentRow2].Value2;
+
+                        Specialty_Code sCode;
+                        string codeString = code.ToString();
+                        if (!db.Specialty_Code.Any(s => s.ID_CODE.Equals(codeString)) &&
+                            !codes.Any(s => s.ID_CODE.Equals(codeString)))
+                        {
+                            sCode = new Specialty_Code()
+                            {
+                                ID_CODE = codeString
+                            };
+                            codes.Add(sCode);
+                        }
+                        else
+                        {
+                            sCode = db.Specialty_Code.FirstOrDefault(s => s.ID_CODE.Equals(codeString)) ??
+                                    codes.FirstOrDefault(s => s.ID_CODE.Equals(codeString));
+                        }
+
+                        Job_Title jt;
+                        string titleString = title.ToString().ToUpper();
+                        if (!db.Job_Title.Any(s => s.JOB_TITLE_NAME.Equals(titleString)) &&
+                            !jobs.Any(s => s.JOB_TITLE_NAME.Equals((titleString))))
+                        {
+                            jt = new Job_Title()
+                            {
+                                JOB_TITLE_NAME = titleString
+                            };
+                            jobs.Add(jt);
+                        }
+                        else
+                        {
+                            jt = db.Job_Title.FirstOrDefault(s => s.JOB_TITLE_NAME.Equals(titleString)) ??
+                                 jobs.FirstOrDefault(s => s.JOB_TITLE_NAME.Equals((titleString)));
+                        }
+
+                        pjpd.Add(new Per_Job_Per_Department()
+                        {
+                            AVERAGE_SALARY = Convert.ToDecimal(salary.ToString()),
+                            ID_CODE = sCode.ID_CODE,
+                            Job_Title = jt,
+                            ID_UNIVERSITY = db.Universities.First().ID_UNIVERSITY //TODO Figure out how to determine university
+                        });
+
+                        dataCurrentRow2++;
+                    }
+
+                    loadForm.Invoke((new Action(() => loadForm.progressBar1.SetValue(100, "Saving changes to database"))));
+                    db.Specialty_Code.AddRange(codes);
+                    db.SaveChanges();
+                    
+                    db.Job_Title.AddRange(jobs);
+                    db.SaveChanges();
+
+                    db.Per_Job_Per_Department.AddRange(pjpd);
+                    db.SaveChanges();
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Import Failed: " + ex.Message);
+                }
+
+                workbook2.Close(true, misValue, misValue);
+                application2.Quit();
+
+                ReleaseObject(worksheet2);
+                ReleaseObject(workbook2);
+                ReleaseObject(application2);
+                #endregion
+
+                Invoke(new Action(UpdateAverageByJobGridView));
+                loadForm.Invoke(new Action(() => { loadForm.Close(); }));
+                Invoke(new Action(Show));
+            });
+            thread.Start();
         }
 
         private void MainWindow_Load(object sender, EventArgs e)

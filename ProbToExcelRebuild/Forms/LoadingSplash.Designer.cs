@@ -110,7 +110,7 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label label1;
         //private System.Windows.Forms.Label numProcessed;
-        public System.Windows.Forms.ProgressBar progressBar1;
+        public NewProgressBar progressBar1;
         public System.ComponentModel.BackgroundWorker backgroundWorker1;
 
     }
