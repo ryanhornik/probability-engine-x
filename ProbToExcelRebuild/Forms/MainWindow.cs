@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlTypes;
+using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
 using System.Threading;
@@ -15,6 +16,26 @@ namespace ProbToExcelRebuild.Forms
     public partial class MainWindow : Form
     {
         private UniversityModel db = new UniversityModel();
+
+        private DialogResult checkForExcel()
+        {
+            Process[] pname = Process.GetProcessesByName("Excel");
+            if (pname.Length > 0)
+            {
+                var result = MessageBox.Show("Excel is already running. Automatically close it?"
+                    , "Excel Process Detected"
+                    , MessageBoxButtons.YesNo);
+                if (result == DialogResult.Yes)
+                {
+                    foreach (var proc in pname)
+                    {
+                        proc.Kill();
+                    }
+                }
+                return result;
+            }
+            return DialogResult.Yes;
+        }
 
         public MainWindow()
         {
@@ -73,6 +94,11 @@ namespace ProbToExcelRebuild.Forms
                 {
                     return;
                 }
+            }
+
+            if (checkForExcel() != DialogResult.Yes)
+            {
+                return;
             }
 
             OpenFileDialog openFileDialog = new OpenFileDialog
@@ -288,6 +314,11 @@ namespace ProbToExcelRebuild.Forms
                 }
             }
 
+            if (checkForExcel() != DialogResult.Yes)
+            {
+                return;
+            }
+
             OpenFileDialog openFileDialog = new OpenFileDialog
             {
                 Filter = "Excel Files (.xls, .xlsx)|*.xlsx;*.xls",
@@ -433,6 +464,11 @@ namespace ProbToExcelRebuild.Forms
                 {
                     return;
                 }
+            }
+
+            if (checkForExcel() != DialogResult.Yes)
+            {
+                return;
             }
 
             OpenFileDialog document1 = new OpenFileDialog
@@ -749,6 +785,7 @@ namespace ProbToExcelRebuild.Forms
             form.ShowDialog();
             Show();
         }
+        
         private void secondInternalEquityToolStripMenuItem_Click(object sender, EventArgs e)
         {
             SecondInternalEquity form = new SecondInternalEquity();

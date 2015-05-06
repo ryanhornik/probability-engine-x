@@ -61,9 +61,9 @@ namespace ProbToExcelRebuild.Forms
             {
                 unilabel.Hide();
                 uniTextBox.Hide();
-                jobTitleTextBox.Text = "B";
-                salaryTextBox.Text = "O";
-                departmentTextBox.Text = "AA";
+                jobTitleTextBox.Text = "C";
+                salaryTextBox.Text = "P";
+                departmentTextBox.Text = "AB";
                 dataRowTextBox.Text = "8";
             }
 

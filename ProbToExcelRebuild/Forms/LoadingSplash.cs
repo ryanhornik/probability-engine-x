@@ -62,15 +62,12 @@ namespace ProbToExcelRebuild.Forms
                     text,
                     BarFont,
                     Brushes.Black, 
-                    Center);
+                    new PointF(Width / 2 - 10, Height / 2 - 7));
             }
-
-            private readonly PointF Center;
 
             public NewProgressBar()
             {
                 SetStyle(ControlStyles.UserPaint, true);
-                Center = new PointF(Width / 2 - 10, Height / 2 - 7);
             }
 
             protected override void OnPaint(PaintEventArgs e)
