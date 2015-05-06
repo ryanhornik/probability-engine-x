@@ -71,6 +71,7 @@
             this.ID_JOB_TITLE = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ID_UNIVERSITY = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.purgeAllDataToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.employeeGrid)).BeginInit();
             this.tabControl1.SuspendLayout();
@@ -98,6 +99,7 @@
             this.importDataToolStripMenuItem,
             this.exportToolStripMenuItem,
             this.manualInputToolStripMenuItem,
+            this.purgeAllDataToolStripMenuItem,
             this.exitToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
@@ -442,6 +444,11 @@
             this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
             this.dataGridViewTextBoxColumn6.ReadOnly = true;
             // 
+            // purgeAllDataToolStripMenuItem
+            this.purgeAllDataToolStripMenuItem.Name = "purgeAllDataToolStripMenuItem";
+            this.purgeAllDataToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
+            this.purgeAllDataToolStripMenuItem.Text = "Purge All Data";
+            this.purgeAllDataToolStripMenuItem.Click += new System.EventHandler(this.purgeAllDataToolStripMenuItem_Click);
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -516,5 +523,6 @@
         private System.Windows.Forms.ToolStripMenuItem employeesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem newAverageHireSalariesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem averageSalariesByJobToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem purgeAllDataToolStripMenuItem;
     }
 }

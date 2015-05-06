@@ -52,7 +52,8 @@
             "    Entering a new function",
             "    Supported operators",
             "    Working with your data",
-            "    Special functions"});
+            "    Special functions",
+            "    Advanced Examples"});
             this.listBox1.Location = new System.Drawing.Point(0, 0);
             this.listBox1.Name = "listBox1";
             this.listBox1.Size = new System.Drawing.Size(233, 336);

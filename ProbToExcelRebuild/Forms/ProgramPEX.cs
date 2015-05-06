@@ -77,14 +77,6 @@ namespace ProbToExcelRebuild.Forms
                         averageable = db.Universities.First(s => s.ID_UNIVERSITY == asNum);
                         break;
                     }
-                case 'y':
-                    {
-                        var asNum = Convert.ToInt32(targetNum);
-                        ret = db.New_Associate_Professor_Average_Salary
-                            .Where(s => s.YEAR >= DateTime.Today.Year - asNum)
-                            .Average(s => s.AVERAGE_SALARY).ToString();
-                        return ret; //If we hit this no further calculations are needed maybe?
-                    }
                 default: throw new Exception("The command you have entered is invalid at character (2) legal characters include 'A','B','C','D','S','N' See help menu for details");
             }
 
@@ -143,29 +135,87 @@ namespace ProbToExcelRebuild.Forms
             var reg = new TypeRegistry();
             reg.RegisterSymbol("db", db);
 
-            Regex tokens = new Regex(@"[A-D,S,N][j,d,u,y][A-Z]?\d+");
-            var mo = tokens.Replace(textboxCompiler, ReplaceTokens);
+            Regex years = new Regex(@"Y\d{1,4}(d[A-Z]\d*)?");
+            Regex tokens = new Regex(@"[A-D,S,N][j,d,u][A-Z]?\d+");
+            textboxCompiler = years.Replace(textboxCompiler, ProcessYears);
+            textboxCompiler = tokens.Replace(textboxCompiler, ReplaceTokens); // These do not depend on parenthesis
 
             Regex powers = new Regex(@"\d+(\.\d+)? ?\^ ?\d+(\.\d+)?");
-            mo = powers.Replace(mo, ReplacePowers);
-
             Regex doubles = new Regex(@"\d+(\.\d+)?");
-            mo = doubles.Replace(mo, ToDouble);
 
-            var expression = new CompiledExpression(mo) { TypeRegistry = reg };
+            Stack<int> openingBraces = new Stack<int>();
             try
             {
-                var result = expression.Eval();
+                for (int i = 0; i < textboxCompiler.Length; i++)
+                {
+                    if (textboxCompiler[i] == '(')
+                    {
+                        openingBraces.Push(i);
+                    }
+                    else if (textboxCompiler[i] == ')')
+                    {
+                        var popped = openingBraces.Pop();
+                        var mo = powers.Replace(textboxCompiler.Substring(popped, i - popped + 1), ReplacePowers);//Include parenthesis
+                        mo = doubles.Replace(mo, ToDouble);
+                        var expression = new CompiledExpression(mo) { TypeRegistry = reg };
+                        var result = expression.Eval();
+                        textboxCompiler = textboxCompiler.Remove(popped, i - popped + 1).Insert(popped,result.ToString());
+                        i = popped + result.ToString().Length-1;
+                    }
 
-                DebugTextBox.AppendText(result.ToString() + "\n");
+                }
+                DebugTextBox.AppendText(textboxCompiler + "\n");
                 currentResultAmmount++;
-
-
             }
             catch (Exception ex)
             {
                 new ErrorMessageBox(ex, "Function parsing failed").ShowDialog();
             }
+
+
+        }
+
+        private string ProcessYears(Match m)
+        {
+            var yearLength = m.Value.IndexOf('d') - 1; // Y2015dH10020 make year length 4 from ([5] - 1)
+            var ret = "";
+            if (yearLength == -2) // Department is not listed
+            {
+                yearLength = m.Value.Length - 1;
+                var asNum = Convert.ToInt32(m.Value.Substring(1, yearLength));
+                if (yearLength == 4)
+                {
+                    ret = db.New_Associate_Professor_Average_Salary
+                        .Where(s => s.YEAR == asNum)
+                        .Average(s => s.AVERAGE_SALARY).ToString();
+                }
+                else
+                {
+                    ret = db.New_Associate_Professor_Average_Salary
+                        .Where(s => s.YEAR >= DateTime.Today.Year - asNum)
+                        .Average(s => s.AVERAGE_SALARY).ToString();
+                }
+            }
+            else // Department is listed
+            {
+                var deptId = m.Value.Substring(yearLength + 2);
+                var asNum = Convert.ToInt32(m.Value.Substring(1, yearLength));
+                if (yearLength == 4)
+                {
+                    ret = db.New_Associate_Professor_Average_Salary
+                        .First(s => s.YEAR == asNum &&
+                                    s.ID_DEPARTMENT.Equals(deptId))
+                                    .AVERAGE_SALARY.ToString(); // There should be only one result for this
+                }
+                else
+                {
+                    ret = db.New_Associate_Professor_Average_Salary
+                        .Where(s => s.YEAR >= DateTime.Today.Year - asNum)
+                        .Where(s => s.ID_DEPARTMENT.Equals(deptId))
+                        .Average(s => s.AVERAGE_SALARY).ToString();
+                }
+            }
+            return ret;
         }
 
         private const int RESULT_LIMIT = 200;
