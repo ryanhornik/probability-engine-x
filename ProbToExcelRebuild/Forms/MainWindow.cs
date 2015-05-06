@@ -221,7 +221,7 @@ namespace ProbToExcelRebuild.Forms
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show("Import Failed: " + ex.Message + "\n" + ex.StackTrace + "\n" + ex.Data);
+                        new ErrorMessageBox(ex, "Import Failed").ShowDialog();
                     }
 
                     workbook.Close(true, misValue, misValue);
@@ -249,7 +249,7 @@ namespace ProbToExcelRebuild.Forms
             catch (Exception ex)
             {
                 obj = null;
-                MessageBox.Show("Unable to release the Object " + ex.ToString());
+                new ErrorMessageBox(ex, "Unable to release the object").ShowDialog();
             }
             finally
             {
@@ -382,7 +382,7 @@ namespace ProbToExcelRebuild.Forms
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show("Import Failed: " + ex.Message);
+                        new ErrorMessageBox(ex, "Import Failed").ShowDialog();
                     }
 
                     workbook.Close(true, misValue, misValue);
@@ -533,7 +533,7 @@ namespace ProbToExcelRebuild.Forms
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Import Failed: " + ex.Message);
+                    new ErrorMessageBox(ex, "Import Failed").ShowDialog();
                 }
 
                 workbook1.Close(true, misValue, misValue);
@@ -627,7 +627,7 @@ namespace ProbToExcelRebuild.Forms
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Import Failed: " + ex.Message);
+                    new ErrorMessageBox(ex, "Import Failed").ShowDialog();
                 }
 
                 workbook2.Close(true, misValue, misValue);

@@ -156,9 +156,9 @@ namespace ProbToExcelRebuild.Forms
                 }
                 MessageBox.Show("Added Successfully!");
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                MessageBox.Show("Grid not updating!");
+                new ErrorMessageBox(ex, "Gridview failed to update").ShowDialog();
             }
         }
          
