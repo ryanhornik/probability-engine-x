@@ -816,5 +816,36 @@ namespace ProbToExcelRebuild.Forms
         {
             HelperClass.ExportToExcel(newHireAveragesGrid);
         }
+
+        private void purgeAllDataToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var result = MessageBox.Show("This will delete all data from the database.\n" +
+                                         "This cannot be undone it is recommended that you export all data first.\n" +
+                                         "Are you sure?"
+                    , "WARNING"
+                    , MessageBoxButtons.YesNo);
+            if (result == DialogResult.Yes)
+            {
+                db.Employees.RemoveRange(db.Employees);
+                db.SaveChanges();
+                db.Per_Job_Per_Department.RemoveRange(db.Per_Job_Per_Department);
+                db.SaveChanges();
+                db.New_Associate_Professor_Average_Salary.RemoveRange(db.New_Associate_Professor_Average_Salary);
+                db.SaveChanges();
+                db.Specialty_Code.RemoveRange(db.Specialty_Code);
+                db.SaveChanges();
+                db.CustomFunctions.RemoveRange(db.CustomFunctions);
+                db.SaveChanges();
+                db.Job_Title.RemoveRange(db.Job_Title);
+                db.SaveChanges();
+                db.Departments.RemoveRange(db.Departments);
+                db.SaveChanges();
+                db.Universities.RemoveRange(db.Universities);
+                db.SaveChanges();
+                UpdateAverageByJobGridView();
+                UpdateEmployeeGridView();
+                UpdateNewHireAveragesGridView();
+            }
+        }
     }
 }

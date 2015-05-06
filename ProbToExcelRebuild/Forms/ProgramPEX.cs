@@ -77,14 +77,6 @@ namespace ProbToExcelRebuild.Forms
                         averageable = db.Universities.First(s => s.ID_UNIVERSITY == asNum);
                         break;
                     }
-                case 'y':
-                    {
-                        var asNum = Convert.ToInt32(targetNum);
-                        ret = db.New_Associate_Professor_Average_Salary
-                            .Where(s => s.YEAR >= DateTime.Today.Year - asNum)
-                            .Average(s => s.AVERAGE_SALARY).ToString();
-                        return ret; //If we hit this no further calculations are needed maybe?
-                    }
                 default: throw new Exception("The command you have entered is invalid at character (2) legal characters include 'A','B','C','D','S','N' See help menu for details");
             }
 
@@ -144,7 +136,7 @@ namespace ProbToExcelRebuild.Forms
             reg.RegisterSymbol("db", db);
 
             Regex years = new Regex(@"Y\d{1,4}(d[A-Z]\d*)?");
-            Regex tokens = new Regex(@"[A-D,S,N][j,d,u,y][A-Z]?\d+");
+            Regex tokens = new Regex(@"[A-D,S,N][j,d,u][A-Z]?\d+");
             textboxCompiler = years.Replace(textboxCompiler, ProcessYears);
             textboxCompiler = tokens.Replace(textboxCompiler, ReplaceTokens); // These do not depend on parenthesis
 

@@ -41,23 +41,38 @@ namespace ProbToExcelRebuild.Forms
                 " after you have completed it by clicking on the Save"+
                 " button. This will allow you to call these functions from the"+
                 " drop down menu.\n\n"+
-                "Using Stored Data:\n"+
+                "Using Stored Data Selectors:\n"+
                 "You can use stored data such as University, Job Title, "+
                 "etc, that is imported from the excel documents. They are found in the drop"+
                 " down menus.\n\n"+
+                "Example:\n" +
+                "u1 will select for only data related to the university with ID 1\n" +
+                "This will not work on it's own you must choose what to do with the data\n" +
+                "See \"Special Functions\" for more information\n\n"+
                 "Adding Values to the console:\n"+
                 "Click on the Add to function button to add a function to the console.\n\n",
 
-                "Special Functions:\n\n"+
-                "A: Finds the mean.\n"+
+                "\nSpecial Functions:\n\n"+
+                "A: Finds the mean.\n" +
+                "\tMust be narrowed down by a selector see \"Working with your data\"\n"+
                 "B: Finds the first quartile.\n"+
+                "\tMust be narrowed down by a selector see \"Working with your data\"\n"+
                 "C: Finds the median.\n"+
+                "\tMust be narrowed down by a selector see \"Working with your data\"\n"+
                 "D: Finds the third quartile.\n"+
+                "\tMust be narrowed down by a selector see \"Working with your data\"\n"+
                 "S: Finds the summation of all total salarys.\n"+
+                "\tMust be narrowed down by a selector see \"Working with your data\"\n"+
                 "N: Finds the amount of items selected.\n"+
-                "AyX: Finds the average salary of a given title of X number of years back.\n"+
+                "\tMust be narrowed down by a selector see \"Working with your data\"\n"+
+                "Y: Finds the average salaries for new associate professors for a given year or number of years back\n"+
                 "Example:\n"+
-                "Aj1: This will find the mean of a job title id of number 1"
+                "Y2015 will return the average salary for all associate professors in the year 2015\n" +
+                "You can narrow it down by department as well for example Y2015dH0107 will get the average salary for new associates in 2015 for department H0107",
+
+                "\nAdvanced Examples:\n\n" +
+                "You can chain many commands together to make very complex calculations\n\n" +
+                "((Y2015dH0107 + 7000) * 1.03 ^ 2)/((CdH0107))"
 
 
             };
