@@ -23,6 +23,7 @@ namespace ProbToExcelRebuild
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new MainWindow());
         }
+
     }
 
     public static class HelperClass
