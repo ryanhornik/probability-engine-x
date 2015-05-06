@@ -43,6 +43,7 @@
             this.enterUHDataToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.enterSpecialCodeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.averageNewHireDataToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.purgeAllDataToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.calculateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.employeeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -71,7 +72,6 @@
             this.ID_JOB_TITLE = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ID_UNIVERSITY = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.purgeAllDataToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.employeeGrid)).BeginInit();
             this.tabControl1.SuspendLayout();
@@ -198,6 +198,13 @@
             this.averageNewHireDataToolStripMenuItem.Text = "Average New Hire Data";
             this.averageNewHireDataToolStripMenuItem.Click += new System.EventHandler(this.averageNewHireDataToolStripMenuItem_Click);
             // 
+            // purgeAllDataToolStripMenuItem
+            // 
+            this.purgeAllDataToolStripMenuItem.Name = "purgeAllDataToolStripMenuItem";
+            this.purgeAllDataToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
+            this.purgeAllDataToolStripMenuItem.Text = "Purge All Data";
+            this.purgeAllDataToolStripMenuItem.Click += new System.EventHandler(this.purgeAllDataToolStripMenuItem_Click);
+            // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
@@ -249,7 +256,7 @@
             // 
             this.programPEXToolStripMenuItem.Name = "programPEXToolStripMenuItem";
             this.programPEXToolStripMenuItem.Size = new System.Drawing.Size(236, 22);
-            this.programPEXToolStripMenuItem.Text = "Program PEX";
+            this.programPEXToolStripMenuItem.Text = "Custom Functions";
             this.programPEXToolStripMenuItem.Click += new System.EventHandler(this.programPEXToolStripMenuItem_Click);
             // 
             // employeeGrid
@@ -335,7 +342,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(571, 297);
+            this.tabPage2.Size = new System.Drawing.Size(753, 297);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "New Hire Averages";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -353,7 +360,7 @@
             this.newHireAveragesGrid.Location = new System.Drawing.Point(3, 3);
             this.newHireAveragesGrid.Name = "newHireAveragesGrid";
             this.newHireAveragesGrid.ReadOnly = true;
-            this.newHireAveragesGrid.Size = new System.Drawing.Size(565, 291);
+            this.newHireAveragesGrid.Size = new System.Drawing.Size(747, 291);
             this.newHireAveragesGrid.TabIndex = 2;
             // 
             // dataGridViewTextBoxColumn2
@@ -382,7 +389,7 @@
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(571, 297);
+            this.tabPage3.Size = new System.Drawing.Size(753, 297);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Average Salaries By Job";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -403,7 +410,7 @@
             this.averageByJobGrid.Location = new System.Drawing.Point(3, 3);
             this.averageByJobGrid.Name = "averageByJobGrid";
             this.averageByJobGrid.ReadOnly = true;
-            this.averageByJobGrid.Size = new System.Drawing.Size(565, 291);
+            this.averageByJobGrid.Size = new System.Drawing.Size(747, 291);
             this.averageByJobGrid.TabIndex = 3;
             // 
             // dataGridViewTextBoxColumn8
@@ -444,11 +451,6 @@
             this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
             this.dataGridViewTextBoxColumn6.ReadOnly = true;
             // 
-            // purgeAllDataToolStripMenuItem
-            this.purgeAllDataToolStripMenuItem.Name = "purgeAllDataToolStripMenuItem";
-            this.purgeAllDataToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
-            this.purgeAllDataToolStripMenuItem.Text = "Purge All Data";
-            this.purgeAllDataToolStripMenuItem.Click += new System.EventHandler(this.purgeAllDataToolStripMenuItem_Click);
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
