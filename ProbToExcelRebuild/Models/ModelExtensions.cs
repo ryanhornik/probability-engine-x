@@ -106,6 +106,43 @@ namespace ProbToExcelRebuild.Models
 
             return avg;
         }
+
+        public static Averages CalculateAverages(ICollection<Employee> employees)
+        {
+            var avg = new Averages();
+            var sal = employees.Sum(imp => imp.TOTAL_SALARY);
+            var count = employees.Count;
+            var arr = employees.ToArray();
+
+            if (count == 0)
+            {
+                return avg;
+            }
+
+            avg.Mean = (double)(sal / count);
+
+            if (count % 2 == 0)
+            {
+                avg.Median = ((double)(arr[count / 2].TOTAL_SALARY + arr[count / 2 - 1].TOTAL_SALARY)) / 2;
+            }
+            else
+            {
+                avg.Median = (double)employees.ToArray()[count / 2].TOTAL_SALARY;
+            }
+
+            if (count % 4 == 0)
+            {
+                avg.IQR1 = ((double)(arr[count / 4].TOTAL_SALARY + arr[count / 4 - 1].TOTAL_SALARY)) / 2;
+                avg.IQR3 = ((double)(arr[3 * count / 4].TOTAL_SALARY + arr[3 * count / 4 - 1].TOTAL_SALARY)) / 2;
+            }
+            else
+            {
+                avg.IQR1 = (double)employees.ToArray()[count / 4].TOTAL_SALARY;
+                avg.IQR3 = (double)employees.ToArray()[3 * count / 4].TOTAL_SALARY;
+            }
+
+            return avg;
+        }
     }
 
     public class Averages

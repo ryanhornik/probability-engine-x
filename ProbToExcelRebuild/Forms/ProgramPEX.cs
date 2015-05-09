@@ -53,52 +53,138 @@ namespace ProbToExcelRebuild.Forms
             return Math.Pow(before, after).ToString();
         }
 
+        public static Predicate<T> And<T>(params Predicate<T>[] predicates)
+        {
+            return delegate(T item)
+            {
+                foreach (Predicate<T> predicate in predicates)
+                {
+                    if (!predicate(item))
+                    {
+                        return false;
+                    }
+                }
+                return true;
+            };
+        }
+
+        public static Predicate<T> Or<T>(params Predicate<T>[] predicates)
+        {
+            return delegate(T item)
+            {
+                foreach (Predicate<T> predicate in predicates)
+                {
+                    if (predicate(item))
+                    {
+                        return true;
+                    }
+                }
+                return false;
+            };
+        }
+
+        public static Predicate<T> And<T>(IEnumerable<Predicate<T>> predicates)
+        {
+            return delegate(T item)
+            {
+                foreach (Predicate<T> predicate in predicates)
+                {
+                    if (!predicate(item))
+                    {
+                        return false;
+                    }
+                }
+                return true;
+            };
+        }
+
+        public static Predicate<T> Or<T>(IEnumerable<Predicate<T>> predicates)
+        {
+            return delegate(T item)
+            {
+                foreach (Predicate<T> predicate in predicates)
+                {
+                    if (predicate(item))
+                    {
+                        return true;
+                    }
+                }
+                return false;
+            };
+        }
+
         private string ReplaceTokens(Match m)
         {
-            var avgTypeChar = m.Value[0];
-            var subGroupChar = m.Value[1];
-            var targetNum = m.Value.Substring(2); // In case of deptID this will be a string not an int
-            string ret;
-            Averageable averageable;
-            switch (subGroupChar)
+            Regex multi = new Regex(@"[j,d,u][A-Z]?\d+");
+            var restrictions = multi.Matches(m.Value);
+            const int UNIVERSITY = 0;
+            const int TITLE = 1;
+            const int DEPT = 2;
+
+            var predicates = new []
             {
-                case 'j':
+                new List<Predicate<Employee>>(),
+                new List<Predicate<Employee>>(),
+                new List<Predicate<Employee>>()
+            };
+
+            foreach (var r in restrictions)
+            {
+                var asMatch = (Match) r;
+                var number = asMatch.Value.Substring(1).ToUpper();
+                switch (asMatch.Value[0])
+                {
+                    case 'j':
                     {
-                        var asNum = Convert.ToInt32(targetNum);
-                        averageable = db.Job_Title.First(s => s.ID_JOB_TITLE == asNum);
+                        var numberAsNum = Convert.ToInt32(number);
+                        predicates[TITLE].Add(employee => employee.ID_JOB_TITLE == numberAsNum);
                         break;
                     }
-                case 'd':
-                    averageable = db.Departments.First(s => s.ID_DEPARTMENT.Equals(targetNum));
-                    break;
-                case 'u':
+                    case 'd':
                     {
-                        var asNum = Convert.ToInt32(targetNum);
-                        averageable = db.Universities.First(s => s.ID_UNIVERSITY == asNum);
+                        predicates[DEPT].Add(employee => employee.ID_DEPARTMENT.Equals(number));
                         break;
                     }
-                default: throw new Exception("The command you have entered is invalid at character (2) legal characters include 'A','B','C','D','S','N' See help menu for details");
+                    case 'u':
+                    {
+                        var numberAsNum = Convert.ToInt32(number);
+                        predicates[UNIVERSITY].Add(employee => employee.ID_UNIVERSITY == numberAsNum);
+                        break;
+                    }
+                }
+                
             }
+
+            var selectedUnis = (predicates[UNIVERSITY].Count == 0) ? (s => true) : Or(predicates[UNIVERSITY]);
+            var selectedJobs = (predicates[TITLE].Count == 0) ? (s => true) : Or(predicates[TITLE]);
+            var selectedDept = (predicates[DEPT].Count == 0) ? (s => true) : Or(predicates[DEPT]);
+
+            var selectedSalaries = db.Employees.Where(And(selectedDept, selectedUnis, selectedJobs).Invoke).ToList();
+            var averages = Averageable.CalculateAverages(selectedSalaries);
+
+            var avgTypeChar = m.Value[0];
+            string ret;
+
 
             switch (avgTypeChar)
             {
                 case 'A':
-                    ret = averageable.CalculateAverages().Mean.ToString();
+                    ret = averages.Mean.ToString();
                     break;
                 case 'B':
-                    ret = averageable.CalculateAverages().IQR1.ToString();
+                    ret = averages.IQR1.ToString();
                     break;
                 case 'C':
-                    ret = averageable.CalculateAverages().Median.ToString();
+                    ret = averages.Median.ToString();
                     break;
                 case 'D':
-                    ret = averageable.CalculateAverages().IQR3.ToString();
+                    ret = averages.IQR3.ToString();
                     break;
                 case 'S':
-                    ret = averageable.Employees.Sum(s => s.TOTAL_SALARY).ToString();
+                    ret = selectedSalaries.Sum(s => s.TOTAL_SALARY).ToString();
                     break;
                 case 'N':
-                    ret = averageable.Employees.Count.ToString();
+                    ret = selectedSalaries.Count.ToString();
                     break;
                 default: throw new Exception("The command you have entered is invalid at character (1) legal characters include 'A','B','C','D','S','N' See help menu for details");
             }
@@ -135,15 +221,15 @@ namespace ProbToExcelRebuild.Forms
             var reg = new TypeRegistry();
             reg.RegisterSymbol("db", db);
 
-            Regex years = new Regex(@"Y\d{1,4}(d[A-Z]\d*)?");
-            Regex tokens = new Regex(@"[A-D,S,N][j,d,u][A-Z]?\d+");
+            var years = new Regex(@"Y\d{1,4}(d[A-Z]\d*)?");
+            var tokens = new Regex(@"[A-D,S,N]([j,d,u][A-Z]?\d+)+");
             textboxCompiler = years.Replace(textboxCompiler, ProcessYears);
             textboxCompiler = tokens.Replace(textboxCompiler, ReplaceTokens); // These do not depend on parenthesis
 
-            Regex powers = new Regex(@"\d+(\.\d+)? ?\^ ?\d+(\.\d+)?");
-            Regex doubles = new Regex(@"\d+(\.\d+)?");
+            var powers = new Regex(@"\d+(\.\d+)? ?\^ ?\d+(\.\d+)?");
+            var doubles = new Regex(@"\d+(\.\d+)?");
 
-            Stack<int> openingBraces = new Stack<int>();
+            var openingBraces = new Stack<int>();
             try
             {
                 for (int i = 0; i < textboxCompiler.Length; i++)

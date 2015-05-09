@@ -644,7 +644,7 @@ namespace ProbToExcelRebuild.Forms
                             AVERAGE_SALARY = Convert.ToDecimal(salary.ToString()),
                             ID_CODE = sCode.ID_CODE,
                             Job_Title = jt,
-                            ID_UNIVERSITY = db.Universities.First().ID_UNIVERSITY //TODO Figure out how to determine university
+                            ID_UNIVERSITY = db.Universities.First(s => s.UNIVERSITY_NAME.Equals("Unknown Tier 1")).ID_UNIVERSITY //TODO Figure out how to determine university
                         });
 
                         dataCurrentRow2++;

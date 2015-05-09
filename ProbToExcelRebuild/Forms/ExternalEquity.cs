@@ -24,17 +24,12 @@ namespace ProbToExcelRebuild.Forms
         {
             foreach (var title in db.Job_Title)
             {
-                var avgUH = (title.Employees.Count(s => s.University.UNIVERSITY_NAME.Equals("University of Houston")) > 0)?
-                    title.Employees
-                    .Where(s => s.University.UNIVERSITY_NAME.Equals("University of Houston"))
-                    .Sum(s => s.TOTAL_SALARY) /
-                    title.Employees.Count(s => s.University.UNIVERSITY_NAME.Equals("University of Houston")):0;
+                var avgUH =
+                    db.Universities.First(s => s.UNIVERSITY_NAME.Equals("University of Houston"))
+                        .CalculateAverages()
+                        .Mean;
 
-                var avgOther = (title.Employees.Count(s => s.University.IS_TIER_1) > 0)?
-                    title.Employees
-                    .Where(s => s.University.IS_TIER_1)
-                    .Sum(s => s.TOTAL_SALARY) /
-                    title.Employees.Count(s => s.University.IS_TIER_1):0;
+                var avgOther = Averageable.CalculateAverages(title.Employees.Where(s => s.University.IS_TIER_1).ToList()).Mean;
 
                 object[] row = new object[4];
                 row[0] = title.JOB_TITLE_NAME;

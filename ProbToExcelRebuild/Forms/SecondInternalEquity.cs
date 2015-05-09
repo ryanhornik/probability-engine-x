@@ -31,20 +31,18 @@ namespace ProbToExcelRebuild.Forms
                     double t1Weighted = 0;
                     foreach (var code in title.Per_Job_Per_Department)
                     {
-                        if (code.Specialty_Code.Department == null)
-                        {
-                            t1Weighted += (double) code.AVERAGE_SALARY * code.Specialty_Code.WEIGHT;
-                        }
-                        else
-                        {
-                            uhWeighted += (double) code.AVERAGE_SALARY * code.Specialty_Code.WEIGHT;
-                        }
+                        t1Weighted += (double)code.AVERAGE_SALARY * code.Specialty_Code.WEIGHT;
+
+                        var codeDept = code.Specialty_Code.ID_DEPARTMENT;
+                        uhWeighted += Averageable.CalculateAverages(title.Employees
+                            .Where(s => s.ID_DEPARTMENT.Equals(codeDept)).ToList())
+                            .Mean * code.Specialty_Code.WEIGHT;
                     }
                     var row = new object[4];
                     row[0] = title.JOB_TITLE_NAME;
                     row[1] = t1Weighted;
                     row[2] = uhWeighted;
-                    row[3] = t1Weighted/uhWeighted;
+                    row[3] = t1Weighted / uhWeighted;
                     allrows.Add(row);
                 }
             }
@@ -52,7 +50,7 @@ namespace ProbToExcelRebuild.Forms
             {
                 secondInternalEquityGrid.Rows.Add(row);
             }
-            
+
         }
 
         private void exportButton_Click(object sender, EventArgs e)
